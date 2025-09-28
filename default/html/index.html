@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML-Projekte</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-base-200 min-h-screen p-4 flex items-center justify-center">
+    <div class="card w-full max-w-2xl bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h1
+          class="card-title text-3xl font-bold mb-4 border-b border-base-300 pb-4"
+        >
+          HTML-Projekte
+        </h1>
+
+        <ul id="file-list" class="menu bg-base-200 w-full rounded-box">
+          <li id="loading" class="p-4 text-center">
+            <span class="loading loading-spinner text-primary"></span>
+            Lade Inhalte...
+          </li>
+        </ul>
+
+        <div
+          class="card-actions justify-end mt-4 pt-4 border-t border-base-300"
+        >
+          <a href="../" class="btn btn-ghost">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-4 h-4 mr-2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 9l6-6m0 0l6 6m-6-6v12a6 6 0 01-12 0v-3"
+              />
+            </svg>
+            Ein Verzeichnis hoch
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // --- Configuration ---
+      // Change these to your repository details.
+      const USERNAME = "digilab08"; // TODO: Change this
+      const REPO = "codecamp-projects"; // TODO: Change this
+      // This script automatically figures out the current path from the URL.
+      // It removes the repo name if present and handles trailing slashes.
+      const repoPrefix = `/${REPO}`;
+      let path = window.location.pathname;
+      if (path.startsWith(repoPrefix)) {
+        path = path.substring(repoPrefix.length);
+      }
+      path = path.replace(/\/$/, ""); // Ensure no trailing slash for the API call
+
+      // --- Main Logic ---
+      // This function fetches directory contents from the GitHub API.
+      async function fetchDirectoryContents() {
+        // If the path is empty, it means we are at the root.
+        const apiPath = path || "/";
+        const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents${apiPath}`;
+        const fileListElement = document.getElementById("file-list");
+
+        try {
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            throw new Error(`GitHub API Error: ${response.status}`);
+          }
+          const items = await response.json();
+
+          // Clear the "Loading..." message
+          document.getElementById("loading").remove();
+          if (items.length === 0) {
+            fileListElement.innerHTML = `<li><a>Dieses Verzeichnis ist leer.</a></li>`;
+            return;
+          }
+
+          // Sort items: folders first, then files, then alphabetically
+          items.sort((a, b) => {
+            if (a.type === b.type) return a.name.localeCompare(b.name);
+            return a.type === "dir" ? -1 : 1;
+          });
+
+          // Create and append list items for each file/folder
+          for (const item of items) {
+            if (item.name === "index.html") continue; // Don't link to this file
+
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+
+            // Add an icon for directories vs files
+            const icon =
+              item.type === "dir"
+                ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>`
+                : `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>`;
+
+            a.href = item.name; // Relative link
+            a.innerHTML = `${icon} ${item.name}`; // Set content with icon
+
+            li.appendChild(a);
+            fileListElement.appendChild(li);
+          }
+        } catch (error) {
+          fileListElement.innerHTML = `<li class="text-error"><a>Fehler beim Laden der Inhalte: ${error.message}</a></li>`;
+          console.error(error);
+        }
+      }
+
+      // Run the function when the page is loaded.
+      document.addEventListener("DOMContentLoaded", fetchDirectoryContents);
+    </script>
+  </body>
+</html>
