@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warum Minecraft besser ist als FIFA</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 40px;
+      }
+      h1 {
+        text-align: center;
+        color: #2e8b57;
+      }
+      article {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: auto;
+      }
+      h2 {
+        color: #1e6b43;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <h1>Warum Minecraft besser ist als FIFA</h1>
+
+      <h2>Einleitung</h2>
+      <p>
+        FIFA und Minecraft sind zwei der bekanntesten Spiele der Welt. Während
+        FIFA durch realistischen Fußball beeindruckt, begeistert Minecraft mit
+        grenzenloser Freiheit und Kreativität. In diesem Aufsatz wird erklärt,
+        warum Minecraft das insgesamt bessere Spiel ist.
+      </p>
+
+      <h2>Kreativität und Freiheit</h2>
+      <p>
+        In Minecraft gibt es keine festen Regeln oder Grenzen. Spieler können
+        bauen, entdecken, überleben oder programmieren – alles ist möglich.
+        Diese kreative Freiheit macht Minecraft einzigartig, während FIFA immer
+        demselben Spielprinzip folgt: Fußball spielen. In Minecraft kann jeder
+        seine eigene Welt erschaffen und seiner Fantasie freien Lauf lassen.
+      </p>
+
+      <h2>Lernfaktor und Gemeinschaft</h2>
+      <p>
+        Minecraft fördert nicht nur Kreativität, sondern auch logisches Denken
+        und Zusammenarbeit. Viele Schulen nutzen es inzwischen im Unterricht, um
+        Themen wie Architektur, Physik oder Programmierung zu vermitteln. Zudem
+        entsteht in der Community ein starker Zusammenhalt, weil Spieler
+        gemeinsam Projekte bauen oder Abenteuer erleben. Bei FIFA steht dagegen
+        meist der Wettkampf im Vordergrund.
+      </p>
+
+      <h2>Langfristiger Spielspaß</h2>
+      <p>
+        Während FIFA jedes Jahr eine neue Version herausbringt, bleibt Minecraft
+        dauerhaft aktuell. Durch regelmäßige Updates, Mods und Server entsteht
+        ständig neuer Inhalt. Dadurch verliert das Spiel kaum an Reiz. FIFA
+        dagegen wird oft schnell ersetzt, sobald die nächste Ausgabe erscheint.
+      </p>
+
+      <h2>Fazit</h2>
+      <p>
+        Minecraft bietet unbegrenzte Möglichkeiten, fördert Kreativität und
+        Gemeinschaft und bleibt über Jahre hinweg spannend. Im Vergleich dazu
+        wirkt FIFA zwar realistisch, aber auch eingeschränkt. Deshalb ist
+        Minecraft das bessere Spiel – nicht nur für Gamer, sondern auch für
+        alle, die ihre Fantasie entfalten wollen.
+      </p>
+    </article>
+    <a href="beides.html"></a>
+  </body>
+</html>
