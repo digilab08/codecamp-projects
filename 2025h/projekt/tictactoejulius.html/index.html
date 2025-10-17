@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>website</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    data-theme="dark"
+    class="min-h-screen flex items-center justify-center flex-col gab-3"
+  >
+    <h1 class="font-bold text-2xl text-center mb-3">tic tac toe</h1>
+    <div class="grid grid-cols-3 gap-3">
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld1"
+      ></button>
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld2"
+      ></button>
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld3"
+      ></button>
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld4"
+      ></button>
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld5"
+      ></button>
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld6"
+      ></button>
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld7"
+      ></button>
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld8"
+      ></button>
+      <button
+        onclick="geklickt(this)"
+        class="btn btn-primary btn-circle"
+        id="feld9"
+      ></button>
+    </div>
+  </body>
+  <script>
+    let feld1 = document.getElementById("feld1");
+    let feld2 = document.getElementById("feld2");
+    let feld3 = document.getElementById("feld3");
+    let feld4 = document.getElementById("feld4");
+    let feld5 = document.getElementById("feld5");
+    let feld6 = document.getElementById("feld6");
+    let feld7 = document.getElementById("feld7");
+    let feld8 = document.getElementById("feld8");
+    let feld9 = document.getElementById("feld9");
+
+    let spieler = "X";
+
+    function geklickt(button) {
+      button.innerText = spieler;
+      button.disabled = true;
+      if (spieler === "X") {
+        let feld1 = document.getElementById("feld1");
+        spieler = "O";
+      } else {
+        spieler = "X";
+      }
+    }
+  </script>
+</html>

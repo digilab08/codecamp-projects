@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Titel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body
+    data-theme="aqua"
+    class="min-h-screen flex justify-center items-center flex-col"
+  >
+    <!--Spalte-->
+    <div class="flex flex-col bg-gray-1 p4 mt-4 items-center">
+      <p>Tik Tak Toe</p>
+      <!--Reihe (Standart)-->
+      <div grid class="grid grid-cols-3 gap-3 bg-gray-1 p-4">
+        <button
+          id="1"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button
+          id="2"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button
+          id="3"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button
+          id="4"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button
+          id="5"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button
+          id="6"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button
+          id="7"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button
+          id="8"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button
+          id="9"
+          class="btn btn-accent btn-circle"
+          onclick="textAendern(this)"
+        ></button>
+        <button class="btn btn-secondary btn-circle" onclick="Reset()">
+          Reset
+        </button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    let f1 = document.getElementById("1");
+    let f2 = document.getElementById("2");
+    let f3 = document.getElementById("3");
+    let f4 = document.getElementById("4");
+    let f5 = document.getElementById("5");
+    let f6 = document.getElementById("6");
+    let f7 = document.getElementById("7");
+    let f8 = document.getElementById("8");
+    let f9 = document.getElementById("9");
+    function Reset() {
+      f1.textContent = "";
+      f1.disabled = false;
+      f2.textContent = "";
+      f2.disabled = false;
+      f3.textContent = "";
+      f3.disabled = false;
+      f4.textContent = "";
+      f4.disabled = false;
+      f5.textContent = "";
+      f5.disabled = false;
+      f6.textContent = "";
+      f6.disabled = false;
+      f7.textContent = "";
+      f7.disabled = false;
+      f8.textContent = "";
+      f8.disabled = false;
+      f9.textContent = "";
+      f9.disabled = false;
+    }
+
+    let spieler = "X";
+    function textAendern(btn) {
+      // "btn" ist das übergebene Button-Element
+      btn.innerText = spieler;
+      btn.disabled = true;
+      if (spieler === "X") {
+        spieler = "O";
+      } else {
+        spieler = "X";
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html data-theme="dim" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen">
+    <div class="flex justify-center"></div>
+    <div
+      class="flex flex-col justify-center items-center min-h-screen min-w-screen"
+    >
+      <p id="txt" class="text-5xl font-bold"></p>
+      <p class="text-5xl font-bold">Tic-Tac-Toe</p>
+      <div class="grid grid-cols-3 justify-items-center gap-3 mt-12">
+        <button
+          id="i"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          id="a"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          id="b"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          id="c"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          id="d"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          id="e"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          id="f"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          id="g"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          id="h"
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="Kreuz(this)"
+        ></button>
+        <button
+          class="btn btn-accent rounded-full w-12 h-12"
+          onclick="resetAll()"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    let zeichen = "X";
+    let moves = 0;
+    let txt1 = document.getElementById("txt");
+
+    function Kreuz(btn) {
+      if (btn.innerText === "") {
+        btn.innerText = zeichen;
+        moves++;
+        if (CheckWin()) {
+          txt1.textContent = zeichen + "Gewinnt!";
+          resetAll();
+          return;
+        }
+        zeichen = zeichen === "X" ? "O" : "X";
+      }
+    }
+
+    function resetAll() {
+      let reset1 = document.getElementById("a");
+      let reset2 = document.getElementById("b");
+      let reset3 = document.getElementById("c");
+      let reset4 = document.getElementById("d");
+      let reset5 = document.getElementById("e");
+      let reset6 = document.getElementById("f");
+      let reset7 = document.getElementById("g");
+      let reset8 = document.getElementById("h");
+      let reset9 = document.getElementById("i");
+      reset1.innerText = "";
+      reset2.innerText = "";
+      reset3.innerText = "";
+      reset4.innerText = "";
+      reset5.innerText = "";
+      reset6.innerText = "";
+      reset7.innerText = "";
+      reset8.innerText = "";
+      reset9.innerText = "";
+    }
+
+    const WinPattern = [
+      ["i", "a", "b"],
+      ["c", "d", "e"],
+      ["f", "g", "h"],
+      ["i", "c", "f"],
+      ["a", "d", "g"],
+      ["b", "e", "h"],
+      ["i", "d", "h"],
+      ["b", "d", "f"],
+    ];
+
+    function CheckWin() {
+      for (let pattern of WinPattern) {
+        const [a, b, c] = pattern.map(
+          (id) => document.getElementById(id).innerText
+        );
+        if (a && a === b && a === c) {
+          return true;
+        }
+      }
+    }
+  </script>
+</html>

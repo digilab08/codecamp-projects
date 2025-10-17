@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>java</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="flex-col min-h-screen flex justify-center items-center">
+    <b>tic tac toe</b>
+    <div class="grid grid-cols-3 gap-4 bg-gray-100 p-4">
+      <button
+        id="tic1"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button
+        id="tic2"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button
+        id="tic3"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button
+        id="tic4"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button
+        id="tic5"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button
+        id="tic6"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button
+        id="tic7"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button
+        id="tic8"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button
+        id="tic9"
+        class="btn btn-primary btn-circle"
+        onclick="gekickt(this)"
+      ></button>
+      <button onclick="reset()" class="btn btn-secondary btn-circle">
+        Reset
+      </button>
+    </div>
+  </body>
+  <script>
+    let feld1 = document.getElementById("tic1");
+    let feld2 = document.getElementById("tic2");
+    let feld3 = document.getElementById("tic3");
+    let feld4 = document.getElementById("tic4");
+    let feld5 = document.getElementById("tic5");
+    let feld6 = document.getElementById("tic6");
+    let feld7 = document.getElementById("tic7");
+    let feld8 = document.getElementById("tic8");
+    let feld9 = document.getElementById("tic9");
+
+    function reset() {
+      feld1.textContent = "";
+      feld1.disabled = false;
+      feld1.textContent = "";
+      feld1.disabled = false;
+      feld2.textContent = "";
+      feld2.disabled = false;
+      feld3.textContent = "";
+      feld3.disabled = false;
+      feld4.textContent = "";
+      feld4.disabled = false;
+      feld5.textContent = "";
+      feld5.disabled = false;
+      feld6.textContent = "";
+      feld6.disabled = false;
+      feld7.textContent = "";
+      feld7.disabled = false;
+      feld8.textContent = "";
+      feld8.disabled = false;
+      feld9.textContent = "";
+      feld9.disabled = false;
+    }
+
+    let spieler = "x";
+    function gekickt(button) {
+      button.innerText = spieler;
+      button.disabled = true;
+      if (spieler === "x") {
+        spieler = "o";
+      } else {
+        spieler = "x";
+      }
+    }
+  </script>
+</html>

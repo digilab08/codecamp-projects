@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    data-theme="dark"
+    class="min-h-screen flex justify-center items-center flex-col gap-3"
+  >
+    <h1 class="font-bold text-2xl">Tic Tac Toe</h1>
+    <div class="grid grid-cols-3 gap-2">
+      <button
+        id="z"
+        class="btn btn-primary btn-circle"
+        onclick="geklickt(this)"
+      ></button>
+      <button
+        id="fa"
+        class="btn btn-primary btn-circle"
+        onclick=" geklickt(this)"
+      ></button>
+      <button
+        id="a"
+        class="btn btn-primary btn-circle"
+        onclick=" geklickt(this)"
+      ></button>
+      <button
+        id="b"
+        class="btn btn-primary btn-circle"
+        onclick=" geklickt(this)"
+      ></button>
+      <button
+        id="c"
+        class="btn btn-primary btn-circle"
+        onclick=" geklickt(this)"
+      ></button>
+      <button
+        id="d"
+        class="btn btn-primary btn-circle"
+        onclick=" geklickt(this)"
+      ></button>
+      <button
+        id="e"
+        class="btn btn-primary btn-circle"
+        onclick=" geklickt(this)"
+      ></button>
+      <button
+        id="f"
+        class="btn btn-primary btn-circle"
+        onclick=" geklickt(this)"
+      ></button>
+      <button
+        id="g"
+        class="btn btn-primary btn-circle"
+        onclick=" geklickt(this)"
+      ></button>
+      <button onclick="reset ()" class="btn btn-secondary btn-circle">
+        Reset
+      </button>
+    </div>
+  </body>
+
+  <script>
+    let z = document.getElementById("z");
+    let fa = document.getElementById("fa");
+    let a = document.getElementById("a");
+    let b = document.getElementById("b");
+    let c = document.getElementById("c");
+    let d = document.getElementById("d");
+    let e = document.getElementById("e");
+    let f = document.getElementById("f");
+    let g = document.getElementById("g");
+    let h = document.getElementById("h");
+
+    function reset() {
+      z.textContent = "";
+      z.disabled = false;
+      fa.textContent = "";
+      fa.disabled = false;
+      a.textContent = "";
+      a.disabled = false;
+      b.textContent = "";
+      b.disabled = false;
+      c.textContent = "";
+      c.disabled = false;
+      d.textContent = "";
+      d.disabled = false;
+      e.textContent = "";
+      e.disabled = false;
+      f.textContent = "";
+      f.disabled = false;
+      g.textContent = "";
+      g.disabled = false;
+      h.textContent = "";
+      h.disabled = false;
+    }
+    let spieler = "x";
+    function geklickt(button) {
+      button.innerText = spieler;
+      button.disabled = true;
+      if (spieler === "x") {
+        spieler = "o";
+      } else {
+        spieler = "x";
+      }
+    }
+  </script>
+</html>
