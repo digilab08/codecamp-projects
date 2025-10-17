@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body data-theme="dark"
+  class="min-h-screen flex items-center justify-center flex-col gap-5">
+
+  <h1 class="font-bold text-2xl">Tic Tac Toe Tum Tos Trax</h1>
+  <div class="grid grid-cols-6 gap-3">
+    <button class="btn btn-primary btn-circle" id="1" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="2" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="3" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="4" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="5" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="6" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="7" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="8" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="9" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="10" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="11" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="12" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="13" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="14" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="15" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="16" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="17" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="18" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="19" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="20" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="21" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="22" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="23" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="24" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="25" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="26" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="27" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="28" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="29" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="30" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="31" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="32" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="33" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="34" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="35" onclick="geklickt(this)"></button>
+    <button class="btn btn-primary btn-circle" id="36" onclick="geklickt(this)"></button>
+    <button class="btn btn-secondary btn-circle" onclick="reset()">reset</button>
+  </div>
+
+    </div>
+  </body>
+  <script>
+
+
+    let spieler = "X"
+    let feld1 = document.getElementById("1")
+    let feld2 = document.getElementById("2")
+    let feld3 = document.getElementById("3")
+    let feld4 = document.getElementById("4")
+    let feld5 = document.getElementById("5")
+    let feld6 = document.getElementById("6")
+    let feld7 = document.getElementById("7")
+    let feld8 = document.getElementById("8")
+    let feld9 = document.getElementById("9")
+    let feld10 = document.getElementById("10")
+    let feld11 = document.getElementById("11")
+    let feld12 = document.getElementById("12")
+    let feld13 = document.getElementById("13")
+    let feld14 = document.getElementById("14")
+    let feld15 = document.getElementById("15")
+    let feld16 = document.getElementById("16")
+    let feld17 = document.getElementById("17")
+    let feld18 = document.getElementById("18")
+    let feld19 = document.getElementById("19")
+    let feld20 = document.getElementById("20")
+    let feld21 = document.getElementById("21")
+    let feld22 = document.getElementById("22")
+    let feld23= document.getElementById("23")
+    let feld24 = document.getElementById("24")
+    let feld25 = document.getElementById("25")
+    let feld26 = document.getElementById("26")
+    let feld27 = document.getElementById("27")
+    let feld28 = document.getElementById("28")
+    let feld29 = document.getElementById("29")
+    let feld30 = document.getElementById("30")
+    let feld31 = document.getElementById("31")
+    let feld32 = document.getElementById("32")
+    let feld33 = document.getElementById("33")
+    let feld34 = document.getElementById("34")
+    let feld35 = document.getElementById("35")
+    let feld36 = document.getElementById("36")
+  function geklickt(button) {
+    button.innerText = spieler;
+    button.disabled=true
+    if(spieler=== "X"){
+   spieler = "O"   
+  }else{
+  spieler = "X"
+  }
+  }
+  function reset() {
+      feld1.textContent = "";
+      feld1.disabled = false;
+      feld2.textContent = "";
+      feld2.disabled = false;
+      feld3.textContent = "";
+      feld3.disabled = false;
+      feld4.textContent = "";
+      feld4.disabled = false;
+      feld5.textContent = "";
+      feld5.disabled = false;
+      feld6.textContent = "";
+      feld6.disabled = false;
+      feld7.textContent = "";
+      feld7.disabled = false;
+      feld8.textContent = "";
+      feld8.disabled = false;
+      feld9.textContent = "";
+      feld9.disabled = false;
+      feld10.disabled = false;
+      feld10.textContent = "";
+      feld11.disabled = false;
+      feld11.textContent = "";
+      feld12.disabled = false;
+      feld12.textContent = "";
+      feld13.disabled = false;
+      feld13.textContent = "";
+      feld14.disabled = false;
+      feld14.textContent = "";
+      feld15.disabled = false;
+      feld15.textContent = "";
+      feld16.disabled = false;
+      feld16.textContent = "";
+      feld17.textContent = "";
+      feld17.disabled = false;
+      feld18.textContent = "";
+      feld18.disabled = false;
+      feld19.textContent = "";
+      feld19.disabled = false;
+      feld20.textContent = "";
+      feld20.disabled = false;
+      feld21.textContent = "";
+      feld21.disabled = false;
+      feld22.textContent = "";
+      feld22.disabled = false;
+      feld23.textContent = "";
+      feld23.disabled = false;
+      feld24.textContent = "";
+      feld24.disabled = false;
+      feld25.textContent = "";
+      feld25.disabled = false;
+      feld26.textContent = "";
+      feld26.disabled = false;
+      feld27.textContent = "";
+      feld27.disabled = false;
+      feld28.textContent = "";
+      feld28.disabled = false;
+      feld29.disabled = false;
+      feld29.textContent = "";
+      feld30.disabled = false;
+      feld30.textContent = "";
+      feld31.disabled = false;
+      feld31.textContent = "";
+      feld32.disabled = false;
+      feld32.textContent = "";
+      feld33.disabled = false;
+      feld33.textContent = "";
+      feld34.disabled = false;
+      feld34.textContent = "";
+      feld35.disabled = false;
+      feld35.textContent = "";
+      feld36.textContent = "";
+      feld36.disabled = false;
+      
+  }
+
+</script>
+
+</html>
