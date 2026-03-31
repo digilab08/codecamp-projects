@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="de">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Das ultimative Lagotto Quiz</title>
+        <style>
+          :root {
+            --primary: #6d4c41;
+            --secondary: #d7ccc8;
+            --bg: #f5f5f5;
+            --text: #3e2723;
+          }
+          body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+          }
+          .quiz-container {
+            background: white;
+            max-width: 700px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          }
+          h1 {
+            text-align: center;
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+          }
+          .question-block {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: 0.3s;
+          }
+          .question-block:hover {
+            background-color: #fafafa;
+          }
+          .q-text {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            display: block;
+          }
+          .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+          }
+          label {
+            background: #fff;
+            border: 2px solid var(--secondary);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: 0.2s;
+          }
+          label:hover {
+            border-color: var(--primary);
+            background: var(--secondary);
+          }
+          input[type="radio"] {
+            margin-right: 10px;
+            accent-color: var(--primary);
+          }
+          .btn-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: transform 0.2s;
+          }
+          .btn-submit:hover {
+            transform: scale(1.02);
+            background: #5d4037;
+          }
+          #result-box {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: var(--secondary);
+          }
+          @media (max-width: 600px) {
+            .options {
+              grid-template-columns: 1fr;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="quiz-container">
+          <h1>🇮🇹 Lagotto Romagnolo Experte?</h1>
+          <form id="quiz-form">
+            <div id="questions-container"></div>
+            <button type="button" class="btn-submit" onclick="calculateScore()">
+              Ergebnis anzeigen
+            </button>
+          </form>
+          <div id="result-box">
+            <h2 id="score-text"></h2>
+            <p id="feedback"></p>
+            <button class="btn-submit" onclick="location.reload()">
+              Quiz wiederholen
+            </button>
+          </div>
+        </div>
+
+        <script>
+          const questions = [
+            {
+              q: "Was bedeutet 'Càn Lagòt' im ursprünglichen Dialekt?",
+              options: ["Trüffeljäger", "Wasserhund", "Lockenpfote"],
+              correct: 1,
+            },
+            {
+              q: "Welche Farbe ist beim Lagotto NICHT anerkannt?",
+              options: ["Braun-Schimmel", "Off-white", "Schwarz"],
+              correct: 2,
+            },
+            {
+              q: "Wofür wurden sie im 15. Jahrhundert in den Sümpfen genutzt?",
+              options: [
+                "Apportieren von Wasserwild",
+                "Hüten von Enten",
+                "Ziehen von kleinen Booten",
+              ],
+              correct: 0,
+            },
+            {
+              q: "Wie oft sollte ein Lagotto im Idealfall geschoren werden?",
+              options: ["Wöchentlich", "1-2 mal pro Jahr", "Alle 4 Jahre"],
+              correct: 1,
+            },
+            {
+              q: "Welches Organ ist beim Lagotto durch Zucht besonders ausgeprägt?",
+              options: [
+                "Die Augen (Sehkraft)",
+                "Die Ohren (Gehör)",
+                "Die Nase (Geruchssinn)",
+              ],
+              correct: 2,
+            },
+            {
+              q: "Wie ist das typische Temperament eines Lagottos?",
+              options: [
+                "Aggressiv und distanziert",
+                "Arbeitsfreudig und gelehrig",
+                "Träge und faul",
+              ],
+              correct: 1,
+            },
+            {
+              q: "Was passiert, wenn man das Fell eines Lagottos bürstet statt es zu scheren?",
+              options: [
+                "Es wird glatt",
+                "Es verfilzt und filzt auf",
+                "Es fällt aus",
+              ],
+              correct: 1,
+            },
+            {
+              q: "Welche Erbkrankheit wird bei seriösen Züchtern oft getestet (JE)?",
+              options: ["Juvenile Epilepsie", "Blindheit", "Taubheit"],
+              correct: 0,
+            },
+            {
+              q: "Sind Lagottos gute Schwimmer?",
+              options: [
+                "Nein, sie meiden Wasser",
+                "Ja, sie lieben Wasser historisch bedingt",
+                "Nur im Sommer",
+              ],
+              correct: 1,
+            },
+            {
+              q: "Wie groß wird ein ausgewachsener Rüde etwa?",
+              options: ["30-35 cm", "43-48 cm", "55-60 cm"],
+              correct: 1,
+            },
+          ];
+
+          function initQuiz() {
+            const container = document.getElementById("questions-container");
+            questions.forEach((item, i) => {
+              let html = `<div class="question-block">
+                <span class="q-text">${i + 1}. ${item.q}</span>
+                <div class="options">`;
+              item.options.forEach((opt, index) => {
+                html += `<label><input type="radio" name="q${i}" value="${index}"> ${opt}</label>`;
+              });
+              html += `</div></div>`;
+              container.innerHTML += html;
+            });
+          }
+
+          function calculateScore() {
+            let score = 0;
+            let allAnswered = true;
+            questions.forEach((item, i) => {
+              const selected = document.querySelector(
+                `input[name="q${i}"]:checked`,
+              );
+              if (selected) {
+                if (parseInt(selected.value) === item.correct) score++;
+              } else {
+                allAnswered = false;
+              }
+            });
+
+            if (
+              !allAnswered &&
+              !confirm(
+                "Du hast nicht alle Fragen beantwortet. Trotzdem auswerten?",
+              )
+            )
+              return;
+
+            document.getElementById("quiz-form").style.display = "none";
+            const resBox = document.getElementById("result-box");
+            resBox.style.display = "block";
+            document.getElementById("score-text").innerText =
+              `Du hast ${score} von ${questions.length} Punkten!`;
+
+            let feedback = "";
+            if (score === 10)
+              feedback = "Perfekt! Du bist ein wahrer Lagotto-Profi! 🏆";
+            else if (score > 7)
+              feedback = "Sehr gut! Du kennst dich prima aus. 🐶";
+            else feedback = "Nicht schlecht, aber da geht noch was! 🍄";
+            document.getElementById("feedback").innerText = feedback;
+          }
+
+          initQuiz();
+        </script>
+      </body>
+    </html>
+    <a href="onehund.html">zürück zu seite eins</a>
+    <a href="zweiantworten.html">nächstes qiuztwo</a>
+  </body>
+</html>

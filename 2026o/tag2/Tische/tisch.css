@@ -1,0 +1,27 @@
+body {
+    color: brown;
+    text-align: center;
+}
+h1{
+    font-size: 6em;
+    font-weight:1000;
+    text-decoration-line: underline;
+    text-decoration-color: aqua;
+    
+}
+h2 {
+    font-size:3em;
+    text-decoration-line: underline;
+    text-decoration-color: aqua;
+}
+h3 {
+    font-size:2vh;
+}
+img {
+ border: 2px solid;
+ border-color: brown;
+ border-radius: 5em;
+}
+.liste_Materialien {
+    text-align: left;
+}

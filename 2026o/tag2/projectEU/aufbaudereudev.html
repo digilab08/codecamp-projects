@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EU Entdecker-Seite</title>
+    <style>
+      /* Der "Maus"-Look: Bunte Farben und runde Ecken */
+      body {
+        font-family: "Comic Sans MS", sans-serif; /* Kindgerechter Style */
+        background-color: #f0f8ff;
+        color: #333;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .header-section {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 0 auto 30px;
+      }
+
+      /* Der magische Button */
+      .magic-button {
+        background-color: #003399; /* EU Blau */
+        color: #ffcc00; /* EU Gelb */
+        border: 4px solid #ffcc00;
+        padding: 20px 40px;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s;
+        box-shadow: 0 8px 0 #002266;
+      }
+
+      .magic-button:hover {
+        transform: scale(1.1);
+      }
+
+      .magic-button:active {
+        transform: translateY(4px);
+        box-shadow: 0 4px 0 #002266;
+      }
+
+      /* Das versteckte Menü */
+      #institutionen-netz {
+        display: none; /* Am Anfang unsichtbar */
+        margin-top: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .card {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        border: 3px solid #ffcc00;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        background: #fff9e6;
+        transform: translateY(-5px);
+      }
+
+      .card h3 {
+        color: #003399;
+        margin-top: 0;
+      }
+      .details {
+        display: none;
+        font-size: 0.9em;
+        margin-top: 10px;
+        text-align: left;
+      }
+
+      .show {
+        display: grid !important;
+        animation: popIn 0.5s ease;
+      }
+
+      @keyframes popIn {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        80% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header-section">
+      <h1>Die Europäische Union (EU)</h1>
+      <p>
+        Die EU ist wie ein Verbund aus 27 Ländern. Sie arbeiten zusammen, damit
+        es keinen Krieg gibt, wir überall reisen können und wir alle das gleiche
+        Geld (den Euro) benutzen können. Aber wer entscheidet da eigentlich
+        alles?
+      </p>
+      <p>
+        <strong
+          >Klicke auf den Sternen-Button, um die 7 wichtigsten "Chefs" der EU zu
+          entdecken!</strong
+        >
+      </p>
+    </div>
+
+    <!-- Der Button mit dem EU-Symbol -->
+    <button class="magic-button" onclick="toggleMenu()">
+      🇪🇺 Das EU-Menü öffnen!
+    </button>
+
+    <!-- Hier ploppen die Institutionen auf -->
+    <div id="institutionen-netz">
+      <div class="card" onclick="showInfo(this)">
+        <h3>1. Parlament</h3>
+        <p>Die Klassensprecher</p>
+        <div class="details">
+          Hier sitzen die Abgeordneten, die wir wählen. Sie machen die Gesetze
+          für ganz Europa.
+        </div>
+      </div>
+
+      <div class="card" onclick="showInfo(this)">
+        <h3>2. Kommission</h3>
+        <p>Die Schulleitung</p>
+        <div class="details">
+          Sie hocken in Brüssel und schlagen neue Regeln vor. Sie passen auf,
+          dass alle brav sind.
+        </div>
+      </div>
+
+      <div class="card" onclick="showInfo(this)">
+        <h3>3. Ministerrat</h3>
+        <p>Die Fachlehrer</p>
+        <div class="details">
+          Hier treffen sich Minister (z.B. für Umwelt), um über ihre
+          Spezialthemen zu entscheiden.
+        </div>
+      </div>
+
+      <div class="card" onclick="showInfo(this)">
+        <h3>4. Europäischer Rat</h3>
+        <p>Die Chefs</p>
+        <div class="details">
+          Hier treffen sich die Regierungschefs (wie der Bundeskanzler) und
+          bestimmen die Richtung.
+        </div>
+      </div>
+
+      <div class="card" onclick="showInfo(this)">
+        <h3>5. Gerichtshof</h3>
+        <p>Die Schiedsrichter</p>
+        <div class="details">
+          Sie entscheiden, wer Recht hat, wenn es Streit um die EU-Regeln gibt.
+        </div>
+      </div>
+
+      <div class="card" onclick="showInfo(this)">
+        <h3>6. Zentralbank</h3>
+        <p>Die Schatzmeister</p>
+        <div class="details">
+          Sie passen in Frankfurt auf unseren Euro auf, damit er wertvoll
+          bleibt.
+        </div>
+      </div>
+
+      <div class="card" onclick="showInfo(this)">
+        <h3>7. Rechnungshof</h3>
+        <p>Die Kassenprüfer</p>
+        <div class="details">
+          Sie zählen jeden Cent nach und prüfen, ob die EU ihr Geld sinnvoll
+          ausgibt.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Funktion zum Öffnen des Menüs
+      function toggleMenu() {
+        var netz = document.getElementById("institutionen-netz");
+        netz.classList.toggle("show");
+      }
+
+      // Funktion zum Anzeigen der Details in den Kacheln
+      function showInfo(card) {
+        var detail = card.querySelector(".details");
+        if (detail.style.display === "block") {
+          detail.style.display = "none";
+        } else {
+          detail.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
