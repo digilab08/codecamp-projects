@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style></style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Cookies: <span id="cookies">0</span></p>
+    <p>Cps: <span id="Cps">0</span></p>
+    <button onclick="getCps()">Check Cps</button>
+    <script>
+      let cpsHTML = 0;
+      function getCps() {
+        if (cursor > 0) {
+          cpsHTML = cpsHTML + 0.5;
+          cpsHTML = document.getElementById("Cps");
+        }
+      }
+    </script>
+    <button onclick="plusCookie()">Cookie</button>
+    <script>
+      let cookie = 0;
+      let cookieHTML = document.getElementById("cookies");
+      function plusCookie() {
+        cookie = cookie + 1;
+        cookieHTML.innerText = cookie;
+      }
+    </script>
+    <button onclick="buyCursor()">buy cursor: 30c</button>
+    <script>
+      let costCursor = 30;
+      let cursor = 0;
+      function buyCursor() {
+        if (cookie >= costCursor) {
+          cursor = cursor + 1;
+          cookie = cookie - costCursor;
+          cookieHTML.innerText = cookie;
+        }
+      }
+      setInterval(() => {
+        cookie = cookie + cursor * 0.5;
+        cookieHTML.innerText = cookie;
+      }, 1000);
+    </script>
+    <button onclick="buyFarm()">buy farm: 300c</button>
+    <script>
+      let costFarm = 300;
+      let farm = 0;
+      function buyFarm() {
+        if (cookie >= costFarm) {
+          farm = farm + 1;
+          cookie = cookie - costFarm;
+          cookieHTML.innerText = cookie;
+        }
+      }
+      setInterval(() => {
+        cookie = cookie + farm * 30;
+        cookieHTML.innerText = cookie;
+      }, 1000);
+    </script>
+  </body>
+</html>

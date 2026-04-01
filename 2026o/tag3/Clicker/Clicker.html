@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clicker</title>
+    <link rel="stylesheet" href="Clicker.css" />
+  </head>
+  <body>
+    <p class="cookieCounter">Cookies: <span id="Cookies">0</span></p>
+    <br />
+    <button class="Button" onclick="plusCookies()">Klick für Cookies</button>
+    <script>
+      let Cookies = 0;
+      let CookiesHtml = document.getElementById("Cookies");
+      function plusCookies() {
+        Cookies++;
+        CookiesHtml.innerText = Cookies;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+:root
+{
+    --bg-color: #072020;
+    --bd-color: #555555;
+}
+body
+{
+    background-color: var(--bg-color);
+}
+h1
+{
+    color: azure;
+}
+h2
+{
+    color: azure;
+}
+p
+{
+    color: white;
+}
+.container
+{
+    border-style: solid;
+    border-radius: 8px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: solid;border-color: var(--bd-color);
+    margin: 4px;
+    transform: scale(1);
+    transition: transform .2s;
+    background-color: var(--bg-color);
+}
+.container:hover
+{
+    transform: scale(1.02);
+}
+img
+{
+    width: 100%;
+    border-radius: 8px;
+    border-style: solid;border-color: var(--bd-color);
+}
+table
+{
+    color: white;
+}
+a
+{
+    color: #0080ff;
+}

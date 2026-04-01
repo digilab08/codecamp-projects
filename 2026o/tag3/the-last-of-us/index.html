@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The last of us</title>
+    <h1>The last of us</h1>
+  </head>
+  <body>
+    <img
+      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dsogaming.com%2Fwp-content%2Fuploads%2F2024%2F06%2FThe-Last-of-Us-Part-2-Remastered-feature.jpg&f=1&nofb=1&ipt=3bb750ae18cb5f1ace2c6ea6a79b237c695721d83cc25ed94793faab1484dc9d"
+      alt=""
+      width="700"
+    />
+    <br />
+    <a href="main-character.html">Main Character</a>
+    <a href="zombie.html">Zombie Arten</a>
+    <div id="zombie-box" style="position: absolute; top: 250px; left: 251px">
+      <img
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic1.colliderimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2023%2F01%2Flast-of-us-trailer-bloater.jpg&f=1&nofb=1&ipt=682ead22d0ae28b085bd1d686d236704c5df07a6610d34b1a2cf938bab369611"
+        alt=""
+        width="300"
+        onclick="zombieWeg()"
+      />
+    </div>
+    <script>
+      let counter = 0;
+      let zombie = document.getElementById("zombie-box");
+      console.log(zombie);
+      function zombieWeg() {
+        console.log("hallo");
+        counter++;
+        console.log(counter);
+        if (counter > 2) {
+          zombie.innerText = "";
+        }
+      }
+    </script>
+  </body>
+</html>

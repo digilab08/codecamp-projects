@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pokemon Tagebuch</title>
+  </head>
+  <body></body>
+  <div style="display: flex; justify-content: center">
+    <h1>Pokemon Tagebuch</h1>
+  </div>
+  <a href="index.html">zurück</a>
+
+  <style>
+    body {
+      background-color: antiquewhite;
+    }
+  </style>
+  <h4>Kleine Unterhaltung:</h4>
+
+  <p>Pokemon: <span id="pokemons">0</span></p>
+  <button onclick="plusPokemon()">Klick für Gratis Pokemons</button>
+  <script>
+    let pokemons = 0;
+    let pokemonsHtml = document.getElementById("pokemons");
+    function plusPokemon() {
+      pokemons++;
+      pokemonsHtml.innerText = pokemons;
+    }
+  </script>
+  <br />
+  <br />
+  <br />
+  <br />
+  Deine Tagebuch Leiste, wo du deine Gedanke reinschreiben kannst:
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <input type="text" onchange="send(this)" />
+  <div id="narichten"></div>
+  <script>
+    narichtenhtml = document.getElementById("narichten");
+    function send(textInput) {
+      //narichtenhtml.innertext +=
+      narichtenhtml.innerText += " " + textInput.value;
+    }
+  </script>
+</html>

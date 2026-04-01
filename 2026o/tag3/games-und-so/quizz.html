@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>QUIZZ</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .label
+            {
+                margin-bottom: 5px;
+            }
+            .flex
+            {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+            }
+            .centered
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .question
+            {
+                width: 50%;
+                height: 100px;
+                border-radius: 8px;
+                margin: 2px;
+            }
+            .box
+            {
+                display: contents;
+                border-style: solid;
+                border-radius: 8px;
+                padding: 4px;
+                border-style: solid;border-color: var(--bd-color);
+                margin: 4px;
+                transform: scale(1);
+                transition: transform .2s;
+                background-color: var(--bg-color);
+            }
+            .box:hover
+            {
+                transform: scale(1.02);
+            }
+            .current
+            {
+                border-style: solid;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                border-color: white;
+            }
+            .notCurrent
+            {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+            .menuButton
+            {
+                height: 50px;
+                width: 100%;
+                background-color: #556666;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+    <b>
+        <div id="selectionPage">
+
+            <p class="label">Anzahl der Fragen</p>
+            <input type="number" id="trivia_amount" class="form-control" min="1" max="50" value="10">
+
+            <br>
+            <p class="label">Kategorie</p>
+            <select id="trivia_category" class="form-control">
+                <option value="any">Alles</option>
+                <option value="9">Algemeinwissen</option>
+                <option value="10">Bücher</option>
+                <option value="11">Filme</option>
+                <option value="12">Music</option>
+                <option value="13">Musicals &amp; Theater</option>
+                <option value="14">Fernsehen</option>
+                <option value="15">Videospiele</option>
+                <option value="16">Brettspiele</option>
+                <option value="17">Wissenschaft &amp; Natur</option>
+                <option value="18">Wissenschaft: Computers</option>
+                <option value="19">Mathematik</option>
+                <option value="20">Mythology</option>
+                <option value="21">Sport</option>
+                <option value="22">Geography</option>
+                <option value="23">Geschichte</option>
+                <option value="24">Politik</option>
+                <option value="25">Kunst</option>
+                <option value="26">Celebritie</option>
+                <option value="27">Tiere</option>
+                <option value="28">Fahrzeuge</option>
+                <option value="29">Comics</option>
+                <option value="30">Wissenschaft: Gadgets</option>
+                <option value="31">Japanese Anime &amp; Manga</option>
+                <option value="32">Cartoon &amp; Animations</option>
+            </select>
+
+            <br>
+
+            <p class="label">Schwierigkeitsgrad</p>
+            <select id="trivia_difficulty" class="form-control">
+                <option value="any">Jede Schwierigkeit</option>
+                <option value="easy">Einfach</option>
+                <option value="medium">Mittel</option>
+                <option value="hard">Schwer</option>
+            </select>
+
+            <br>
+
+            <p class="label">Fragetyp</p>
+            <select id="trivia_type" class="form-control">&gt;
+                <option value="any">Jeder typ</option>
+                <option value="multiple">Multiple Choice</option>
+                <option value="boolean">wahr oder falsch</option>
+            </select>
+
+            <br>
+
+            <input type="button" onclick="start()" value="Start">
+        </div>
+        <div id="playerDisplay" style="display: none; justify-content: space-around;">
+            <div id="p1"><h1>p1: 0</h1></div>
+            <div id="p2"><h1>p2: 0</h1></div>
+        </div>
+        <div id="win">
+
+        </div>
+        <div id="questionsHere">
+        </div>
+        <div>
+            <template id="restart">
+                <div class="centered">
+                    <h1 id="winner"></h1>
+                    <div clas="container flex">
+                        <input type="button" class="menuButton" value="Neustart mit den selben Scores" onclick="document.getElementById('selectionPage').hidden = false; document.getElementById('win').innerHTML=''">
+                        <input type="button" class="menuButton" value="Kompletter Neustart" onclick="document.getElementById('selectionPage').hidden = false; scores[0]=0; scores[1]=0; document.getElementById('win').innerHTML = ''">
+                    </div>
+                </div>
+            </template>
+            <template id="multiple">
+                <div class="centered">
+                    <h1 id="question"></h1>
+                    <div class="box" width="100%">
+                        <div class="flex">
+                            <input type="button" id="answer0" class="question" style="background-color: #0542b9;" onclick="answer(0);">
+                            <input type="button" id="answer1" class="question" style="background-color: #c60929;" onclick="answer(1);">
+                        </div>
+                        <div class="flex">
+                            <input type="button" id="answer2" class="question" style="background-color: #ffa602;" onclick="answer(2);">
+                            <input type="button" id="answer3" class="question" style="background-color: #66bf39;" onclick="answer(3);">
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <template id="tof">
+                <div class="centered">
+                    <h1 id="question"></h1>
+                    <div class="container flex">
+                        <input type="button" id="true" class="question" style="background-color: #0542b9;" value="Wahr" onclick="answer(1);">
+                        <input type="button" id="false" class="question" style="background-color: #c60929;" value="Falsch" onclick="answer(2);">
+                    </div>
+                </div>
+            </template>
+            <template id="solved">
+                <div class="centered">
+                    <h1 id="correct"></h1>
+                    <h1 id="solution"></h1>
+                    <input type="button" class="menuButton" value="continue" onclick="answer(5);">
+                </div>
+            </template>
+        </div>
+        <script>
+            quizz = null;
+            currentQuestion = 0;
+            let correct = null;
+            let scores = [0, 0];
+            currentPlayer = 1;
+            let win = null;
+            async function start()
+            {
+                totalQuestions = document.getElementById("trivia_amount").value;
+                let url = "https://opentdb.com/api.php?encode=base64&amount=" + totalQuestions
+                let category = document.getElementById("trivia_category").value;
+                let difficulty = document.getElementById("trivia_difficulty").value;
+                let type = document.getElementById("trivia_type").value;
+                if(category != "any")
+                {
+                    url = url + "&category=" + category;
+                }
+                if(difficulty != "any")
+                {
+                    url = url + "&difficulty=" + difficulty;  
+                }
+                if(type != "any")
+                {
+                    url = url + "&type=" + type;
+                } 
+                console.log("starting: " + url);
+
+                try {
+                    let response = await fetch(url);
+                    let data = await response.json();
+                    
+                    quizz = data.results.map(item => ({
+                        ...item,
+                        question: atob(item.question),
+                        correct_answer: atob(item.correct_answer),
+                        incorrect_answers: item.incorrect_answers.map(ans => atob(ans)),
+                        category: atob(item.category),
+                        type: atob(item.type)
+                    }));
+
+                    console.log(quizz);
+                    
+                } catch (error) {
+                    console.error("Failed to fetch trivia:", error);
+                }
+                document.getElementById("selectionPage").hidden = true;
+                document.getElementById("playerDisplay").style.display = "flex";
+                loadQuestion(0);
+            }
+
+
+            function loadQuestion(number)
+            {
+                document.getElementById("questionsHere").innerHTML = "";
+                if(number == quizz.length)
+                {
+                    currentQuestion = 0;
+                    console.log("qui ends");
+                    document.getElementById("playerDisplay").style.display = "none";
+                    document.getElementById("win").appendChild(document.getElementById("restart").content.cloneNode(true));
+                    win = document.getElementById("winner");
+                    if(scores[0] > scores[1])
+                    {
+                        win.innerHTML = "Player 1 Gewinnt";
+                    }else if(scores[0] == scores[1])
+                    {
+                        win.innerHTML = "unentschieden";
+                    }else
+                    {
+                        win.innerHTML = "Player 2 Gewinnt";
+                    }
+                    console.log(win);
+                    return;
+
+                }
+                let id = "tof";
+                if(quizz[number].type == "multiple")
+                {
+                    id = "multiple"
+                }
+                let question = document.getElementById(id).content.cloneNode(true);
+                question.getElementById("question").innerHTML = quizz[number].question;
+
+                if(quizz[number].type == "multiple")
+                {
+                    correct = Math.floor(Math.random() * 4);
+                    let wrongs = 0;
+                    for(let i = 0; i < 4; i++)
+                    {
+                        if(i == correct)
+                        {
+                            question.getElementById("answer" + i).value = quizz[number].correct_answer;
+                        }else
+                        {
+                            question.getElementById("answer" + i).value = quizz[number].incorrect_answers[wrongs];
+                            wrongs ++;
+                        }
+                    }
+                }else
+                {
+                    correct = 1;
+                    if(quizz[number].correct_answer == "False")
+                    {
+                        correct = 2;
+                    }
+                }
+                document.getElementById("questionsHere").appendChild(question);
+                switchPlayer();
+            }
+
+
+            function answer(val)
+            {
+                let solution = document.getElementById("solved").content.cloneNode(true);
+                if(val == correct)
+                {
+                    solution.getElementById("correct").innerHTML = "Richtig";
+                    addScore();
+                }else if(val < 5)
+                {
+                    solution.getElementById("correct").innerHTML = "Falsch";
+                    solution.getElementById("solution").innerHTML = "Richtige Antwort: " + quizz[currentQuestion].correct_answer;
+                }
+
+                document.getElementById("questionsHere").innerHTML = "";
+                document.getElementById("questionsHere").appendChild(solution);
+                if(val == 5)
+                {
+                    currentQuestion ++;
+                    loadQuestion(currentQuestion);
+                }
+            }
+            function switchPlayer()
+            {
+                if(currentPlayer == 0)
+                {
+                    document.getElementById("p1").classList.remove("current");
+                    document.getElementById("p2").classList.add("current");
+                    document.getElementById("p1").classList.add("notCurrent");
+                    document.getElementById("p2").classList.remove("notCurrent");
+                    currentPlayer = 1;    
+                }else
+                {
+                    document.getElementById("p1").classList.add("current");
+                    document.getElementById("p2").classList.remove("current");
+                    document.getElementById("p1").classList.remove("notCurrent");
+                    document.getElementById("p2").classList.add("notCurrent");
+                    currentPlayer = 0;
+                }
+            }
+            function addScore()
+            {
+                scores[currentPlayer] ++;
+                if(currentPlayer == 0)
+                {
+                    document.getElementById("p1").firstChild.innerHTML = "p1: " + scores[0];
+                }else
+                {
+                    document.getElementById("p2").firstChild.innerHTML = "p2: " + scores[1];
+                }
+            }
+            </script>
+    </body>
+</html>

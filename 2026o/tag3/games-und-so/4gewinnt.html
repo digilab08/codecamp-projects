@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>4 gewinnt</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            input
+            {
+                width: 100px;
+                height: 100px;
+                background-color: #555555;
+            }
+            .container
+            {
+                display: block;
+            }
+            .tictactoe
+            {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+            .symbolBox
+            {
+                width: 100px;
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .symbolBox.p
+            {
+                color: white;
+            }
+            table, th, td
+            {
+                border: 1px solid #707070;
+            }
+            td
+            {
+                width: 100px;
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <template id="x">
+            <div class="symbolBox" style="background-color: #1EAB62;"><p>X</p></div>
+        </template>
+        <template id="o">
+            <div class="symbolBox" style="background-color: #268CEB;"><p>O</p></div>
+        </template>
+        <div class="tictactoe">
+            <h1>vier gewinnt</h1>
+            <h2 id="player">X's next</h2>
+            <div class="container">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <td><input type="button" onClick="place(0);"></td>
+                            <td><input type="button" onClick="place(1);"></td>
+                            <td><input type="button" onClick="place(2);"></td>
+                            <td><input type="button" onClick="place(3);"></td>
+                            <td><input type="button" onClick="place(4);"></td>
+                            <td><input type="button" onClick="place(5);"></td>
+                            <td><input type="button" onClick="place(6);"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            let xTemp = document.getElementById("x");
+            let oTemp = document.getElementById("o");
+            let currentPlayer = Math.round(Math.random());
+            let table = document.getElementById("table");
+            let tableBody = table.children[1];
+            console.log(table, tableBody, table.children[1]);
+            player = document.getElementById("player");
+            if(currentPlayer == 1)
+            {
+                player.innerHTML = "O's next"
+            }
+            function place(collumn)
+            {
+                for(let i = 5; i > -1; i -= 1)
+                {
+                    console.log(i, tableBody.children[i].children[collumn].innerHTML);
+                    if(tableBody.children[i].children[collumn].innerHTML == "")
+                    {
+                        if(currentPlayer == 0)
+                        {
+                            currentPlayer = 1;
+                            tableBody.children[i].children[collumn].append(xTemp.content.cloneNode(true));
+                            player.innerHTML = "O's next"
+                        }else
+                        {
+                            currentPlayer = 0;
+                            tableBody.children[i].children[collumn].append(oTemp.content.cloneNode(true));
+                            player.innerHTML = "X's next"
+                        }
+                        return;
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

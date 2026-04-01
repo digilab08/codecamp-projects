@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Imposter — Verbesserte Version (Handy-Rumgeben + Wort)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #071029;
+        --card: #071221;
+        --muted: #94a3b8;
+        --accent: #06b6d4;
+        --glass: rgba(255, 255, 255, 0.03);
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          Arial;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, #061226, var(--bg));
+        color: #e6eef6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .app {
+        width: 100%;
+        max-width: 1100px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      input[type="number"],
+      input[type="text"],
+      select {
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        background: transparent;
+        color: inherit;
+        min-width: 72px;
+      }
+      button {
+        background: var(--accent);
+        border: none;
+        padding: 8px 12px;
+        border-radius: 10px;
+        color: #052e30;
+        cursor: pointer;
+      }
+      .controls-panel {
+        background: var(--card);
+        padding: 12px;
+        border-radius: 12px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .status {
+        margin-top: 12px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: var(--glass);
+        color: var(--muted);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .board {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+      .card {
+        background: linear-gradient(180deg, #08151f, #071221);
+        border-radius: 12px;
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+        cursor: pointer;
+        user-select: none;
+        overflow: visible;
+      }
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #0ea5a4, #0284c7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: #021;
+        margin-bottom: 8px;
+      }
+      .label {
+        font-weight: 600;
+      }
+      .role {
+        margin-top: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 13px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .role.hidden {
+        color: #9fb6c3;
+      }
+      .role.imposter {
+        background: linear-gradient(90deg, #f97316, #ef4444);
+        color: #111;
+      }
+      .role.crew {
+        background: rgba(16, 185, 129, 0.12);
+        color: #a7f3d0;
+      }
+      .result {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 700;
+      }
+      .hidden {
+        display: none;
+      }
+      .small {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .flip-wrap {
+        perspective: 900px;
+      }
+      .flip-inner {
+        transition: transform 0.5s;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+      .flip-inner.flipped {
+        transform: rotateY(180deg);
+      }
+      .face {
+        backface-visibility: hidden;
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+      }
+      .face.back {
+        transform: rotateY(180deg);
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(2, 6, 23, 0.6);
+        z-index: 60;
+      }
+      .panel {
+        background: linear-gradient(180deg, #071221, #071221);
+        padding: 20px;
+        border-radius: 12px;
+        max-width: 420px;
+        width: 92%;
+      }
+      .panel h2 {
+        margin: 0 0 8px 0;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .timer-bar {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 999px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+      .timer-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #06b6d4, #0ea5a4);
+        width: 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app" role="application" aria-label="Imposter Spiel">
+      <header>
+        <h1>Imposter — Handy-Rumgeben + Wort</h1>
+        <div class="controls">
+          <div class="controls-panel">
+            <label class="small">Spieler</label>
+            <input id="playerCount" type="number" min="3" max="12" value="6" />
+            <label class="small">Imposter</label>
+            <select id="imposterCount">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+            <label class="small">NPCs</label>
+            <input
+              id="npcCount"
+              type="number"
+              min="0"
+              max="6"
+              value="0"
+              style="width: 64px"
+            />
+            <label class="small">Runden (s)</label>
+            <input
+              id="roundTime"
+              type="number"
+              min="5"
+              max="120"
+              value="20"
+              style="width: 72px"
+            />
+            <button id="setupPlayersBtn">Spieler bearbeiten</button>
+            <button id="startBtn">Start (Handy-Rumgeben)</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="status" id="status" role="status" aria-live="polite">
+        Gib Spielernamen ein (optional) und drücke "Spieler bearbeiten".
+      </div>
+      <div class="timer-bar">
+        <div id="timerFill" class="timer-fill" aria-hidden="true"></div>
+      </div>
+
+      <main>
+        <div id="board" class="board" aria-label="Spielbrett"></div>
+      </main>
+
+      <div
+        id="result"
+        class="result hidden"
+        role="status"
+        aria-live="polite"
+      ></div>
+    </div>
+
+    <!-- Modal für Spieler-Setup & Handy-Rumgeben -->
+    <div id="modal" class="modal hidden" aria-hidden="true">
+      <div
+        class="panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <h2 id="modalTitle">Spieler-Setup</h2>
+        <div id="playerList"></div>
+        <div
+          style="
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+          "
+        >
+          <button id="modalSave">Speichern</button>
+          <button id="modalCancel" style="background: #334155; color: #e6eef6">
+            Abbrechen
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal für geheimes Anzeigen (Handy-rumgeben) -->
+    <div id="revealModal" class="modal hidden" aria-hidden="true">
+      <div
+        class="panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="revealTitle"
+      >
+        <h2 id="revealTitle">Deine Rolle</h2>
+        <div
+          id="revealContent"
+          style="
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+          "
+        >
+          <!-- dynamisch -->
+        </div>
+        <div
+          style="
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div class="small" id="revealHint">
+            Gib das Gerät nach dem Blick weiter.
+          </div>
+          <div style="display: flex; gap: 8px">
+            <button id="revealNext">Weiter</button>
+            <button id="revealSkip" style="background: #334155; color: #e6eef6">
+              Überspringen
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- simple audio placeholders -->
+    <audio id="sndFlip"></audio><audio id="sndWin"></audio
+    ><audio id="sndLose"></audio>
+
+    <script>
+      (() => {
+        // Elements
+        const playerCountInput = document.getElementById("playerCount");
+        const imposterCountSelect = document.getElementById("imposterCount");
+        const npcCountInput = document.getElementById("npcCount");
+        const roundTimeInput = document.getElementById("roundTime");
+        const setupPlayersBtn = document.getElementById("setupPlayersBtn");
+        const startBtn = document.getElementById("startBtn");
+        const board = document.getElementById("board");
+        const status = document.getElementById("status");
+        const timerFill = document.getElementById("timerFill");
+        const modal = document.getElementById("modal");
+        const playerList = document.getElementById("playerList");
+        const modalSave = document.getElementById("modalSave");
+        const modalCancel = document.getElementById("modalCancel");
+        const revealModal = document.getElementById("revealModal");
+        const revealContent = document.getElementById("revealContent");
+        const revealNext = document.getElementById("revealNext");
+        const revealSkip = document.getElementById("revealSkip");
+        const resultEl = document.getElementById("result");
+
+        // State
+        let players = []; // {id,name,avatar,isNPC,isImposter,revealed,active}
+        let imposters = [];
+        let revealOrder = []; // indices for rumgeben
+        let currentRevealIndex = 0;
+        let secretWord = "";
+        let gameOver = false;
+        let timer = null;
+        let timeLeft = 0;
+
+        // Word list (small sample; du kannst erweitern)
+        const WORDS = [
+          "Apfel",
+          "Buch",
+          "Stern",
+          "Blume",
+          "Kaffee",
+          "Haus",
+          "Lampe",
+          "Schlüssel",
+          "Zoo",
+          "Fisch",
+          "Telefon",
+          "Computer",
+          "Auto",
+          "Baum",
+          "Musik",
+        ];
+
+        // Helpers
+        const uid = (n = 6) =>
+          Math.random()
+            .toString(36)
+            .slice(2, n + 2);
+        const randChoice = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+        // Setup players modal
+        function openSetupModal() {
+          const n = Math.max(
+            3,
+            Math.min(12, parseInt(playerCountInput.value) || 6),
+          );
+          // initialize players array if empty or size changed
+          if (players.length !== n) {
+            players = [];
+            for (let i = 0; i < n; i++) {
+              players.push({
+                id: uid(),
+                name: `Spieler ${i + 1}`,
+                avatar: String.fromCharCode(65 + (i % 26)),
+                isNPC: false,
+                isImposter: false,
+                revealed: false,
+                active: true,
+              });
+            }
+          }
+          renderPlayerList();
+          showModal(true);
+        }
+        function renderPlayerList() {
+          playerList.innerHTML = "";
+          players.forEach((p, idx) => {
+            const row = document.createElement("div");
+            row.className = "row";
+            row.style.marginTop = "8px";
+            row.innerHTML = `
+        <input data-idx="${idx}" class="pname" type="text" value="${p.name}" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04)"/>
+        <input data-idx="${idx}" class="pavatar" type="text" value="${p.avatar}" style="width:64px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04)"/>
+        <label class="small" style="margin-left:6px">NPC<input data-idx="${idx}" class="pnpc" type="checkbox" ${p.isNPC ? "checked" : ""} style="margin-left:6px"/></label>
+      `;
+            playerList.appendChild(row);
+          });
+          // bind inputs
+          playerList.querySelectorAll(".pname").forEach((inp) => {
+            inp.addEventListener(
+              "input",
+              (e) => (players[+e.target.dataset.idx].name = e.target.value),
+            );
+          });
+          playerList.querySelectorAll(".pavatar").forEach((inp) => {
+            inp.addEventListener(
+              "input",
+              (e) =>
+                (players[+e.target.dataset.idx].avatar = e.target.value.slice(
+                  0,
+                  2,
+                )),
+            );
+          });
+          playerList.querySelectorAll(".pnpc").forEach((chk) => {
+            chk.addEventListener(
+              "change",
+              (e) => (players[+e.target.dataset.idx].isNPC = e.target.checked),
+            );
+          });
+        }
+        function showModal(on) {
+          modal.classList.toggle("hidden", !on);
+          modal.setAttribute("aria-hidden", !on);
+        }
+        function showRevealModal(on) {
+          revealModal.classList.toggle("hidden", !on);
+          revealModal.setAttribute("aria-hidden", !on);
+        }
+
+        // Assign roles and prepare reveal order
+        function assignRolesAndPrepareReveal() {
+          const n = players.length;
+          const impCount = Math.max(
+            1,
+            Math.min(3, parseInt(imposterCountSelect.value) || 1),
+          );
+          // reset
+          players.forEach((p) => {
+            p.isImposter = false;
+            p.revealed = false;
+            p.active = true;
+          });
+          imposters = [];
+          // pick impCount random indices among non-NPC+NPC alike (we want real players to possibly be imposters too)
+          const indices = players.map((_, i) => i);
+          for (let k = 0; k < impCount; k++) {
+            if (indices.length === 0) break;
+            const r = Math.floor(Math.random() * indices.length);
+            players[indices[r]].isImposter = true;
+            imposters.push(players[indices[r]].id);
+            indices.splice(r, 1);
+          }
+          // choose secret word for crew
+          secretWord = randChoice(WORDS);
+          // prepare reveal order: we want a fixed order covering all players; typically Player 1..n
+          revealOrder = players.map((_, i) => i);
+          currentRevealIndex = 0;
+        }
+
+        // Start the "Handy-Rumgeben" flow: iterate through revealOrder and show each player's private modal
+        function startHandyReveal() {
+          if (players.length < 3) {
+            setStatus("Mindestens 3 Spieler benötigt.");
+            return;
+          }
+          assignRolesAndPrepareReveal();
+          // show first reveal
+          currentRevealIndex = 0;
+          showNextReveal();
+        }
+
+        function showNextReveal() {
+          if (currentRevealIndex >= revealOrder.length) {
+            // finished rumgeben — now start main game board
+            showRevealModal(false);
+            setStatus("Alle Rollen verteilt. Spiel beginnt.");
+            startMainGame();
+            return;
+          }
+          const idx = revealOrder[currentRevealIndex];
+          const p = players[idx];
+          // prepare modal content — only the current player should see their own role
+          revealContent.innerHTML = "";
+          const nameEl = document.createElement("div");
+          nameEl.className = "label";
+          nameEl.textContent = p.name;
+          const avatarEl = document.createElement("div");
+          avatarEl.className = "avatar";
+          avatarEl.textContent = p.avatar;
+          revealContent.appendChild(avatarEl);
+          revealContent.appendChild(nameEl);
+
+          // If player is imposter -> show "Du bist Imposter" (kein Wort)
+          if (p.isImposter) {
+            const roleEl = document.createElement("div");
+            roleEl.className = "role imposter";
+            roleEl.textContent = "DU BIST IMPOSTER";
+            revealContent.appendChild(roleEl);
+            const hint = document.createElement("div");
+            hint.className = "small";
+            hint.textContent = "Merke dir das — zeige das Gerät weiter.";
+            revealContent.appendChild(hint);
+          } else {
+            // Crew sees the secret word
+            const roleEl = document.createElement("div");
+            roleEl.className = "role crew";
+            roleEl.textContent = "CREW";
+            const wordEl = document.createElement("div");
+            wordEl.style.marginTop = "8px";
+            wordEl.style.fontWeight = "700";
+            wordEl.style.fontSize = "18px";
+            wordEl.textContent = secretWord;
+            revealContent.appendChild(roleEl);
+            revealContent.appendChild(wordEl);
+            const hint = document.createElement("div");
+            hint.className = "small";
+            hint.textContent = "Merke dir das Wort — zeige das Gerät weiter.";
+            revealContent.appendChild(hint);
+          }
+
+          // show reveal modal
+          showRevealModal(true);
+          setStatus(
+            `Zeige das Gerät an ${p.name} (Spieler ${currentRevealIndex + 1}/${players.length})`,
+          );
+        }
+
+        function onRevealNext() {
+          currentRevealIndex++;
+          showNextReveal();
+        }
+        function onRevealSkip() {
+          // mark skipped as seen but don't reveal role (optional behavior) — here we still advance
+          currentRevealIndex++;
+          showNextReveal();
+        }
+
+        // After rumgeben, start main game: render board but keep roles hidden; game logic reuse simplified (we'll use simple reveal-only win conditions like before)
+        function startMainGame() {
+          gameOver = false;
+          renderBoardInitial();
+          setStatus(
+            "Aufdecken-Phase: Klicke eine Karte, um zu öffnen. Wenn Imposter gefunden -> Crew gewinnt. Sonst: weiter.",
+          );
+          startTimer(parseInt(roundTimeInput.value) || 20, onRevealTimeout);
+        }
+
+        // Board render (initial: all cards face-down, names shown)
+        function renderBoardInitial() {
+          board.innerHTML = "";
+          players.forEach((p, idx) => {
+            const card = document.createElement("div");
+            card.className = "card flip-wrap";
+            card.tabIndex = 0;
+            card.dataset.idx = idx;
+            const inner = document.createElement("div");
+            inner.className = "flip-inner" + (p.revealed ? " flipped" : "");
+            const front = document.createElement("div");
+            front.className = "face front";
+            front.style.background = "linear-gradient(180deg,#08151f,#071221)";
+            front.innerHTML = `<div class="avatar">${p.avatar}</div><div class="label">${p.name}</div><div class="role hidden">VERDECKT</div>`;
+            const back = document.createElement("div");
+            back.className = "face back";
+            back.style.background = p.isImposter
+              ? "linear-gradient(90deg,#2b0b0b,#3b0f0f)"
+              : "linear-gradient(180deg,#07221a,#06221a)";
+            back.innerHTML = `<div class="avatar">${p.avatar}</div><div class="label">${p.name}</div><div class="role ${p.isImposter ? "imposter" : "crew"}">${p.isImposter ? "IMPOSTER" : "CREW"}</div>`;
+            inner.appendChild(front);
+            inner.appendChild(back);
+            card.appendChild(inner);
+            card.addEventListener("click", () => onBoardCardClick(idx));
+            board.appendChild(card);
+          });
+        }
+
+        // Reveal click handler
+        function onBoardCardClick(idx) {
+          if (gameOver) return;
+          const p = players[idx];
+          if (p.revealed) return;
+          p.revealed = true;
+          // flip UI
+          const card = board.querySelector(
+            `.card[data-idx="${idx}"] .flip-inner`,
+          );
+          if (card) card.classList.add("flipped");
+          // show result
+          if (p.isImposter) {
+            endGame("crew", `Crew gewinnt — ${p.name} war Imposter!`);
+          } else {
+            // check remaining unrevealed; if only imposters left -> imposter wins
+            const unrevealed = players.filter((x) => !x.revealed);
+            if (
+              unrevealed.length === players.filter((x) => x.isImposter).length
+            ) {
+              endGame("imposter", "Imposter gewinnt — sie entkommen!");
+            } else {
+              setStatus(
+                `Kein Imposter — noch ${unrevealed.length} verdeckte Karten.`,
+              );
+            }
+          }
+        }
+
+        // Timer
+        function startTimer(seconds, onEnd) {
+          stopTimer();
+          timeLeft = seconds;
+          updateTimerFill();
+          timer = setInterval(() => {
+            timeLeft--;
+            updateTimerFill();
+            if (timeLeft <= 0) {
+              stopTimer();
+              onEnd && onEnd();
+            }
+          }, 1000);
+        }
+        function stopTimer() {
+          if (timer) clearInterval(timer);
+          timer = null;
+        }
+        function updateTimerFill() {
+          const total = parseInt(roundTimeInput.value) || 20;
+          const pct = Math.max(
+            0,
+            Math.min(100, Math.round((timeLeft / total) * 100)),
+          );
+          timerFill.style.width = pct + "%";
+        }
+
+        function onRevealTimeout() {
+          // If timeout, go to voting (not implemented here) — simple: auto-reveal one random unrevealed for pacing
+          const unrevealed = players.filter((p) => !p.revealed);
+          if (unrevealed.length === 0) return;
+          const pick = randChoice(unrevealed);
+          pick.revealed = true;
+          const idx = players.indexOf(pick);
+          const card = board.querySelector(
+            `.card[data-idx="${idx}"] .flip-inner`,
+          );
+          if (card) card.classList.add("flipped");
+          if (pick.isImposter)
+            endGame(
+              "crew",
+              `Crew gewinnt — ${pick.name} war Imposter (zeitbasiert aufgedeckt)!`,
+            );
+          else
+            setStatus(`Zeit abgelaufen — ${unrevealed.length - 1} verbleiben.`);
+        }
+
+        // End game
+        function endGame(winner, msg) {
+          gameOver = true;
+          stopTimer();
+          // reveal all
+          players.forEach((p, idx) => {
+            p.revealed = true;
+            const card = board.querySelector(
+              `.card[data-idx="${idx}"] .flip-inner`,
+            );
+            if (card) card.classList.add("flipped");
+          });
+          resultEl.classList.remove("hidden");
+          resultEl.textContent = msg;
+          if (winner === "crew")
+            resultEl.style.background =
+              "linear-gradient(90deg,#bbf7d0,#10b981)";
+          else
+            resultEl.style.background =
+              "linear-gradient(90deg,#fecaca,#ef4444)";
+          setStatus(msg);
+        }
+
+        // UI helpers
+        function setStatus(txt) {
+          status.textContent = txt;
+        }
+
+        // Button bindings
+        setupPlayersBtn.addEventListener("click", openSetupModal);
+        modalSave.addEventListener("click", () => {
+          showModal(false);
+          setStatus("Spieler gespeichert. Drücke Start (Handy-Rumgeben).");
+        });
+        modalCancel.addEventListener("click", () => showModal(false));
+        startBtn.addEventListener("click", () => {
+          // ensure players array matches count
+          const n = Math.max(
+            3,
+            Math.min(12, parseInt(playerCountInput.value) || 6),
+          );
+          if (players.length !== n) {
+            players = [];
+            for (let i = 0; i < n; i++)
+              players.push({
+                id: uid(),
+                name: `Spieler ${i + 1}`,
+                avatar: String.fromCharCode(65 + (i % 26)),
+                isNPC: false,
+                isImposter: false,
+                revealed: false,
+                active: true,
+              });
+          }
+          assignRolesAndPrepareReveal();
+          // begin reveal flow (handy-rumgeben)
+          currentRevealIndex = 0;
+          showNextReveal();
+        });
+
+        revealNext.addEventListener("click", onRevealNext);
+        revealSkip.addEventListener("click", onRevealSkip);
+
+        // init: prepare default players array
+        (function initDefaultPlayers() {
+          const n = Math.max(
+            3,
+            Math.min(12, parseInt(playerCountInput.value) || 6),
+          );
+          players = [];
+          for (let i = 0; i < n; i++)
+            players.push({
+              id: uid(),
+              name: `Spieler ${i + 1}`,
+              avatar: String.fromCharCode(65 + (i % 26)),
+              isNPC: false,
+              isImposter: false,
+              revealed: false,
+              active: true,
+            });
+          renderBoardInitial();
+        })();
+      })();
+    </script>
+  </body>
+</html>

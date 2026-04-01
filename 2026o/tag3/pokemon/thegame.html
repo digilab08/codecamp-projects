@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: rgba(217, 255, 0, 0.404);
+      }
+    </style>
+    <title>GAMESOFPOKE</title>
+  </head>
+  <body>
+    <h1>POKEMON KAMPF</h1>
+    <p>HIER KANNST DU EINEN SPANNENDEN KAMPF ERLEBEN</p>
+    <grid-template-columns 1fr 1fr;></grid-template-columns>
+
+    <div style="display: flex; justify-content: space-between">
+      <img
+        loading="lazy"
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.d7pKv4eX028kevzQSVcm6QHaJA%3Fpid%3DApi&f=1&ipt=f7b051b77b576c901579f98e012795ed721d7b09f75c51bb91e482641a08e119&ipo=images"
+        width="200"
+        height="300"
+      />
+      <ul>
+        <li><button onclick="tackle()">tackle</button></li>
+        <li><button onclick="Donnerschweif()">Donnerschweif</button></li>
+        <li><button onclick="Donnerblitz()">Donnerblitz</button></li>
+        <script>
+          let tackleCounter = 0;
+          let tackleAktiv = true;
+          function tackle() {
+            if (tackleAktiv) {
+              tackleAktiv = false;
+              tackleCounter++;
+              if (tackleCounter >= 4) {
+                tackleCounter = 0;
+                atkmimi(1);
+              }
+              atkmimi(6);
+              setTimeout(() => {
+                tackleAktiv = true;
+              }, 2000);
+            }
+          }
+          let donnerswCounter = 0;
+          let donnerswAktiv = true;
+          function Donnerschweif() {
+            if (donnerswAktiv) {
+              donnerswAktiv = false;
+              donnerswCounter++;
+              if (donnerswCounter >= 3) {
+                donnerswCounter = 0;
+                atkmimi(3);
+              }
+              atkmimi(10);
+              setTimeout(() => {
+                donnerswAktiv = true;
+              }, 7000);
+            }
+          }
+          let donnerblCounter = 0;
+          let donnerblAktiv = true;
+          function Donnerblitz() {
+            if (donnerblAktiv) {
+              donnerblAktiv = false;
+              donnerblCounter++;
+              if (donnerblCounter >= 2) {
+                donnerblCounter = 0;
+                atkmimi(3);
+              }
+              atkmimi(15);
+              setTimeout(() => {
+                donnerblAktiv = true;
+              }, 10000);
+            }
+          }
+        </script>
+      </ul>
+      <ul>
+        <li><button onclick="kratzer()">Kratzer</button></li>
+        <li><button onclick="holzhammer()">Holzhammer</button></li>
+        <li><button onclick="Dunkelschlag()">Dunkelschlag</button></li>
+        <script>
+          let kratzerCounter = 0;
+          let kratzerAktiv = true;
+          function kratzer() {
+            if (kratzerAktiv) {
+              kratzerAktiv = false;
+              kratzerCounter++;
+              if (kratzerCounter >= 4) {
+                kratzerCounter = 0;
+                atkpika(6);
+              }
+              atkpika(1);
+              setTimeout(() => {
+                kratzerAktiv = true;
+              }, 2000);
+            }
+          }
+          function holzhammer() {
+            atkPika(10);
+          }
+          function Dunkelschlag() {
+            atkPika(15);
+          }
+        </script>
+      </ul>
+      <img
+        loading="lazy"
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.ClSZxhVRav-HSNuVZsE9uwAAAA%3Fpid%3DApi&f=1&ipt=ab71031801f54dd2e5381bdba8c8473b3cb764912d0159c2a36c0b353efe4143&ipo=images"
+        width="200"
+        height="300"
+      />
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <p>leben: <span id="liveofpika">100</span></p>
+      <script>
+        let livePika = document.getElementById("liveofpika");
+        function atkPika(hoehe) {
+          livePika.innerText = Number(livePika.innerText) - hoehe;
+        }
+      </script>
+      <p>leben: <span id="liveofmimi">100</span></p>
+      <script>
+        let livemimi = document.getElementById("liveofmimi");
+        function atkmimi(hoehe) {
+          livemimi.innerText = Number(livemimi.innerText) - hoehe;
+        }
+      </script>
+      <script>
+        function atkPika(dmg) {
+          livePika.innerText = Math.max(0, Number(livePika.innerText) - dmg);
+        }
+
+        function atkmimi(dmg) {
+          livemimi.innerText = Math.max(0, Number(livemimi.innerText) - dmg);
+        }
+      </script>
+    </div>
+    <h2>WENN EINE = LEBEN HAT IST ES VORBEI</h2>
+  </body>
+</html>
