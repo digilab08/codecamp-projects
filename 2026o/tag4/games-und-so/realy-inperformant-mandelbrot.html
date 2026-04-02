@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>mandelbrot</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <canvas id="canvas" style="width: 800px; height: 800px; border-style: solid;">
+        </canvas>
+        <script>
+            function mandelbrot(x, y)
+            {
+                cx = x;
+                cy = y;
+                for(i = 0; i < 50; i++)
+                {
+                    let newImag = 2 * y * x;
+                    newImag += cy;
+                    x = x * x - y * y;
+                    x += cx;
+                    y = newImag;
+                    if(Math.abs(x) + Math.abs(y) > 4)
+                    {
+                        return(i);
+                    }
+                }
+                return(50);
+            }
+            canvas = document.getElementById("canvas");
+            ctx = canvas.getContext("2d");
+            for(let x = 0; x < 800; x++)
+            {
+                let real = x / 100 - 2.2;
+                for(let y = 0; y < 800; y++)
+                {
+                    let imag = y / 50 - 1.5;
+                    result = mandelbrot(real, imag);
+                    if(result != 50)
+                    {
+                        glow = (1 - result / 15) * 255;
+                        ctx.fillStyle = "rgb(0, " + glow * 0.8 + ", " + glow * 0.6 + ")";
+                    }else
+                    {
+                        ctx.fillStyle = "black";
+                    }
+                    ctx.fillRect(x * 1, y * 1, 1, 1);
+                }
+            }
+        </script>
+    </body>
+</html>

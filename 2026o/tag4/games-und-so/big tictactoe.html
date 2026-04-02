@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>big tac toe</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            :root
+            {
+                --size: 75px;
+            }
+            input
+            {
+                width: var(--size);
+                height: var(--size);
+                background-color: #555555;
+            }
+            .container
+            {
+                display: block;
+            }
+            .tictactoe
+            {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+            .symbolBox
+            {
+                width: var(--size);
+                height: var(--size);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .symbolBox.p
+            {
+                color: white;
+            }
+            table, th, td
+            {
+                border: 1px solid #707070;
+            }
+            .container:hover
+            {
+                transform: scale(1);
+            }
+        </style>
+    </head>
+    <body>
+        <template id="x">
+            <div class="symbolBox" style="background-color: #1EAB62;"><p>X</p></div>
+        </template>
+        <template id="o">
+            <div class="symbolBox" style="background-color: #268CEB;"><p>O</p></div>
+        </template>
+        <template id="win">
+            <div style="display: flex; justify-content: center;">
+                <h1 id="text"></h1>
+            </div>
+        </template>
+        <div class="tictactoe" id="removethis">
+            <h1>tic tac toe</h1>
+            <div class="container">
+                <table>
+                    <tbody>
+                        <tr id="row1">
+                            <td id="topleft">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="top">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="topright">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="row1">
+                            <td id="topleft">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="top">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="topright">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr id="row1">
+                            <td id="topleft">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="top">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td id="topright">
+                                <table>
+                                    <tbody>
+                                        <tr id="row1">
+                                            <td id="topleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="top"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="topright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row2">
+                                            <td id="left"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="center"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="right"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                        <tr id="row3">
+                                            <td id="bottomleft"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottom"><div><input type="button" onclick="doMove(this)"></div></td>
+                                            <td id="bottomright"><div><input type="button" onclick="doMove(this)"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            let currentPlayer = 0;
+            let xTemp = document.getElementById("x");
+            let oTemp = document.getElementById("o");
+            let topleft = document.getElementById("topleft");
+            let Top = document.getElementById("top");
+            let topright = document.getElementById("topright");
+            let left = document.getElementById("left");
+            let center = document.getElementById("center");
+            let right = document.getElementById("right");
+            let bottomleft = document.getElementById("bottomleft");
+            let bottom = document.getElementById("bottom");
+            let bottomright = document.getElementById("bottomright");
+            function doMove(button)
+            {
+                console.log(currentPlayer);
+                if(currentPlayer == 0)
+                {
+                    console.log("x played");
+                    currentPlayer = 1;
+                    button.parentElement.id="x";
+                    button.replaceWith(xTemp.content.cloneNode(true));
+                }else
+                if(currentPlayer == 1)
+                {
+                    console.log("o played");
+                    currentPlayer = 0;
+                    button.parentElement.id="o";
+                    button.replaceWith(oTemp.content.cloneNode(true));
+                }
+                  //-------------------------------------------//
+                 //<<<<<<<<<<|||||win detection|||||>>>>>>>>>>//
+                //-------------------------------------------//
+
+                if(topleft.firstChild.id == "x" && Top.firstChild.id == "x" && topright.firstChild.id == "x")
+                {
+                    win("X")
+                }else
+                if(left.firstChild.id == "x" && center.firstChild.id == "x" && right.firstChild.id == "x")
+                {
+                    win("X")
+                }else
+                if(bottomleft.firstChild.id == "x" && bottom.firstChild.id == "x" && bottomright.firstChild.id == "x")
+                {
+                    win("X")
+                }else
+                if(topleft.firstChild.id == "x" && left.firstChild.id == "x" && bottomleft.firstChild.id == "x")
+                {
+                    win("X")
+                }else
+                if(Top.firstChild.id == "x" && center.firstChild.id == "x" && bottom.firstChild.id == "x")
+                {
+                    win("X")
+                }else
+                if(topright.firstChild.id == "x" && right.firstChild.id == "x" && bottomright.firstChild.id == "x")
+                {
+                    win("X")
+                }else
+                if(topleft.firstChild.id == "x" && center.firstChild.id == "x" && bottomright.firstChild.id == "x")
+                {
+                    win("X")
+                }else
+                if(bottomleft.firstChild.id == "x" && center.firstChild.id == "x" && topright.firstChild.id == "x")
+                {
+                    win("X")
+                }else
+
+
+                if(topleft.firstChild.id == "o" && Top.firstChild.id == "o" && topright.firstChild.id == "o")
+                {
+                    win("O")
+                }else
+                if(left.firstChild.id == "o" && center.firstChild.id == "o" && right.firstChild.id == "o")
+                {
+                    win("O")
+                }else
+                if(bottomleft.firstChild.id == "o" && bottom.firstChild.id == "o" && bottomright.firstChild.id == "o")
+                {
+                    win("O")
+                }else
+                if(topleft.firstChild.id == "o" && left.firstChild.id == "o" && bottomleft.firstChild.id == "o")
+                {
+                    win("O")
+                }else
+                if(Top.firstChild.id == "o" && center.firstChild.id == "o" && bottom.firstChild.id == "o")
+                {
+                    win("O")
+                }else
+                if(topright.firstChild.id == "o" && right.firstChild.id == "o" && bottomright.firstChild.id == "o")
+                {
+                    win("O")
+                }else
+                if(topleft.firstChild.id == "o" && center.firstChild.id == "o" && bottomright.firstChild.id == "o")
+                {
+                    win("O")
+                }else
+                if(bottomleft.firstChild.id == "o" && center.firstChild.id == "o" && topright.firstChild.id == "o")
+                {
+                    win("O")
+                }else
+                if(document.getElementsByTagName("input").length == 0)
+                {
+                    win("noone");
+                }
+            }
+            function win(player)
+            {
+                /*console.log(player + " wins");
+                document.getElementById("removethis").remove();
+                document.lastChild.lastChild.appendChild(document.getElementById("win").content.cloneNode(true));
+                document.getElementById("text").innerHTML = player + " Wins";
+                document.getElementById("text").style.fontSize = "400px";*/
+            }
+        </script>
+    </body>
+</html>
