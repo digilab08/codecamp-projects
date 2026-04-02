@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Pokemon Tagebuch</title>
+  </head>
+  <body></body>
+  <div style="display: flex; justify-content: center">
+    <h1>Pokemon Tagebuch</h1>
+  </div>
+  <a href="index.html">zurück</a>
+  
+ 
+
+  <style>
+    body {
+      background-color: antiquewhite;
+    }
+  </style>
+  
+    
+  <h4>Kleine Unterhaltung:</h4>
+
+  <p>Pokemon: <span id="pokemons">0</span></p>
+ 
+  
+  <button onclick="plusPokemon()">Klick für Gratis Pokemons</button>
+  <script>
+    let pokemons = 0;
+    let pokemonsHtml = document.getElementById("pokemons");
+    function plusPokemon() {
+      pokemons++;
+      pokemonsHtml.innerText = pokemons;
+    }
+  </script>
+  <br />
+  <img 
+      loading="lazy"
+      src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGpxcDYwZ3Z4b2prc29icDh5cmdleTcyMmxua3NldHg2bnE4OTUyNiZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/nMy8HTFQRWpudNwbxQ/giphy.webp"
+      alt=""
+      width="300"
+      height="200"
+    />
+  <br />
+  <br />
+  <br />
+  Deine Tagebuch Leiste, wo du deine Gedanke reinschreiben kannst:
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <input type="text" onchange="send(this)" />
+  <div id="narichten"></div>
+  <script>
+    narichtenhtml = document.getElementById("narichten");
+    function send(textInput) {
+      //narichtenhtml.innertext +=
+      narichtenhtml.innerText += " " + textInput.value;
+    }
+  </script>
+
+  <h2 id="titel">Pokemon</h2>
+  <p id="info">Tagebuch extras:</p>
+  <div id="ausgabe"></div>
+
+  <button onclick="titelAendern()">Anfangen zu speichern!</button>
+  <button onclick="eintragHinzufuegen()">
+    Speichere, wann du deinen Tagebuch Eintrag geschrieben hast!
+  </button>
+
+  <script>
+    function titelAendern() {
+      let titelElement = document.getElementById("titel");
+      let alterTitel = titelElement.innerText;
+
+      alert("Alter Titel: " + alterTitel);
+      titelElement.innerText = "Einträge:";
+
+      document.getElementById("info").innerText =
+        "Speicher jetzt deine Zeiten direkt hier unten!";
+    }
+
+    function eintragHinzufuegen() {
+      let neuerEintrag = document.createElement("p");
+      neuerEintrag.innerText =
+        "Neuer Eintrag um " + new Date().toLocaleTimeString();
+
+      let ausgabe = document.getElementById("ausgabe");
+      ausgabe.appendChild(neuerEintrag);
+    }
+  </script>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h3> ???</h3>
+
+  </script>
+<button onclick="textAendern(this)">Klick mich für eine Überraschung!</button>
+
+<script>
+  let counter = 0
+  function textAendern(btn) {
+    // "btn" ist das übergebene Button-Element
+    counter++
+    if(counter === 1){
+       btn.innerText = 'Überraschung!'
+    }
+    if(counter === 2){
+btn.innerText = 'Immer noch da?'
+    }
+    if (counter === 3) {
+      btn.innerText = 'Was erwartest du?'
+    }
+    if (counter === 4) {
+      btn.innerText = 'Willst du etwa noch eine Überraschung?'
+    }
+    if (counter === 5) {
+      btn.innerText = 'Also langsam reicht es...'
+    }
+    if ( counter === 6) {
+      btn.innerText = ' Wie lange bist du noch da???'
+    }
+    if (counter === 7) {
+      btn.innerText = 'Ernsthaft?'
+    }
+    if (counter ===8) {
+      btn.innerText = 'Tschüss, keine Lust mehr!'
+    }
+   
+  }
+  </script>
+
+ 
+
+
+  
+
+
+</html>

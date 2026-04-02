@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animierter EU-Zeitstrahl</title>
+    <style>
+      :root {
+        --eu-blue: #003399;
+        --eu-gold: #ffcc00;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      .wrapper {
+        padding: 50px;
+        text-align: center;
+      }
+
+      h1 {
+        color: var(--eu-blue);
+        margin-bottom: 50px;
+      }
+
+      /* Der horizontale Zeitstrahl-Strich */
+      .timeline-container {
+        display: flex;
+        position: relative;
+        padding: 20px 0;
+        gap: 40px;
+      }
+
+      /* Die wachsende Linie im Hintergrund */
+      .timeline-line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 4px;
+        background: var(--eu-gold);
+        width: 0; /* Start-Zustand für Animation */
+        animation: growLine 2s forwards ease-out;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      /* Einzelne Ereignis-Karten */
+      .event-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        min-width: 200px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 2;
+        opacity: 0; /* Start-Zustand für Animation */
+        transform: translateY(20px);
+        animation: fadeIn 0.5s forwards ease-out;
+      }
+
+      .year {
+        font-weight: bold;
+        font-size: 1.4em;
+        color: var(--eu-blue);
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .text {
+        font-size: 0.9em;
+        color: #555;
+        line-height: 1.4;
+      }
+
+      /* Animationen */
+      @keyframes growLine {
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Zeitverzögerung für die Karten (Stagger-Effekt) */
+      .event-card:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      .event-card:nth-child(2) {
+        animation-delay: 1s;
+      }
+      .event-card:nth-child(3) {
+        animation-delay: 1.5s;
+      }
+      .event-card:nth-child(4) {
+        animation-delay: 2s;
+      }
+      .event-card:nth-child(5) {
+        animation-delay: 2.5s;
+      }
+      .event-card:nth-child(6) {
+        animation-delay: 3s;
+      }
+
+      /* Horizontales Scrollen auf kleinen Bildschirmen */
+      .scroll-wrapper {
+        overflow-x: auto;
+        width: 95vw;
+        padding-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Meilensteine der EU</h1>
+
+      <div class="scroll-wrapper">
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+
+          <div class="event-card">
+            <span class="year">1951</span>
+            <div class="text">
+              <b>Montanunion</b><br />Zusammenlegung von Kohle und Stahl (6
+              Länder).
+            </div>
+          </div>
+
+          <div class="event-card">
+            <span class="year">1957</span>
+            <div class="text">
+              <b>Römische Verträge</b><br />Gründung der EWG und Beginn des
+              gemeinsamen Marktes.
+            </div>
+          </div>
+
+          <div class="event-card">
+            <span class="year">1993</span>
+            <div class="text">
+              <b>Maastricht</b><br />Die Geburtsstunde der heutigen EU.
+            </div>
+          </div>
+
+          <div class="event-card">
+            <span class="year">2002</span>
+            <div class="text">
+              <b>Euro-Start</b><br />Der Euro wird als offizielles Bargeld
+              eingeführt.
+            </div>
+          </div>
+
+          <div class="event-card">
+            <span class="year">2004</span>
+            <div class="text">
+              <b>Osterweiterung</b><br />Größte Erweiterung mit 10 neuen
+              Staaten.
+            </div>
+          </div>
+
+          <div class="event-card">
+            <span class="year">2020</span>
+            <div class="text">
+              <b>Brexit</b><br />Das Vereinigte Königreich tritt offiziell aus
+              der EU aus.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

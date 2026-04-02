@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="background-color: burlywood">
+    <h1
+      style="
+        color: crimson;
+        text-decoration: underline;
+        text-shadow: 2px 2px 4px black;
+      "
+    >
+      Was ist mit dir?
+    </h1>
+    In der Webseite ging es Ziemlich oft um mich.Aber was ist mit dir,dem
+    Leser?Ich will dass du mir deine Lieblingsspiele auf Roblox nennst.Trag sie
+    unten ein!
+    <p><input type="text" onchange="zeigtext(this)" /></p>
+    <div></div>
+    <p id="ausgabe"></p>
+    <script>
+      function zeigtext(inputfeld) {
+        let ausgabe = document.getElementById("ausgabe");
+        ausgabe.innerText = ausgabe.innerText + "\n" + inputfeld.value;
+        inputfeld.value = "";
+      }
+    </script>
+    <a href="index.html">Startseite</a>
+  </body>
+</html>

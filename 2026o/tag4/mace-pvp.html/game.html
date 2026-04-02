@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini game</title>
+  </head>
+  <body style="background-color: orange">
+    <h1 style="display: flex; justify-content: center">Mini Game</h1>
+    <h2>Mace klicker</h2>
+    <p>Klicke für mehr Schaden bei dem Mace.</p>
+    <button onclick="schadenErhoeen()">
+      Schaden: <span id="schadenid">0</span>
+    </button>
+    <button onclick="anzahlClicker()">
+      Anzahl Clicker: <span id="anzahlClicker">0</span>
+    </button>
+
+    <script>
+      let schaden = 0;
+      const schadenHTML = document.getElementById("schadenid");
+      function schadenErhoeen() {
+        schaden++;
+        schadenHTML.textContent = schaden;
+      }
+    </script>
+    <button onclick="autoClicker()">Auto Clicker:50</button>
+    <script>
+      let damagepersecond = 0.5;
+      let anzAutoClicker = 1;
+      let costautoclicker = 50;
+      const autoClickerHTML = document.getElementById("anzahlClicker");
+      function autoClicker() {
+        if (schaden >= costautoclicker) {
+          anzAutoClicker++;
+          schaden = schaden - 50;
+        }
+        schadenHTML.textContent = schaden;
+        autoClickerHTML.textContent = anzAutoClicker;
+      }
+      setInterval(function autoClicker() {
+        schaden += anzAutoClicker * damagepersecond;
+        schadenHTML.textContent = schaden;
+        autoClickerHTML.textContent = anzAutoClicker;
+      }, 1000);
+    </script>
+  </body>
+</html>

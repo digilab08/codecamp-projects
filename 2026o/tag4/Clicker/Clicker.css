@@ -1,0 +1,17 @@
+.cookieCounter {
+    text-align: center;
+    color:brown;
+    font-size: 3em;
+
+}
+.Button {
+    display: flex;
+    justify-content: center;
+    
+   
+    
+}
+.CPS {
+    text-align:center;
+    font-size: 2vh;
+}

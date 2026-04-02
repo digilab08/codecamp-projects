@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link href="cookie-clicker.css" rel="stylesheet" />
+    <style></style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Clicker</title>
+  </head>
+  <body>
+    <h1>Cookies: <span id="cookies">0</span></h1>
+    <p class="cps">Cps: <span id="Cps">0</span></p>
+    <div class="button">
+      <button onclick="plusCookie()" class="button">Cookie</button>
+    </div>
+    <br />
+    <br />
+    <script>
+      cookie = 0;
+      let cookieHTML = document.getElementById("cookies");
+      function plusCookie() {
+        cookie = cookie + 1;
+        cookieHTML.innerText = cookie;
+      }
+    </script>
+    <button onclick="buyCursor()" class="buyButton">
+      buy Cursor: <span id="CostCursor">30</span>c
+    </button>
+    <p>Cursor: <span id="cursor">0</span></p>
+    <script>
+      //---Cursor Abteil---------------------------------------------------------------------------
+      let cursorPower = 0.5;
+      let cps = 0;
+      let costCursor = 30;
+      let cursor = 0;
+      let cursorHTML = document.getElementById("cursor");
+      let cpsHTML = document.getElementById("Cps");
+      let costCursorHTML = document.getElementById("CostCursor");
+      function buyCursor() {
+        if (cookie >= costCursor) {
+          cursor = cursor + 1;
+          cookie = cookie - costCursor;
+          cookieHTML.innerText = cookie;
+          cursorHTML.innerText = cursor;
+          cps = cps + cursorPower;
+          cpsHTML.innerText = cps;
+          costCursor = Math.floor(costCursor * 1.1);
+          costCursorHTML.innerText = costCursor;
+        }
+      }
+      setInterval(() => {
+        cookie = cookie + cursor * cursorPower;
+        cookieHTML.innerText = cookie;
+      }, 1000);
+      //---Ende---
+    </script>
+    <button onclick="buyOma()" class="buyButton">
+      buy Oma: <span id="CostOma">200</span>c
+    </button>
+    <p>Oma: <span id="Oma">0</span></p>
+    <script>
+      //---Oma Abteil-----------------------------------------------------------------------------
+      let omaPower = 10;
+      let costOma = 200;
+      let oma = 0;
+      let omaHTML = document.getElementById("Oma");
+      let costOmaHTML = document.getElementById("CostOma");
+      function buyOma() {
+        if (cookie >= costOma) {
+          oma = oma + 1;
+          cookie = cookie - costOma;
+          cookieHTML.innerText = cookie;
+          omaHTML.innerText = oma;
+          cps = cps + omaPower;
+          cpsHTML.innerText = cps;
+          costOma = Math.floor(costOma * 1.1);
+          costOmaHTML.innerText = costOma;
+        }
+      }
+      setInterval(() => {
+        cookie = cookie + oma * omaPower;
+        cookieHTML.innerText = cookie;
+      }, 1000);
+      //---Ende---
+    </script>
+    <div class="buyButton">
+      <button onclick="buyFarm()">
+        buy Farm: <span id="CostFarm">3500</span>c
+      </button>
+    </div>
+    <p>Farm: <span id="farm">0</span></p>
+    <script>
+      //---Farm Abteil----------------------------------------------------------------------
+      let costFarm = 3500;
+      let farmPower = 100;
+      let farm = 0;
+      let farmHTML = document.getElementById("farm");
+      let costFarmHTML = document.getElementById("CostFarm");
+      function buyFarm() {
+        if (cookie >= costFarm) {
+          farm = farm + 1;
+          cookie = cookie - costFarm;
+          cookieHTML.innerText = cookie;
+          farmHTML = farm;
+          cps = cps + farmPower;
+          cpsHTML.innerText = cps;
+          costFarm = Math.floor(costFarm * 1.1);
+          costFarmHTML.innerText = costFarm;
+        }
+      }
+      setInterval(() => {
+        cookie = cookie + farm * farmPower;
+        cookieHTML.innerText = cookie;
+      }, 1000);
+      //---Ende---
+    </script>
+    <button onclick="buyMine()" class="buyButton">
+      buy Mine: <span id="CostMine">50000</span>c
+    </button>
+    <p>Mine: <span id="mine">0</span></p>
+    <script>
+      //---Mine Abteil-----------------------------------------------------------------------
+      let costMine = 50000;
+      let minePower = 1000;
+      let mine = 0;
+      let mineHTML = document.getElementById("mine");
+      let costMineHTML = document.getElementById("CostMine");
+      function buyMine() {
+        if (cookie >= costMine) {
+          mine = mine + 1;
+          cookie = cookie - costMine;
+          cookieHTML.innerText = cookie;
+          mineHTML = mine;
+          cps = cps + minePower;
+          cpsHTML.innerText = cps;
+          costMine = Math.floor(costMine * 1.1);
+          costMineHTML.innerText = costMine;
+        }
+      }
+      setInterval(() => {
+        cookie = cookie + mine * minePower;
+        cookieHTML.innerText = cookie;
+      }, 1000);
+      //---Ende---
+    </script>
+  </body>
+</html>

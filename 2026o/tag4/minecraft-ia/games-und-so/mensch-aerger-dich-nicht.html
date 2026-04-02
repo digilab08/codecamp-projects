@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            td
+            {
+               width: 100px;
+               height: 100px;
+            }
+            img
+            { 
+                image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+                image-rendering: -moz-crisp-edges;          /* Firefox                        */
+                image-rendering: -o-crisp-edges;            /* Opera                          */
+                image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+                image-rendering: pixelated;                 /* Universal support since 2021   */
+                image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+                -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+                border-style: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <template id="empty">
+                <td>
+                    <img src="empty.png">
+                </td>
+            </template>
+            <template id="blankCircle">
+                <td>
+                    <img src="blank-circle.png">
+                </td>
+            </template>
+            <template id="blankCircleB">
+                <td>
+                    <img src="blank-circle-b.png">
+                </td>
+            </template>
+            <template id="blankCircleB0">
+                <td>
+                    <img src="blank-circle-b.png" onclick="move(0)">
+                </td>
+            </template>
+            <template id="blankCircleB1">
+                <td>
+                    <img src="blank-circle-b.png" onclick="move(1)">
+                </td>
+            </template>
+            <template id="blankCircleB2">
+                <td>
+                    <img src="blank-circle-b.png" onclick="move(2)">
+                </td>
+            </template>
+            <template id="blankCircleB3">
+                <td>
+                    <img src="blank-circle-b.png" onclick="move(3)">
+                </td>
+            </template>
+            <template id="blueCircle">
+                <td>
+                    <img src="blue-circle.png">
+                </td>
+            </template>
+            <template id="blueCircleW">
+                <td>
+                    <img src="blue-circle-w.png">
+                </td>
+            </template>
+            <template id="blueCircleW0">
+                <td>
+                    <img src="blue-circle-w.png" onclick="move(0)">
+                </td>
+            </template>
+            <template id="blueCircleW1">
+                <td>
+                    <img src="blue-circle-w.png" onclick="move(1)">
+                </td>
+            </template>
+            <template id="blueCircleW2">
+                <td>
+                    <img src="blue-circle-w.png" onclick="move(2)">
+                </td>
+            </template>
+            <template id="blueCircleW3">
+                <td>
+                    <img src="blue-circle-w.png" onclick="move(3)">
+                </td>
+            </template>
+            <template id="blankCircleG">
+                <td>
+                    <img src="blank-circle-g.png">
+                </td>
+            </template>
+            <template id="blankCircleG0">
+                <td>
+                    <img src="blank-circle-g.png" onclick="move(0);">
+                </td>
+            </template>
+            <template id="blankCircleG1">
+                <td>
+                    <img src="blank-circle-g.png" onclick="move(1);">
+                </td>
+            </template>
+            <template id="blankCircleG2">
+                <td>
+                    <img src="blank-circle-g.png" onclick="move(2);">
+                </td>
+            </template>
+            <template id="blankCircleG3">
+                <td>
+                    <img src="blank-circle-g.png" onclick="move(3);">
+                </td>
+            </template>
+            <template id="greenCircle">
+                <td>
+                    <img src="green-circle.png">
+                </td>
+            </template>
+            <template id="greenCircleW">
+                <td>
+                    <img src="green-circle-w.png">
+                </td>
+            </template>
+            <template id="greenCircleW0">
+                <td>
+                    <img src="green-circle-w.png" onclick="move(0);">
+                </td>
+            </template>
+            <template id="greenCircleW1">
+                <td>
+                    <img src="green-circle-w.png" onclick="move(1);">
+                </td>
+            </template>
+            <template id="greenCircleW2">
+                <td>
+                    <img src="green-circle-w.png" onclick="move(2);">
+                </td>
+            </template>
+            <template id="greenCircleW3">
+                <td>
+                    <img src="green-circle-w.png" onclick="move(3);">
+                </td>
+            </template>
+            <template id="blankCircleY">
+                <td>
+                    <img src="blank-circle-y.png">
+                </td>
+            </template>
+            <template id="blankCircleY0">
+                <td>
+                    <img src="blank-circle-y.png" onclick="move(0);">
+                </td>
+            </template>
+            <template id="blankCircleY1">
+                <td>
+                    <img src="blank-circle-y.png" onclick="move(1);">
+                </td>
+            </template>
+            <template id="blankCircleY2">
+                <td>
+                    <img src="blank-circle-y.png" onclick="move(2);">
+                </td>
+            </template>
+            <template id="blankCircleY3">
+                <td>
+                    <img src="blank-circle-y.png" onclick="move(3);">
+                </td>
+            </template>
+            <template id="yellowCircle">
+                <td>
+                    <img src="yellow-circle.png">
+                </td>
+            </template>
+            <template id="yellowCircleW">
+                <td>
+                    <img src="yellow-circle-w.png">
+                </td>
+            </template>
+            <template id="yellowCircleW0">
+                <td>
+                    <img src="yellow-circle-w.png" onclick="move(0);">
+                </td>
+            </template>
+            <template id="yellowCircleW1">
+                <td>
+                    <img src="yellow-circle-w.png" onclick="move(1);">
+                </td>
+            </template>
+            <template id="yellowCircleW2">
+                <td>
+                    <img src="yellow-circle-w.png" onclick="move(2);">
+                </td>
+            </template>
+            <template id="yellowCircleW3">
+                <td>
+                    <img src="yellow-circle-w.png" onclick="move(3);">
+                </td>
+            </template>
+            <template id="blankCircleR">
+                <td>
+                    <img src="blank-circle-r.png">
+                </td>
+            </template>
+            <template id="blankCircleR0">
+                <td>
+                    <img src="blank-circle-r.png" onclick="move(0)">
+                </td>
+            </template>
+            <template id="blankCircleR1">
+                <td>
+                    <img src="blank-circle-r.png" onclick="move(1)">
+                </td>
+            </template>
+            <template id="blankCircleR2">
+                <td>
+                    <img src="blank-circle-r.png" onclick="move(2)">
+                </td>
+            </template>
+            <template id="blankCircleR3">
+                <td>
+                    <img src="blank-circle-r.png" onclick="move(3)">
+                </td>
+            </template>
+            <template id="redCircle">
+                <td>
+                    <img src="red-circle.png">
+                </td>
+            </template>
+            <template id="redCircleW">
+                <td>
+                    <img src="red-circle-w.png">
+                </td>
+            </template>
+            <template id="redCircleW0">
+                <td>
+                    <img src="red-circle-w.png" onclick="move(0)">
+                </td>
+            </template>
+            <template id="redCircleW1">
+                <td>
+                    <img src="red-circle-w.png" onclick="move(1)">
+                </td>
+            </template>
+            <template id="redCircleW2">
+                <td>
+                    <img src="red-circle-w.png" onclick="move(2)">
+                </td>
+            </template>
+            <template id="redCircleW3">
+                <td>
+                    <img src="red-circle-w.png" onclick="move(3)">
+                </td>
+            </template>
+            <template>
+                <div style="margin: 40px; border-style: solid; border-radius: 50%;">
+
+                </div>
+            </template>
+            <template id="rollButtonTemp">
+                <input type="button" value="Roll" onclick="roll(this);">
+            </template>
+        </div>
+        <div id="playerSelect">
+            <label>Blue player</label>
+            <input type="checkbox" id="pBlue">
+            <br>
+            <label>Green player</label>
+            <input type="checkbox" id="pGreen">
+            <br>
+            <label>Red player</label>
+            <input type="checkbox" id="pRed">
+            <br>
+            <label>Yellow player</label>
+            <input type="checkbox" id="pYellow">
+            <br>
+            <input type="button" onClick="start()" value="start">
+        </div>
+        <div>
+             <h2><span id="currentPlayer"></span> rolled a <span id="rollButton"></span><input type="button" value="skip" onclick="nextPlayer()"></h2>
+        </div>
+        <table id="table">
+        </table>
+    </body>
+    <script>
+        let players = [false, false, false, false];
+        let playersFormatted = [];
+        let pAmount = 0;
+        let currentPlayer = 0;
+        let currentPlayerReadable = 0;
+
+        blank = document.getElementById("blankCircle").content;
+        empty = document.getElementById("empty").content;
+        blankB = document.getElementById("blankCircleB").content;
+        blankB0 = document.getElementById("blankCircleB0").content;
+        blankB1 = document.getElementById("blankCircleB1").content;
+        blankB2 = document.getElementById("blankCircleB2").content;
+        blankB3 = document.getElementById("blankCircleB3").content;
+        blankR = document.getElementById("blankCircleG").content;
+        blankG0 = document.getElementById("blankCircleG0").content;
+        blankG1 = document.getElementById("blankCircleG1").content;
+        blankG2 = document.getElementById("blankCircleG2").content;
+        blankG3 = document.getElementById("blankCircleG3").content;
+        blankG = document.getElementById("blankCircleR").content;
+        blankR0 = document.getElementById("blankCircleR0").content;
+        blankR1 = document.getElementById("blankCircleR1").content;
+        blankR2 = document.getElementById("blankCircleR2").content;
+        blankR3 = document.getElementById("blankCircleR3").content;
+        blankY = document.getElementById("blankCircleY").content;
+        blankY0 = document.getElementById("blankCircleY0").content;
+        blankY1 = document.getElementById("blankCircleY1").content;
+        blankY2 = document.getElementById("blankCircleY2").content;
+        blankY3 = document.getElementById("blankCircleY3").content;
+        blue = document.getElementById("blueCircle").content;
+        green = document.getElementById("greenCircle").content;
+        red = document.getElementById("redCircle").content;
+        yellow = document.getElementById("yellowCircle").content;
+        blueW = document.getElementById("blueCircleW").content;
+        blueW0 = document.getElementById("blueCircleW0").content;
+        blueW1 = document.getElementById("blueCircleW1").content;
+        blueW2 = document.getElementById("blueCircleW2").content;
+        blueW3 = document.getElementById("blueCircleW3").content;
+        greenW = document.getElementById("greenCircleW").content;
+        greenW0 = document.getElementById("greenCircleW0").content;
+        greenW1 = document.getElementById("greenCircleW1").content;
+        greenW2 = document.getElementById("greenCircleW2").content;
+        greenW3 = document.getElementById("greenCircleW3").content;
+        redW = document.getElementById("redCircleW").content;
+        redW0 = document.getElementById("redCircleW0").content;
+        redW1 = document.getElementById("redCircleW1").content;
+        redW2 = document.getElementById("redCircleW2").content;
+        redW3 = document.getElementById("redCircleW3").content;
+        yellowW = document.getElementById("yellowCircleW").content;
+        yellowW0 = document.getElementById("yellowCircleW0").content;
+        yellowW1 = document.getElementById("yellowCircleW1").content;
+        yellowW2 = document.getElementById("yellowCircleW2").content;
+        yellowW3 = document.getElementById("yellowCircleW3").content;
+
+        let num2Text = ["Blue", "Green", "Red", "Yellow"];
+        let blueFigures = [40, 41, 42, 43];
+        blueSpecialMoves = [40, 43, 0];
+        blueJump = [39, 44];
+        blueEnd = 47;
+        let redFigures = [48, 49, 50, 51];
+        redSpecialMoves = [48, 51, 10];
+        redJump = [9, 52];
+        redEnd = 55;
+        let greenFigures = [56, 57, 58, 59];
+        greenSpecialMoves = [56, 59, 20];
+        greenJump = [19, 60];
+        greenEnd = 63;
+        let yellowFigures = [64, 65, 66, 67];
+        yellowSpecialMoves = [64, 67, 30];
+        yellowJump = [29, 68];
+        yellowEnd = 71;
+        let blueHasOnBoard = false;
+        let redHasOnBoard = false;
+        let greenHasOnBoard = false;
+        let yellowHasOnBoard = false;
+        let rolled = 0;
+
+
+        function start()
+        {
+            document.getElementById("playerSelect").hidden = true;
+            players[0] = document.getElementById("pBlue").checked;
+            players[1] = document.getElementById("pGreen").checked;
+            players[2] = document.getElementById("pRed").checked;
+            players[3] = document.getElementById("pYellow").checked;
+
+            pAmount = 0;
+            for(let i = 0; i < 4; i++)
+            {
+                if(players[i])
+                {
+                    pAmount++;
+                    playersFormatted.push(i);
+                }
+            }
+            setupRoll();
+            createBoard()
+
+        }
+        function nextPlayer()
+        {
+            currentPlayerReadable = (currentPlayerReadable + 1) % pAmount;
+            currentPlayer = playersFormatted[currentPlayerReadable];
+            setupRoll();
+        }
+
+        function createBoard()
+        {
+            table = document.getElementById("table");
+            table.innerHTML = null;
+            row = document.createElement("tr");
+            singleSquare = document.createElement("td");
+
+
+            let currentRow = row.cloneNode(true);
+            currentRow.appendChild(addColoredSquare(3, 65));
+            currentRow.appendChild(addColoredSquare(3, 67));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addBlankSquare(38));
+            currentRow.appendChild(addBlankSquare(39));
+            currentRow.appendChild(addBlankSquare(0));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addColoredSquare(0, 40));
+            currentRow.appendChild(addColoredSquare(0, 41));
+            
+
+
+            table.appendChild(currentRow.cloneNode(true));
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(addColoredSquare(3, 64));
+            currentRow.appendChild(addColoredSquare(3, 66));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addBlankSquare(37));
+            if(blueFigures.includes(44))
+                {currentRow.appendChild(blueW.cloneNode(true));}
+            else
+                {currentRow.appendChild(blue.cloneNode(true));}
+            currentRow.appendChild(addBlankSquare(1));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addColoredSquare(0, 42));
+            currentRow.appendChild(addColoredSquare(0, 43));
+            
+            table.appendChild(currentRow.cloneNode(true));
+            
+
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addBlankSquare(36));
+            currentRow.appendChild(addColoredSquare(0, 45));
+            currentRow.appendChild(addBlankSquare(2));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+
+            table.appendChild(currentRow.cloneNode(true));
+
+
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addBlankSquare(35));
+            currentRow.appendChild(addColoredSquare(0, 46));
+            currentRow.appendChild(addBlankSquare(3));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+
+            table.appendChild(currentRow.cloneNode(true));
+
+
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(addBlankSquare(30));
+            currentRow.appendChild(addBlankSquare(31));
+            currentRow.appendChild(addBlankSquare(32));
+            currentRow.appendChild(addBlankSquare(33));
+            currentRow.appendChild(addBlankSquare(34));
+            currentRow.appendChild(addColoredSquare(0, 47));
+            currentRow.appendChild(addBlankSquare(4));
+            currentRow.appendChild(addBlankSquare(5));
+            currentRow.appendChild(addBlankSquare(6));
+            currentRow.appendChild(addBlankSquare(7));
+            currentRow.appendChild(addBlankSquare(8));
+
+            table.appendChild(currentRow.cloneNode(true));
+
+
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(addBlankSquare(29));
+            currentRow.appendChild(addColoredSquare(3, 68));
+            currentRow.appendChild(addColoredSquare(3, 69));
+            currentRow.appendChild(addColoredSquare(3, 70));
+            currentRow.appendChild(addColoredSquare(3, 71));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addColoredSquare(2, 55));
+            currentRow.appendChild(addColoredSquare(2, 56));
+            currentRow.appendChild(addColoredSquare(2, 57));
+            currentRow.appendChild(addColoredSquare(2, 58));
+            currentRow.appendChild(addBlankSquare(9));
+
+            table.appendChild(currentRow.cloneNode(true));
+
+
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(addBlankSquare(28));
+            currentRow.appendChild(addBlankSquare(27));
+            currentRow.appendChild(addBlankSquare(26));
+            currentRow.appendChild(addBlankSquare(25));
+            currentRow.appendChild(addBlankSquare(24));
+            currentRow.appendChild(addColoredSquare(1, 63));
+            currentRow.appendChild(addBlankSquare(14));
+            currentRow.appendChild(addBlankSquare(13));
+            currentRow.appendChild(addBlankSquare(12));
+            currentRow.appendChild(addBlankSquare(11));
+            currentRow.appendChild(addBlankSquare(10));
+
+            table.appendChild(currentRow.cloneNode(true));
+
+
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addBlankSquare(23));
+            currentRow.appendChild(addColoredSquare(1, 62));
+            currentRow.appendChild(addBlankSquare(15));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+
+            table.appendChild(currentRow.cloneNode(true));
+
+
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addBlankSquare(22));
+            currentRow.appendChild(addColoredSquare(1, 61));
+            currentRow.appendChild(addBlankSquare(16));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+
+            table.appendChild(currentRow.cloneNode(true));
+            
+
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(addColoredSquare(1, 59));
+            currentRow.appendChild(addColoredSquare(1, 58));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addBlankSquare(21));
+            currentRow.appendChild(addColoredSquare(1, 60));
+            currentRow.appendChild(addBlankSquare(17));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addColoredSquare(2, 50));
+            currentRow.appendChild(addColoredSquare(2, 48));
+            
+
+
+            table.appendChild(currentRow.cloneNode(true));
+
+            currentRow = row.cloneNode(true);
+            currentRow.appendChild(addColoredSquare(1, 57));
+            currentRow.appendChild(addColoredSquare(1, 56));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addBlankSquare(20));
+            currentRow.appendChild(addBlankSquare(19));
+            currentRow.appendChild(addBlankSquare(18));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(empty.cloneNode(true));
+            currentRow.appendChild(addColoredSquare(2, 51));
+            currentRow.appendChild(addColoredSquare(2, 49));
+            
+            table.appendChild(currentRow.cloneNode(true));
+
+        }
+
+        function generateMove(col, space)
+        {
+            switch(col)
+            {
+                case 0:
+                    switch(blueFigures.indexOf(space))
+                    {
+                        case 0:
+                            return(blueW0.cloneNode(true));
+                        case 1:
+                            return(blueW1.cloneNode(true));
+                        case 2:
+                            return(blueW2.cloneNode(true));
+                        case 3:
+                            return(blueW3.cloneNode(true));
+                    }
+                    break;
+                case 1:
+                    switch(greenFigures.indexOf(space))
+                    {
+                        case 0:
+                            return(greenW0.cloneNode(true));
+                        case 1:
+                            return(greenW1.cloneNode(true));
+                        case 2:
+                            return(greenW2.cloneNode(true));
+                        case 3:
+                            return(greenW3.cloneNode(true));
+                    }
+                    break;
+                case 2:
+                    switch(redFigures.indexOf(space))
+                    {
+                        case 0:
+                            return(redW0.cloneNode(true));
+                        case 1:
+                            return(redW1.cloneNode(true));
+                        case 2:
+                            return(redW2.cloneNode(true));
+                        case 3:
+                            return(redW3.cloneNode(true));
+                    }
+                    break;
+                case 3:
+                    switch(yellowFigures.indexOf(space))
+                    {
+                        case 0:
+                            return(yellowW0.cloneNode(true));
+                        case 1:
+                            return(yellowW1.cloneNode(true));
+                        case 2:
+                            return(yellowW2.cloneNode(true));
+                        case 3:
+                            return(yellowW3.cloneNode(true));
+                    }
+                    break;
+            }
+        }
+        function isOnSquare(square)
+        {
+            if(blueFigures.includes(square))
+            {return(0)}
+            else if(greenFigures.includes(square))
+            {return(1)}
+            else if(redFigures.includes(square))
+            {return(2)}
+            else if(yellowFigures.includes(square))
+            {return(3)}
+            return(-1);
+        }
+        function addBlankSquare(pos)
+        {
+            color = isOnSquare(pos);
+            console.log(color, " ", pos);
+            if(color == -1)
+                {return(blank.cloneNode(true));}
+            if(color == 0)
+            {
+                switch(blueFigures.indexOf(pos))
+                {
+                    case 0:
+                        return(blankB0.cloneNode(true));
+                    case 1:
+                        return(blankB1.cloneNode(true));
+                    case 2:
+                        return(blankB2.cloneNode(true));
+                    case 3:
+                        return(blankB3.cloneNode(true));
+                }
+            }
+            if(color == 1)
+            {
+                console.log(greenFigures.indexOf(pos))
+                switch(greenFigures.indexOf(pos))
+                {
+                    case 0:
+                        return(blankG0.cloneNode(true));
+                    case 1:
+                        return(blankG1.cloneNode(true));
+                    case 2:
+                        return(blankG2.cloneNode(true));
+                    case 3:
+                        return(blankG3.cloneNode(true));
+                }
+            }
+            if(color == 2)
+            {
+                switch(redFigures.indexOf(pos))
+                {
+                    case 0:
+                        return(blankR0.cloneNode(true));
+                    case 1:
+                        return(blankR1.cloneNode(true));
+                    case 2:
+                        return(blankR2.cloneNode(true));
+                    case 3:
+                        return(blankR3.cloneNode(true));
+                }
+            }
+            if(color == 3)
+            {
+                switch(yellowFigures.indexOf(pos))
+                {
+                    case 0:
+                        return(blankY0.cloneNode(true));
+                    case 1:
+                        return(blankY1.cloneNode(true));
+                    case 2:
+                        return(blankY2.cloneNode(true));
+                    case 3:
+                        return(blankY3.cloneNode(true));
+                }
+            }
+        }
+        function addColoredSquare(col, square)
+        {
+            let space = null;
+            switch(col)
+            {
+                case 0:
+                    if(blueFigures.includes(square))
+                        {space = generateMove(col, square);}
+                    else
+                        {space = blue.cloneNode(true);}
+                    return(space);
+                case 1:
+                    if(greenFigures.includes(square))
+                        {space = generateMove(col, square);}
+                    else
+                        {space = green.cloneNode(true);}
+                    return(space);
+                case 2:
+                    if(redFigures.includes(square))
+                        {space = generateMove(col, square);}
+                    else
+                        {space = red.cloneNode(true);}
+                    return(space);
+                case 3:
+                    if(yellowFigures.includes(square))
+                        {space = generateMove(col, square);}
+                    else
+                        {space = yellow.cloneNode(true);}
+                    return(space);
+                default:
+                    return("f u");
+                break;
+            }
+        }
+        function setupRoll()
+        {
+            rolled = 0;
+            document.getElementById("rollButton").innerHTML = "";
+            document.getElementById("currentPlayer").innerText = num2Text[currentPlayer];
+            document.getElementById("rollButton").appendChild(document.getElementById("rollButtonTemp").content.cloneNode(true))
+        }
+        function roll(obj)
+        {
+            rolled = Math.ceil(Math.random() * 6);
+            obj.parentElement.innerHTML = rolled;
+        }
+        function move0()
+        {
+            move(0);
+        }
+        function move(piece)
+        {
+            console.log("move");
+            let skippedMove = false;
+            let piecePos = null;
+            switch(currentPlayer)
+            {
+                case 0:
+                    piecePos = blueFigures[piece];
+                    if(piecePos >= blueSpecialMoves[0] && piecePos <= blueSpecialMoves[1])
+                    {
+                        if(rolled == 6)
+                        {
+                            blueFigures[piece] = blueSpecialMoves[2];
+                        }else
+                        {
+                            console.log("ne dat geht nicht");
+                            skippedMove = true;
+                            break;
+                        }
+                    }else if(piecePos <= blueJump[0] && piecePos >= blueJump[0] - 6)
+                    {
+                        blueFigures[piece] = rolled + piecePos - blueJump[0] - 1 + blueJump[1];
+                    }else if(piecePos + rolled <= blueEnd)
+                    {
+                        blueFigures[piece] += rolled
+                        //if(colorblueFigures[piece])
+                    }else
+                    {
+                        console.log("bro...");
+                        skippedMove = true;
+                        break;
+                    }
+                break;
+                case 2:
+                    piecePos = redFigures[piece];
+                    if(piecePos >= redSpecialMoves[0] && piecePos <= redSpecialMoves[1])
+                    {
+                        if(rolled == 6)
+                        {
+                            redFigures[piece] = redSpecialMoves[2];
+                        }else
+                        {
+                            console.log("ne dat geht nicht");
+                            skippedMove = true;
+                            break;
+                        }
+                    }else if(piecePos <= redJump[0] && piecePos >= redJump[0] - 6)
+                    {
+                        redFigures[piece] = rolled + piecePos - redJump[0] - 1 + redJump[1];
+                    }else if(piecePos + rolled <= redEnd)
+                    {
+                        redFigures[piece] += rolled;
+                        redFigures[piece] = redFigures[piece] % 40;
+                    }else
+                    {
+                        console.log("bro...");
+                        skippedMove = true;
+                        break;
+                    }
+                break;
+                case 1:
+                    piecePos = greenFigures[piece];
+                    console.log(piece);
+                    console.log(piecePos);
+                    console.log(greenSpecialMoves);
+                    if(piecePos >= greenSpecialMoves[0] && piecePos <= greenSpecialMoves[1])
+                    {
+                        console.log("home");
+                        if(rolled == 6)
+                        {
+                            console.log("yup");
+                            greenFigures[piece] = greenSpecialMoves[2];
+                        }else
+                        {
+                            console.log("ne dat geht nicht");
+                            skippedMove = true;
+                            break;
+                        }
+                    }else if(piecePos <= greenJump[0] && piecePos >= greenJump[0] - 6)
+                    {
+                        greenFigures[piece] = rolled + piecePos - greenJump[0] - 1 + greenJump[1];
+                    }else if(piecePos + rolled <= greenEnd)
+                    {
+                        greenFigures[piece] += rolled;
+                        greenFigures[piece] = greenFigures[piece] % 40;
+                    }else
+                    {
+                        console.log("bro...");
+                        skippedMove = true;
+                        break;
+                    }
+                break
+                case 3:
+                    piecePos = yellowFigures[piece];
+                    if(piecePos >= yellowSpecialMoves[0] && piecePos <= yellowSpecialMoves[1])
+                    {
+                        if(rolled == 6)
+                        {
+                            yellowFigures[piece] = yellowSpecialMoves[2];
+                        }else
+                        {
+                            console.log("ne dat geht nicht");
+                            skippedMove = true;
+                            break;
+                        }
+                    }else if(piecePos <= yellowJump[0] && piecePos >= yellowJump[0] - 6)
+                    {
+                        yellowFigures[piece] = rolled + piecePos - yellowJump[0] - 1 + yellowJump[1];
+                    }else if(piecePos + rolled <= redEnd)
+                    {
+                        yellowFigures[piece] += rolled;
+                        yellowFigures[piece] = yellowFigures[piece] % 40;
+                    }else
+                    {
+                        console.log("bro...");
+                        skippedMove = true;
+                        break;
+                    }
+                break;
+            }
+            if(!skippedMove)
+            {
+                createBoard();
+                nextPlayer();
+            }
+        }
+    </script>
+</html>

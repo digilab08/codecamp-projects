@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schießstand Spiel</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #5a5a5a;
+        color: white;
+        overflow: hidden;
+      }
+
+      .hud {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 18px;
+      }
+
+      .game-area {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        cursor: crosshair;
+      }
+
+      .target {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          #fff 0 12%,
+          #e60000 12% 24%,
+          #fff 24% 38%,
+          #e60000 38% 54%,
+          #fff 54% 72%,
+          #e60000 72% 100%
+        );
+        border: 3px solid #222;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        user-select: none;
+      }
+
+      .hitmark {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: black;
+        border: 2px solid yellow;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .points-popup {
+        position: absolute;
+        color: #ffd700;
+        font-weight: bold;
+        font-size: 22px;
+        pointer-events: none;
+        animation: floatUp 0.8s ease-out forwards;
+        text-shadow: 1px 1px 4px black;
+      }
+
+      a {
+        border-radius: 20px;
+        text-align: center;
+        background-color: black;
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        border-radius: 14px;
+        font-weight: bold;
+        font-family:
+          ARILAL,
+          sans serif;
+        transition: 0.3s;
+        display: inline-block;
+      }
+
+      @keyframes floatUp {
+        0% {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -40px);
+        }
+      }
+
+      .info {
+        position: fixed;
+        bottom: 15px;
+        left: 15px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center">
+      <a href="index.html">Zurück</a>
+    </div>
+    <div class="hud">
+      <div>Punkte: <span id="score">0</span></div>
+      <div>Schüsse: <span id="shots">0</span></div>
+      <div>Treffer: <span id="hits">0</span></div>
+      <button id="resetBtn" , onclick="resetStats()">Reset</button>
+    </div>
+
+    <div class="info">
+      Klicke auf die Scheiben. Je näher zur Mitte, desto mehr Punkte.
+    </div>
+
+    <div class="game-area" id="gameArea"></div>
+
+    <script>
+      const gameArea = document.getElementById("gameArea");
+      const scoreEl = document.getElementById("score");
+      const shotsEl = document.getElementById("shots");
+      const hitsEl = document.getElementById("hits");
+      const resetBtn = document.getElementById("resetBtn");
+
+      let score = 0;
+      let shots = 0;
+      let hits = 0;
+
+      score.getElementById;
+
+      const TARGET_COUNT = 5;
+      const TARGET_SIZE = 120;
+
+      function createTarget(x, y) {
+        const target = document.createElement("div");
+        target.classList.add("target");
+        target.style.left = x + "px";
+        target.style.top = y + "px";
+
+        target.addEventListener("click", function (e) {
+          e.stopPropagation();
+          shots++;
+          hits++;
+
+          const rect = target.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+
+          const dx = clickX - centerX;
+          const dy = clickY - centerY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          const radius = rect.width / 2;
+
+          let points = 0;
+
+          if (distance <= radius * 0.12) {
+            points = 100;
+          } else if (distance <= radius * 0.24) {
+            points = 80;
+          } else if (distance <= radius * 0.38) {
+            points = 60;
+          } else if (distance <= radius * 0.54) {
+            points = 40;
+          } else if (distance <= radius * 0.72) {
+            points = 20;
+          } else if (distance <= radius) {
+            points = 10;
+          }
+
+          score += points;
+
+          updateHUD();
+          showHitmark(clickX, clickY);
+          showPoints(clickX, clickY, "+" + points);
+
+          moveTarget(target);
+        });
+
+        gameArea.appendChild(target);
+      }
+
+      function moveTarget(target) {
+        const maxX = window.innerWidth - TARGET_SIZE;
+        const maxY = window.innerHeight - TARGET_SIZE;
+
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+
+        target.style.left = newX + "px";
+        target.style.top = newY + "px";
+      }
+
+      function showHitmark(x, y) {
+        const mark = document.createElement("div");
+        mark.classList.add("hitmark");
+        mark.style.left = x + "px";
+        mark.style.top = y + "px";
+
+        gameArea.appendChild(mark);
+
+        setTimeout(() => {
+          mark.remove();
+        }, 700);
+      }
+
+      function showPoints(x, y, text) {
+        const popup = document.createElement("div");
+        popup.classList.add("points-popup");
+        popup.textContent = text;
+        popup.style.left = x + "px";
+        popup.style.top = y + "px";
+
+        gameArea.appendChild(popup);
+
+        setTimeout(() => {
+          popup.remove();
+        }, 800);
+      }
+
+      function updateHUD() {
+        scoreEl.textContent = score;
+        shotsEl.textContent = shots;
+        hitsEl.textContent = hits;
+      }
+
+      gameArea.addEventListener("click", function () {
+        shots++;
+        updateHUD();
+      });
+
+      function initGame() {
+        for (let i = 0; i < TARGET_COUNT; i++) {
+          const maxX = window.innerWidth - TARGET_SIZE;
+          const maxY = window.innerHeight - TARGET_SIZE;
+
+          const x = Math.random() * maxX;
+          const y = Math.random() * maxY;
+
+          createTarget(x, y);
+        }
+      }
+
+      initGame();
+
+      function resetStats() {
+        score = 0;
+        shots = 0;
+        hits = 0;
+
+        scoreEl.textContent = score;
+        shotsEl.textContent = shots;
+        hitsEl.textContent = hits;
+      }
+    </script>
+  </body>
+</html>
