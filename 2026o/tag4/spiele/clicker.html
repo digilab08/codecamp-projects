@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="de">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Überraschungs-Spiel</title>
+        <style>
+          body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            color: white;
+            font-family: "Arial Black", sans-serif;
+            overflow: hidden;
+            transition: background 0.5s;
+          }
+          #main-btn {
+            padding: 20px 40px;
+            font-size: 2rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            background: #fff;
+            color: #111;
+            transition: 0.2s;
+            z-index: 10;
+          }
+          #main-btn:active {
+            transform: scale(0.9);
+          }
+          .particle {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 50%;
+            animation: fly 1s forwards;
+          }
+          @keyframes fly {
+            to {
+              transform: translate(var(--x), var(--y));
+              opacity: 0;
+            }
+          }
+          #msg {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            height: 2rem;
+            color: #555;
+          }
+          .enemy {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: red;
+            cursor: crosshair;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            border-radius: 5px;
+          }
+        </style>
+      </head>
+      <body>
+        <div id="msg">Klicke den Button...</div>
+        <button id="main-btn">KLICK MICH</button>
+        <div id="counter" style="font-size: 3rem; margin-top: 10px">0</div>
+
+        <script>
+          let clicks = 0;
+          const btn = document.getElementById("main-btn");
+          const msg = document.getElementById("msg");
+          const counter = document.getElementById("counter");
+
+          btn.addEventListener("click", (e) => {
+            clicks++;
+            counter.innerText = clicks;
+            createParticles(e.clientX, e.clientY);
+
+            // ÜBERRASCHUNGS-STUFEN
+            if (clicks === 10) {
+              msg.innerText = "Nicht schlecht... weiter!";
+              document.body.style.background = "#1a1a2e";
+              btn.style.background = "#4ecca3";
+            }
+
+            if (clicks === 25) {
+              msg.innerText = "WAS PASSIERT JETZT?!";
+              startChaos();
+            }
+
+            if (clicks === 50) {
+              msg.innerText = "MODUS: FARB-INVASION!";
+              setInterval(changeColor, 200);
+            }
+
+            if (clicks >= 60 && clicks % 5 === 0) {
+              spawnEnemy();
+            }
+          });
+
+          function createParticles(x, y) {
+            for (let i = 0; i < 10; i++) {
+              const p = document.createElement("div");
+              p.className = "particle";
+              p.style.left = x + "px";
+              p.style.top = y + "px";
+              p.style.width = p.style.height = Math.random() * 10 + 5 + "px";
+              p.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+              p.style.setProperty("--x", (Math.random() - 0.5) * 200 + "px");
+              p.style.setProperty("--y", (Math.random() - 0.5) * 200 + "px");
+              document.body.appendChild(p);
+              setTimeout(() => p.remove(), 1000);
+            }
+          }
+
+          function startChaos() {
+            setInterval(() => {
+              btn.style.position = "absolute";
+              btn.style.left = Math.random() * (window.innerWidth - 150) + "px";
+              btn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+            }, 800);
+          }
+
+          function changeColor() {
+            document.body.style.background = `hsl(${Math.random() * 360}, 50%, 20%)`;
+          }
+
+          function spawnEnemy() {
+            const enemy = document.createElement("div");
+            enemy.className = "enemy";
+            enemy.innerText = "👾";
+            enemy.style.left = Math.random() * window.innerWidth + "px";
+            enemy.style.top = Math.random() * window.innerHeight + "px";
+            enemy.onclick = () => {
+              clicks += 10;
+              counter.innerText = clicks;
+              enemy.remove();
+              msg.innerText = "BONUS +10!";
+            };
+            document.body.appendChild(enemy);
+          }
+        </script>
+      </body>
+    </html>
+    <a href="game.html">zurück </a>
+  </body>
+</html>
+<a href="game.html">zurückhaltend</a>

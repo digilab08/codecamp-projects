@@ -6,7 +6,7 @@
     <title>Clicker</title>
     <link rel="stylesheet" href="Clicker.css" />
   </head>
-  <>
+  
     <h1 class="cookieCounter">Cookies: <span id="Cookies">0</span></h1>
     <p class="CPS">CPS: <span id="CPS">0</span></p>
     <div class="Button">
@@ -16,8 +16,9 @@
       //--Cookie Button----------------------------------------------------------------
       let Cookies = 0;
       let CookiesHtml = document.getElementById("Cookies");
+      let Clickpower = 1;
       function plusCookies() {
-        Cookies++;
+        Cookies = Cookies + Clickpower;
         CookiesHtml.innerText = Cookies;
       }
     </script>
@@ -78,7 +79,7 @@
       }, 1000);
     </script>
     <p>Farm: <span id="Farm">0</span></p>
-    <button onclick="buyFarm()">buy Farm:<span id CostFarm>3500</span>c</button>
+    <button onclick="buyFarm()">buy Farm:<span id="CostFarm" >3500</span>c</button>
     <script>
       //--- Farm Abteil----------------------------------------------------------------
       let FarmCost = 3500;
@@ -126,6 +127,34 @@
       }
       setInterval(() => {
         Cookies = Cookies + Mine * 1000;
+        CookiesHtml.innerText = Cookies;
+      }, 1000);
+    </script>
+     <p>Fabrik: <span id="Fabrik">0</span></p>
+    <button onclick="buyFabrik()">
+      buy Fabrik:<span id="CostFabrik">1000000</span>c
+    </button>
+    <script>
+      //--- Fabrik Abteil-------------------------------------------------------------
+      let FabrikCost = 1000000;
+      let Fabrik= 0;
+      let FabrikHtml = document.getElementById("Fabrik");
+      CostFabrikHtml = document.getElementById("CostFabrik");
+      function buyFabrik() {
+        if (Cookies >= FabrikCost) {
+          Fabrik = Fabrik + 1;
+          Cookies = Cookies - FabrikCost;
+          CookiesHtml.innerText = Cookies;
+          FabrikHtml.innerText = Fabrik;
+          CPS = CPS + 50000;
+          CPSHtml.innerText = CPS;
+          FabrikCost = Math.floor(MineCost * 1.1);
+          CostFabrikHtml.innerText = FabrikCost;
+          
+        }
+      }
+      setInterval(() => {
+        Cookies = Cookies + Fabrik * 1000000;
         CookiesHtml.innerText = Cookies;
       }, 1000);
     </script>

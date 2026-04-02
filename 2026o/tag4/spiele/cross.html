@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!doctype html>
+    <html>
+      <head>
+        <title>AI EXPLOSION SHOOTER</title>
+        <style>
+          body {
+            background: #000;
+            color: #ff0055;
+            font-family: "Courier New", monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+          }
+          canvas {
+            border: 3px solid #ff0055;
+            background: #050005;
+            box-shadow: 0 0 50px rgba(255, 0, 85, 0.3);
+          }
+          .ui {
+            margin-bottom: 10px;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 0 0 20px #ff0055;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="ui">DESTRUCTION: <span id="score">0</span></div>
+        <canvas id="game" width="600" height="700"></canvas>
+
+        <script>
+          const canvas = document.getElementById("game");
+          const ctx = canvas.getContext("2d");
+          const scoreEl = document.getElementById("score");
+
+          let score = 0;
+          let frameCount = 0;
+          let shake = 0;
+
+          const player = { x: 275, y: 640, w: 50, h: 15, color: "#ff0055" };
+          const bullets = [];
+          const enemies = [];
+          const particles = [];
+
+          function createExplosion(x, y, color) {
+            for (let i = 0; i < 15; i++) {
+              particles.push({
+                x: x,
+                y: y,
+                vx: (Math.random() - 0.5) * 10,
+                vy: (Math.random() - 0.5) * 10,
+                size: Math.random() * 4 + 2,
+                color: color,
+                life: 1.0,
+              });
+            }
+            shake = 5; // Screen shake power
+          }
+
+          function spawnEnemyRow() {
+            for (let col = 0; col < 10; col++) {
+              enemies.push({
+                x: 30 + col * 55,
+                y: -50,
+                w: 40,
+                h: 25,
+                color: `hsl(${Math.random() * 60 + 330}, 100%, 60%)`,
+              });
+            }
+          }
+
+          function update() {
+            frameCount++;
+            if (shake > 0) shake *= 0.9; // Reduce shake over time
+
+            // AI Targeting
+            if (enemies.length > 0) {
+              let target = enemies.reduce((prev, curr) =>
+                prev.y > curr.y ? prev : curr,
+              );
+              let targetCenter = target.x + target.w / 2;
+              let playerCenter = player.x + player.w / 2;
+              if (playerCenter < targetCenter - 5) player.x += 12;
+              else if (playerCenter > targetCenter + 5) player.x -= 12;
+            }
+
+            // Auto-Fire
+            if (frameCount % 3 === 0) {
+              bullets.push({
+                x: player.x + player.w / 2 - 2,
+                y: player.y,
+                w: 4,
+                h: 15,
+              });
+            }
+
+            // Bullets & Collision
+            for (let i = bullets.length - 1; i >= 0; i--) {
+              bullets[i].y -= 15;
+              if (bullets[i].y < 0) {
+                bullets.splice(i, 1);
+                continue;
+              }
+
+              for (let j = enemies.length - 1; j >= 0; j--) {
+                let b = bullets[i];
+                let e = enemies[j];
+                if (
+                  b.x < e.x + e.w &&
+                  b.x + b.w > e.x &&
+                  b.y < e.y + e.h &&
+                  b.y + b.h > e.y
+                ) {
+                  createExplosion(e.x + e.w / 2, e.y + e.h / 2, e.color);
+                  enemies.splice(j, 1);
+                  bullets.splice(i, 1);
+                  score++;
+                  scoreEl.innerText = score;
+                  break;
+                }
+              }
+            }
+
+            // Particles Logic
+            for (let i = particles.length - 1; i >= 0; i--) {
+              let p = particles[i];
+              p.x += p.vx;
+              p.y += p.vy;
+              p.life -= 0.03;
+              if (p.life <= 0) particles.splice(i, 1);
+            }
+
+            enemies.forEach((e) => {
+              e.y += 3;
+              if (e.y > canvas.height) e.y = -50;
+            });
+
+            if (frameCount % 40 === 0) spawnEnemyRow();
+          }
+
+          function draw() {
+            // Screen Shake
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (shake > 0.5)
+              ctx.translate(
+                (Math.random() - 0.5) * shake,
+                (Math.random() - 0.5) * shake,
+              );
+
+            // Draw Player
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = player.color;
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.w, player.h);
+
+            // Draw Particles
+            particles.forEach((p) => {
+              ctx.globalAlpha = p.life;
+              ctx.fillStyle = p.color;
+              ctx.fillRect(p.x, p.y, p.size, p.size);
+            });
+            ctx.globalAlpha = 1.0;
+
+            // Draw Bullets
+            ctx.shadowColor = "white";
+            ctx.fillStyle = "white";
+            bullets.forEach((b) => ctx.fillRect(b.x, b.y, b.w, b.h));
+
+            // Draw Enemies
+            enemies.forEach((e) => {
+              ctx.shadowBlur = 10;
+              ctx.shadowColor = e.color;
+              ctx.fillStyle = e.color;
+              ctx.fillRect(e.x, e.y, e.w, e.h);
+            });
+
+            update();
+            requestAnimationFrame(draw);
+          }
+
+          spawnEnemyRow();
+          draw();
+        </script>
+      </body>
+    </html>
+    <a href="game.html">zurü</a>
+  </body>
+</html>

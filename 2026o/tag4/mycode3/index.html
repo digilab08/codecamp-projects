@@ -16,10 +16,12 @@
     <br />
     <br />
     <script>
+      //---Clicks----------------------------------------------------------------------------------
       cookie = 0;
       let cookieHTML = document.getElementById("cookies");
+      let clickPower = 1;
       function plusCookie() {
-        cookie = cookie + 1;
+        cookie = cookie + clickPower;
         cookieHTML.innerText = cookie;
       }
     </script>
@@ -101,7 +103,7 @@
           farm = farm + 1;
           cookie = cookie - costFarm;
           cookieHTML.innerText = cookie;
-          farmHTML = farm;
+          farmHTML.innerText = farm;
           cps = cps + farmPower;
           cpsHTML.innerText = cps;
           costFarm = Math.floor(costFarm * 1.1);
@@ -130,15 +132,46 @@
           mine = mine + 1;
           cookie = cookie - costMine;
           cookieHTML.innerText = cookie;
-          mineHTML = mine;
+          mineHTML.innerText = mine;
           cps = cps + minePower;
           cpsHTML.innerText = cps;
           costMine = Math.floor(costMine * 1.1);
           costMineHTML.innerText = costMine;
+          clickPower = clickPower + 10;
         }
       }
       setInterval(() => {
         cookie = cookie + mine * minePower;
+        cookieHTML.innerText = cookie;
+      }, 1000);
+      //---Ende---
+    </script>
+    <button onclick="buyFabrik()" class="buyButton">
+      buy Fabrik: <span id="CostFabrik">1000000</span>c
+    </button>
+    <p>Fabrik: <span id="fabrik">0</span></p>
+    <script>
+      //---Fabrik Abteil-----------------------------------------------------------------------
+      let costFabrik = 1000000;
+      let fabrikPower = 50000;
+      let fabrik = 0;
+      let fabrikHTML = document.getElementById("fabrik");
+      let costFabrikHTML = document.getElementById("CostFabrik");
+      function buyFabrik() {
+        if (cookie >= costFabrik) {
+          fabrik = fabrik + 1;
+          cookie = cookie - costFabrik;
+          cookieHTML.innerText = cookie;
+          fabrikHTML.innerText = mine;
+          cps = cps + fabrikPower;
+          cpsHTML.innerText = cps;
+          costFabrik = Math.floor(costFabrik * 1.1);
+          costFabrikHTML.innerText = costMine;
+          clickPower = clickPower + 100;
+        }
+      }
+      setInterval(() => {
+        cookie = cookie + fabrik * fabrikPower;
         cookieHTML.innerText = cookie;
       }, 1000);
       //---Ende---

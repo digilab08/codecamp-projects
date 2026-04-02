@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schere Stein Bruno</title>
+  </head>
+  <body>
+    <!doctype html>
+    <html lang="de">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Schig Schag Schug</title>
+        <style>
+          body {
+            font-family: "Arial", sans-serif;
+            background: #1a1a2e;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+          }
+          .score-board {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #4ecca3;
+          }
+          .choices {
+            display: flex;
+            gap: 20px;
+          }
+          .choice {
+            font-size: 4rem;
+            background: #16213e;
+            border: 3px solid #0f3460;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+          }
+          .choice:hover {
+            transform: scale(1.1);
+            border-color: #e94560;
+            box-shadow: 0 0 20px #e94560;
+          }
+          #result-text {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            height: 1.5rem;
+            color: #ccc;
+          }
+          .battle-area {
+            margin-top: 20px;
+            display: flex;
+            gap: 50px;
+            font-size: 3rem;
+          }
+          .player-move,
+          .bot-move {
+            text-align: center;
+          }
+          .label {
+            font-size: 1rem;
+            color: #888;
+            text-transform: uppercase;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="score-board">
+          DU <span id="user-score">0</span> : <span id="bot-score">0</span> BOT
+        </div>
+
+        <div class="choices">
+          <div class="choice" onclick="play('✊')">✊</div>
+          <div class="choice" onclick="play('✋')">✋</div>
+          <div class="choice" onclick="play('✌️')">✌️</div>
+        </div>
+
+        <div class="battle-area">
+          <div class="player-move">
+            <div class="label">Du</div>
+            <div id="u-choice">?</div>
+          </div>
+          <div class="bot-move">
+            <div class="label">Bot</div>
+            <div id="b-choice">?</div>
+          </div>
+        </div>
+
+        <div id="result-text">Wähle dein Symbol!</div>
+
+        <script>
+          let userScore = 0;
+          let botScore = 0;
+          const options = ["✊", "✋", "✌️"];
+
+          function play(userChoice) {
+            const botChoice = options[Math.floor(Math.random() * 3)];
+
+            document.getElementById("u-choice").innerText = userChoice;
+            document.getElementById("b-choice").innerText = botChoice;
+
+            let result = "";
+
+            if (userChoice === botChoice) {
+              result = "Unentschieden! 🤝";
+            } else if (
+              (userChoice === "✊" && botChoice === "✌️") ||
+              (userChoice === "✋" && botChoice === "✊") ||
+              (userChoice === "✌️" && botChoice === "✋")
+            ) {
+              result = "Du gewinnst! 🎉";
+              userScore++;
+            } else {
+              result = "Bot gewinnt! 🤖";
+              botScore++;
+            }
+
+            document.getElementById("result-text").innerText = result;
+            document.getElementById("user-score").innerText = userScore;
+            document.getElementById("bot-score").innerText = botScore;
+          }
+        </script>
+      </body>
+    </html>
+    <a href="game.html">zurück</a>
+  </body>
+</html>

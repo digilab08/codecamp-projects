@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cookie Clicker ADMIN EDITION</title>
+    <style>
+      body {
+        background: radial-gradient(circle, #4e342e 0%, #2c1b0e 100%);
+        color: white;
+        font-family: "Segoe UI", sans-serif;
+        display: flex;
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .left-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-right: 4px solid #5d4037;
+        position: relative;
+      }
+      #cookie {
+        width: 300px;
+        cursor: pointer;
+        transition: transform 0.05s;
+        user-select: none;
+        filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.5));
+      }
+      #cookie:active {
+        transform: scale(0.92);
+      }
+      .stats {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #f1c40f;
+      }
+      .right-panel {
+        width: 400px;
+        padding: 20px;
+        overflow-y: auto;
+        background: rgba(0, 0, 0, 0.3);
+      }
+      .upgrade {
+        background: #3e2723;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid transparent;
+      }
+      .upgrade.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      /* ADMIN PANEL STYLE */
+      #admin-panel {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #111;
+        border: 2px solid #e74c3c;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+        z-index: 100;
+        box-shadow: 0 0 50px #e74c3c;
+        width: 300px;
+      }
+      #admin-panel h3 {
+        color: #e74c3c;
+        margin-top: 0;
+        text-align: center;
+      }
+      .admin-btn {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      .add-c {
+        background: #2ecc71;
+        color: white;
+      }
+      .reset-c {
+        background: #e74c3c;
+        color: white;
+      }
+      .close-btn {
+        background: #555;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel">
+      <h3>⚡ ADMIN MODUS</h3>
+      <button class="admin-btn add-c" onclick="addCookies(1000000)">
+        + 1 Million Cookies
+      </button>
+      <button class="admin-btn add-c" onclick="addCookies(1000000000)">
+        + 1 Milliarde Cookies
+      </button>
+      <button
+        class="admin-btn add-c"
+        onclick="
+          addCookies(
+            10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+          )
+        "
+      >
+        + Unendlich Cookies
+      </button>
+      <button class="admin-btn reset-c" onclick="resetGame()">
+        Alles löschen
+      </button>
+      <button class="admin-btn close-btn" onclick="toggleAdmin()">
+        Schließen (TAB)
+      </button>
+      <p style="font-size: 0.8rem; text-align: center; color: #888">
+        Tipp: Drücke TAB zum Öffnen/Schließen
+      </p>
+    </div>
+
+    <div class="left-panel">
+      <div class="stats"><span id="cookies">0</span> Cookies</div>
+      <div style="font-size: 1.2rem; margin-bottom: 20px">
+        CPS: <span id="cps-val">0</span>
+      </div>
+      <img id="cookie" src="https://pngarts.com" onclick="clickCookie()" />
+    </div>
+
+    <div class="right-panel">
+      <h2>BÄCKEREI-SHOP</h2>
+      <div id="shop-container"></div>
+    </div>
+
+    <script>
+      let cookies = parseFloat(localStorage.getItem("c_cookies")) || 0;
+      const upgrades = [
+        { id: "farm", name: "Farm", price: 1100, power: 8, count: 0 },
+        { id: "mine", name: "Mine", price: 12000, power: 47, count: 0 },
+        { id: "factory", name: "Fabrik", price: 130000, power: 260, count: 0 },
+        { id: "bank", name: "Bank", price: 1400000, power: 1400, count: 0 },
+        {
+          id: "god",
+          name: "Gott",
+          price: 20000000,
+          power: 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
+          count: 0,
+        },
+      ];
+
+      upgrades.forEach((up) => {
+        up.count = parseInt(localStorage.getItem("c_" + up.id)) || 0;
+        for (let i = 0; i < up.count; i++)
+          up.price = Math.floor(up.price * 1.15);
+      });
+
+      function initShop() {
+        const container = document.getElementById("shop-container");
+        container.innerHTML = "";
+        upgrades.forEach((up, index) => {
+          container.innerHTML += `
+                <div class="upgrade" id="up-${up.id}" onclick="buyUpgrade(${index})">
+                    <div><b>${up.name} (${up.count})</b><br><small>+${up.power} CPS</small></div>
+                    <div style="color:#2ecc71;">${format(up.price)}</div>
+                </div>`;
+        });
+      }
+
+      function clickCookie() {
+        cookies++;
+        updateUI();
+      }
+
+      function buyUpgrade(index) {
+        if (cookies >= upgrades[index].price) {
+          cookies -= upgrades[index].price;
+          upgrades[index].count++;
+          upgrades[index].price = Math.floor(upgrades[index].price * 1);
+          localStorage.setItem(
+            "c_" + upgrades[index].id,
+            upgrades[index].count,
+          );
+          initShop();
+          updateUI();
+        }
+      }
+
+      function updateUI() {
+        document.getElementById("cookies").innerText = format(cookies);
+        let currentCps = upgrades.reduce(
+          (sum, up) => sum + up.count * up.power,
+          0,
+        );
+        document.getElementById("cps-val").innerText = currentCps.toFixed(1);
+        upgrades.forEach((up) => {
+          const el = document.getElementById("up-" + up.id);
+          if (cookies >= up.price) el.classList.remove("disabled");
+          else el.classList.add("disabled");
+        });
+        localStorage.setItem("c_cookies", cookies);
+      }
+
+      function format(num) {
+        if (num >= 1000000000) return (num / 1000000000).toFixed(2) + " Mrd.";
+        if (num >= 1000000) return (num / 1000000).toFixed(2) + " Mio.";
+        return Math.floor(num).toLocaleString();
+      }
+
+      // ADMIN FUNKTIONEN
+      function toggleAdmin() {
+        const panel = document.getElementById("admin-panel");
+        panel.style.display =
+          panel.style.display === "block" ? "none" : "block";
+      }
+
+      function addCookies(amount) {
+        cookies += amount;
+        updateUI();
+      }
+
+      function resetGame() {
+        localStorage.clear();
+        location.reload();
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Tab") {
+          e.preventDefault();
+          toggleAdmin();
+        }
+      });
+
+      setInterval(() => {
+        let currentCps = upgrades.reduce(
+          (sum, up) => sum + up.count * up.power,
+          0,
+        );
+        cookies += currentCps / 10;
+        updateUI();
+      }, 100);
+
+      initShop();
+      updateUI();
+    </script>
+  </body>
+</html>
