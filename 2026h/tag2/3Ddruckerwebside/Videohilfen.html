@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filament Catcher</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 20px 12px;
+        background: #101525;
+        color: white;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .game {
+        width: 100%;
+        max-width: 760px;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        color: #72f6d1;
+        font-size: clamp(28px, 5vw, 42px);
+      }
+
+      .info {
+        color: #bdc9e5;
+        margin-bottom: 14px;
+      }
+
+      .hud {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .stat {
+        flex: 1;
+        padding: 12px;
+        background: #202b43;
+        border-radius: 12px;
+        font-weight: bold;
+      }
+
+      #score {
+        color: #72f6d1;
+      }
+
+      #lives {
+        color: #ff808b;
+      }
+
+      .stage {
+        position: relative;
+        overflow: hidden;
+        border: 3px solid #354363;
+        border-radius: 16px;
+        background: #151e32;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: rgba(10, 16, 31, 0.92);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .overlay.hidden {
+        display: none;
+      }
+
+      .overlay h2 {
+        margin: 0 0 10px;
+        color: #72f6d1;
+        font-size: clamp(25px, 5vw, 38px);
+      }
+
+      .overlay p {
+        color: #d9e2f5;
+        line-height: 1.7;
+      }
+
+      button {
+        border: none;
+        border-radius: 12px;
+        padding: 13px 24px;
+        background: #72f6d1;
+        color: #101525;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #a1ffe6;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin: 12px 0;
+      }
+
+      .controls button {
+        width: 100px;
+        padding: 12px;
+        background: #293753;
+        color: white;
+        font-size: 24px;
+        touch-action: none;
+        user-select: none;
+      }
+
+      .hint {
+        color: #9eacc9;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .back-button {
+        display: inline-block;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        padding: 12px 26px;
+        border-radius: 10px;
+        background: #72f6d1;
+        color: #101525;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .back-button:hover {
+        background: #a1ffe6;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="game">
+      <h1>🖨️ Filament Catcher</h1>
+      <div class="info">Rette deinen Drucker und sammle Filament!</div>
+
+      <div class="hud">
+        <div class="stat">🏆 Punkte: <span id="score">0</span></div>
+        <div class="stat">💩 Treffer: <span id="lives">0</span></div>
+      </div>
+
+      <!-- Ein einziges Spielfeld -->
+      <div class="stage">
+        <canvas id="game" width="720" height="520"></canvas>
+
+        <!-- Ein einziges Start- und Game-over-Fenster -->
+        <div class="overlay" id="overlay">
+          <h2 id="overlayTitle">Ready to Print?</h2>
+
+          <p id="overlayText">
+            🧵 Fange die Filament-Rollen!<br />
+            💩 Weiche dem Filament-Poop aus!<br />
+            🚤 Verwandle Filament in Benchys!
+          </p>
+
+          <button id="start">▶ Spiel starten</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="left" aria-label="Nach links">⬅️</button>
+        <button id="right" aria-label="Nach rechts">➡️</button>
+      </div>
+
+      <div class="hint">
+        Steuerung: Pfeiltasten ← → oder die Tasten oben.<br />
+        Auf dem Handy kannst du die Pfeile gedrückt halten.
+      </div>
+
+      <!-- Zurück ganz unten -->
+      <a href="index.html" class="back-button">⬅ Zurück</a>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d");
+
+      const scoreEl = document.getElementById("score");
+      const livesEl = document.getElementById("lives");
+      const overlay = document.getElementById("overlay");
+      const titleEl = document.getElementById("overlayTitle");
+      const textEl = document.getElementById("overlayText");
+      const startBtn = document.getElementById("start");
+
+      const W = canvas.width;
+      const H = canvas.height;
+
+      let running = false;
+      let score = 0;
+      let poopHits = 0;
+      let objects = [];
+      let particles = [];
+      let lastTime = 0;
+      let spawnTimer = 0;
+      let elapsed = 0;
+      let animationId = null;
+
+      const keys = {
+        left: false,
+        right: false,
+      };
+
+      /*const printer = {
+        x: W / 2,
+        y: H - 62,
+        w: 94,
+        h: 66,
+        speed: 340,
+      };*/
+
+      function roundedRect(x, y, w, h, r, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.roundRect(x, y, w, h, r);
+        ctx.fill();
+      }
+
+      function drawBackground() {
+        ctx.fillStyle = "#151e32";
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.strokeStyle = "rgba(125,160,210,0.09)";
+
+        for (let x = 0; x < W; x += 36) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, H);
+          ctx.stroke();
+        }
+
+        for (let y = 0; y < H; y += 36) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(W, y);
+          ctx.stroke();
+        }
+
+        const grad = ctx.createLinearGradient(0, H - 24, 0, H);
+        grad.addColorStop(0, "#31425e");
+        grad.addColorStop(1, "#1b263c");
+
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, H - 20, W, 20);
+
+        ctx.strokeStyle = "#72f6d1";
+        ctx.beginPath();
+        ctx.moveTo(0, H - 20);
+        ctx.lineTo(W, H - 20);
+        ctx.stroke();
+      }
+
+      function drawSpool(o) {
+        ctx.save();
+        ctx.translate(o.x, o.y);
+        ctx.rotate(o.rotation);
+
+        roundedRect(-19, -18, 38, 36, 8, o.color);
+
+        ctx.strokeStyle = "rgba(255,255,255,0.65)";
+        ctx.lineWidth = 2;
+
+        for (let r = 13; r >= 5; r -= 4) {
+          ctx.beginPath();
+          ctx.ellipse(0, 0, r, r * 0.72, 0, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = "#182239";
+        ctx.beginPath();
+        ctx.ellipse(0, 0, 5, 7, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+
+        ctx.fillStyle = "#e6edff";
+        ctx.font = "11px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("FILAMENT", o.x, o.y + 31);
+      }
+
+      function drawPoop(o) {
+        ctx.save();
+        ctx.translate(o.x, o.y);
+        ctx.rotate(o.rotation);
+
+        ctx.fillStyle = "#b87845";
+        ctx.strokeStyle = "#754328";
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.moveTo(-19, 12);
+        ctx.bezierCurveTo(-25, 2, -17, -5, -10, -5);
+        ctx.bezierCurveTo(-15, -17, 0, -23, 5, -13);
+        ctx.bezierCurveTo(18, -17, 24, -3, 15, 3);
+        ctx.lineTo(19, 12);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#fff3d4";
+        ctx.beginPath();
+        ctx.arc(-6, 0, 2.5, 0, Math.PI * 2);
+        ctx.arc(7, 0, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = "#241b16";
+        ctx.beginPath();
+        ctx.arc(-5, 0, 1, 0, Math.PI * 2);
+        ctx.arc(8, 0, 1, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function drawBenchy(o) {
+        ctx.save();
+        ctx.translate(o.x, o.y);
+        ctx.rotate(o.rotation);
+
+        // Bootsrumpf
+        ctx.fillStyle = "#ffab55";
+        ctx.strokeStyle = "#ffe0a8";
+        ctx.lineWidth = 1.5;
+
+        ctx.beginPath();
+        ctx.moveTo(-23, -2);
+        ctx.lineTo(23, -2);
+        ctx.lineTo(15, 11);
+        ctx.lineTo(-15, 11);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Deck
+        ctx.fillStyle = "#ffd08a";
+        ctx.fillRect(-15, -5, 29, 5);
+
+        // Kajüte
+        ctx.fillStyle = "#ffcf80";
+        ctx.fillRect(-5, -17, 14, 12);
+
+        ctx.fillStyle = "#75503a";
+        ctx.fillRect(-2, -14, 4, 5);
+
+        // Schornstein
+        ctx.fillStyle = "#e58a42";
+        ctx.fillRect(4, -22, 5, 6);
+
+        ctx.restore();
+      }
+
+      function drawPrinter() {
+        ctx.save();
+        ctx.translate(printer.x, printer.y);
+
+        ctx.fillStyle = "rgba(0,0,0,0.25)";
+        ctx.beginPath();
+        ctx.ellipse(0, 30, 54, 9, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Druckergehäuse
+        roundedRect(-43, -26, 86, 51, 7, "#8293b4");
+        roundedRect(-35, -19, 70, 37, 4, "#293852");
+
+        // Querstrebe
+        roundedRect(-31, -15, 62, 5, 2, "#c6d4ec");
+
+        // Druckkopf
+        roundedRect(-10, -18, 20, 16, 3, "#72f6d1");
+
+        ctx.fillStyle = "#24334c";
+        ctx.fillRect(-5, -13, 10, 5);
+
+        // Düse
+        ctx.fillStyle = "#ffbc65";
+        ctx.beginPath();
+        ctx.moveTo(-4, -2);
+        ctx.lineTo(4, -2);
+        ctx.lineTo(1, 5);
+        ctx.lineTo(-1, 5);
+        ctx.closePath();
+        ctx.fill();
+
+        // Druckbett
+        roundedRect(-31, 17, 62, 5, 2, "#72f6d1");
+
+        // Füße
+        roundedRect(-37, 24, 12, 7, 2, "#657694");
+        roundedRect(25, 24, 12, 7, 2, "#657694");
+
+        // Display
+        roundedRect(-12, 6, 24, 8, 2, "#182239");
+
+        ctx.fillStyle = "#72f6d1";
+        ctx.font = "bold 7px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("PRINT", 0, 12);
+
+        ctx.restore();
+      }
+
+      function spawnObject() {
+        const poopChance = Math.min(0.28 + elapsed / 180, 0.48);
+        const isPoop = Math.random() < poopChance;
+
+        objects.push({
+          type: isPoop ? "poop" : "spool",
+          x: 28 + Math.random() * (W - 56),
+          y: -30,
+          r: isPoop ? 18 : 19,
+          speed: 125 + Math.random() * 70 + Math.min(elapsed * 1.1, 160),
+          rotation: Math.random() * 0.4 - 0.2,
+          spin: (Math.random() - 0.5) * 1.8,
+          color: ["#a78bfa", "#ff76ad", "#60d7ff", "#f9d66b", "#72f6d1"][
+            Math.floor(Math.random() * 5)
+          ],
+        });
+      }
+
+      function burst(x, y, color) {
+        for (let i = 0; i < 14; i++) {
+          const a = Math.random() * Math.PI * 2;
+          const speed = 45 + Math.random() * 160;
+
+          particles.push({
+            x,
+            y,
+            vx: Math.cos(a) * speed,
+            vy: Math.sin(a) * speed,
+            life: 0.5 + Math.random() * 0.4,
+            maxLife: 0.9,
+            color,
+            size: 2 + Math.random() * 4,
+          });
+        }
+      }
+
+      function updateParticles(dt) {
+        for (const p of particles) {
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.vy += 100 * dt;
+          p.life -= dt;
+        }
+
+        particles = particles.filter((p) => p.life > 0);
+      }
+
+      function drawParticles() {
+        for (const p of particles) {
+          ctx.globalAlpha = Math.max(0, p.life / p.maxLife);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+
+        ctx.globalAlpha = 1;
+      }
+
+      function hit(a, b) {
+        return (
+          Math.abs(a.x - b.x) < a.w / 2 + b.r * 0.7 &&
+          Math.abs(a.y - b.y) < a.h / 2 + b.r * 0.7
+        );
+      }
+
+      function update(dt) {
+        elapsed += dt;
+
+        if (keys.left) {
+          printer.x -= printer.speed * dt;
+        }
+
+        if (keys.right) {
+          printer.x += printer.speed * dt;
+        }
+
+        printer.x = Math.max(
+          printer.w / 2 + 3,
+          Math.min(W - printer.w / 2 - 3, printer.x),
+        );
+
+        spawnTimer -= dt;
+
+        const interval = Math.max(0.34, 0.9 - elapsed * 0.005);
+
+        if (spawnTimer <= 0) {
+          spawnObject();
+          spawnTimer = interval;
+        }
+
+        for (const o of objects) {
+          o.y += o.speed * dt;
+          o.rotation += o.spin * dt;
+
+          if (!o.done && hit(printer, o)) {
+            if (o.type === "spool") {
+              o.done = true;
+              score++;
+
+              burst(o.x, o.y, o.color);
+
+              // Filament wird zum fallenden Benchy
+              o.type = "benchy";
+              o.r = 21;
+              o.speed *= 1.08;
+              o.y -= 8;
+              o.rotation = 0;
+              o.spin = (Math.random() - 0.5) * 0.8;
+            } else if (o.type === "poop") {
+              o.done = true;
+              poopHits++;
+
+              burst(printer.x, printer.y, "#ff6878");
+              endGame();
+              return;
+            }
+          }
+        }
+
+        objects = objects.filter((o) => o.y < H + 50);
+
+        scoreEl.textContent = score;
+        livesEl.textContent = poopHits;
+      }
+
+      function draw() {
+        drawBackground();
+
+        for (const o of objects) {
+          if (o.type === "spool") {
+            drawSpool(o);
+          } else if (o.type === "poop") {
+            drawPoop(o);
+          } else if (o.type === "benchy") {
+            drawBenchy(o);
+          }
+        }
+
+        drawParticles();
+        drawPrinter();
+      }
+
+      function frame(timestamp) {
+        if (!running) return;
+
+        const dt = Math.min((timestamp - lastTime) / 1000 || 0, 0.035);
+        lastTime = timestamp;
+
+        update(dt);
+        updateParticles(dt);
+        draw();
+
+        if (running) {
+          animationId = requestAnimationFrame(frame);
+        }
+      }
+
+      function startGame() {
+        if (running) return;
+
+        if (animationId !== null) {
+          cancelAnimationFrame(animationId);
+        }
+
+        score = 0;
+        poopHits = 0;
+        objects = [];
+        particles = [];
+        elapsed = 0;
+        spawnTimer = 0.4;
+
+        printer.x = W / 2;
+        keys.left = false;
+        keys.right = false;
+        running = true;
+
+        scoreEl.textContent = "0";
+        livesEl.textContent = "0";
+
+        overlay.classList.add("hidden");
+
+        lastTime = performance.now();
+        animationId = requestAnimationFrame(frame);
+      }
+
+      function endGame() {
+        running = false;
+        keys.left = false;
+        keys.right = false;
+
+        draw();
+
+        titleEl.textContent = "💥 Drucker kaputt!";
+
+        textEl.innerHTML =
+          "Du hast " +
+          score +
+          " Punkte erreicht!<br>" +
+          "Dein Drucker wurde von Filament-Poop getroffen.<br>" +
+          "Bereit für eine neue Runde?";
+
+        startBtn.textContent = "🔄 Nochmal spielen";
+        overlay.classList.remove("hidden");
+      }
+
+      startBtn.addEventListener("click", startGame);
+
+      document.addEventListener("keydown", (e) => {
+        if (["ArrowLeft", "ArrowRight", " "].includes(e.key)) {
+          e.preventDefault();
+        }
+
+        if (e.key === "ArrowLeft" || e.key.toLowerCase() === "a") {
+          keys.left = true;
+        }
+
+        if (e.key === "ArrowRight" || e.key.toLowerCase() === "d") {
+          keys.right = true;
+        }
+
+        if (!running && e.key === "Enter") {
+          startGame();
+        }
+      });
+
+      document.addEventListener("keyup", (e) => {
+        if (e.key === "ArrowLeft" || e.key.toLowerCase() === "a") {
+          keys.left = false;
+        }
+
+        if (e.key === "ArrowRight" || e.key.toLowerCase() === "d") {
+          keys.right = false;
+        }
+      });
+
+      function bindHold(id, direction) {
+        const button = document.getElementById(id);
+
+        button.addEventListener("pointerdown", (e) => {
+          e.preventDefault();
+          keys[direction] = true;
+          button.setPointerCapture(e.pointerId);
+        });
+
+        const release = () => {
+          keys[direction] = false;
+        };
+
+        button.addEventListener("pointerup", release);
+        button.addEventListener("pointercancel", release);
+        button.addEventListener("lostpointercapture", release);
+      }
+
+      bindHold("left", "left");
+      bindHold("right", "right");
+
+      // Nur das Spielfeld zeichnen; keine zweite Spielschleife starten.
+      draw();
+    </script>
+  </body>
+</html>
