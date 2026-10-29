@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hasox - Sicherheits-Check</title>
+    <style>
+      :root {
+        --bg-color: #0b0f19;
+        --card-bg: #111827;
+        --accent-color: #10b981;
+        --accent-hover: #059669;
+        --text-main: #f3f4f6;
+        --text-muted: #9ca3af;
+        --border-color: #1f2937;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+
+      /* Header / Navigation */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 8%;
+        background-color: rgba(11, 15, 25, 0.9);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      nav ul li a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--accent-color);
+      }
+
+      .cta-btn {
+        background-color: var(--accent-color);
+        color: #000;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .cta-btn:hover {
+        background-color: var(--accent-hover);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 100px 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+      }
+
+      .hero h1 span {
+        color: var(--accent-color);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 40px;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Hasox</a>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Startseite</a></li>
+          <li><a href="/Leistungen.html">Leistungen</a></li>
+          <li><a href="/ÜberUns.html">Über uns</a></li>
+          <li><a href="/Kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Bereich -->
+    <section class="hero">
+      <h1>Ein schnelles <span>Sicherheits-Check</span></h1>
+      <p>
+        Hier kannst du deine E-Mail-Adresse oder dein Passwort eintragen. Danach
+        überprüfen wir, ob deine Daten in einem Daten-Leak fündig wurden oder ob
+        eine Gefahr besteht.
+      </p>
+
+      <h2>E-Mail-Adresse jetzt vor Daten-Leaks überprüfen!</h2>
+
+      <a
+        style="
+          padding: 14px 19px;
+          background-color: #059669;
+          color: #f3f4f6;
+          text-decoration: none;
+          border-radius: 5px;
+        "
+        href="https://haveibeenpwned.com"
+        target="_blank"
+        >Hier Prüfen</a
+      >
+      <br /><br />
+
+      <h2 style="color: red; padding: 21px">!ACHTUNG!</h2>
+      <p style="color: white">
+        Wenn Sie Ihr Passwort oder Ihre E-Mail-Adresse in Daten-Leaks finden,
+        dann ändern Sie
+        <span style="color: red; font-weight: 900">UMGEHEND</span> Ihr Passwort!
+      </p>
+
+      <p style="color: white; text-align: left; margin-top: 20px">
+        Um sicherzustellen, dass Ihre Daten geschützt sind, brauchen Sie ein
+        starkes Passwort. Doch was ist ein sicheres Passwort und wann ist ein
+        Passwort überhaupt sicher?
+      </p>
+      <ul
+        style="
+          text-align: left;
+          font-size: 19px;
+          margin: 15px 0;
+          color: var(--text-muted);
+        "
+      >
+        <li>Das Passwort ist länger als 12 Zeichen.</li>
+        <li>Das Passwort beinhaltet keine persönlichen Informationen.</li>
+        <li>Sich nicht überall mit demselben Passwort anmelden.</li>
+        <li>Das Passwort nicht weitergeben oder verraten.</li>
+      </ul>
+
+      <p style="color: white; margin-bottom: 20px">
+        Wir stellen Ihnen ein neues und sicheres
+        <span style="color: #059669; font-weight: 700">Passwort</span> zur
+        Verfügung:
+      </p>
+
+      <div>
+        <h2>Passwort <span>generieren</span></h2>
+        <input
+          type="text"
+          id="passwort"
+          placeholder="Erstelle Passwort"
+          readonly
+          style="
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: white;
+          "
+        />
+        <button
+          id="btn"
+          onclick="createPassword()"
+          style="
+            padding: 10px 15px;
+            background: var(--accent-color);
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+          "
+        >
+          Passwort generieren
+        </button>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Hasox. Alle Rechte vorbehalten.</p>
+    </footer>
+  </body>
+  <!-- JavaScript ans Ende des Bodys verschoben -->
+  <script>
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+    const length = 12;
+
+    function createPassword() {
+      let password = "";
+      for (let i = 0; i < length; i++) {
+        let zufallszahl = Math.floor(Math.random() * chars.length);
+        password += chars[zufallszahl];
+      }
+      document.getElementById("passwort").value = password;
+    }
+  </script>
+</html>

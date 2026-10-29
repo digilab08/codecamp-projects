@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="value">Currency</p>
+    <p id="click"></p>
+    <button onclick="add()">Klick hier</button>
+    <button onclick="buy1()" id="Price1">+1 Klick</button>
+    <button onclick="buy2()" id="Price2">2 times Multiplier</button>
+  </body>
+  <script>
+    let click = 1;
+    let currency = -1;
+    let price1 = 5;
+    let stack1 = 0;
+    let price2 = 50;
+    let stack2 = 0;
+    function add() {
+      currency = currency + click;
+      document.getElementById("click").innerText = "Clicks: " + click;
+      document.getElementById("value").innerText = "Currency: " + currency;
+    }
+    add();
+    function buy1() {
+      if (currency >= price1 && stack1 <= 8) {
+        click = click + 1;
+        currency = currency - price1;
+        price1 = price1 * 2;
+        stack1 = stack1 + 1;
+      }
+      if (stack1 == 8) {
+        document.getElementById("Price1").innerText =
+          "+1 Klick Preis: Max Amount";
+      } else {
+        document.getElementById("Price1").innerText =
+          "+1 Klick Preis: " + price1;
+      }
+      document.getElementById("click").innerText = "Clicks: " + click;
+      document.getElementById("value").innerText = "Currency: " + currency;
+    }
+    buy1();
+    function buy2() {
+      if (currency >= price2 && stack2 <= 2) {
+        click = click * 2;
+        currency = currency - price2;
+        price2 = price2 * 3;
+        stack2 = stack2 + 1;
+      }
+      if (stack2 == 2) {
+        document.getElementById("Price2").innerText =
+          "2 times Multiplier: Max Amount";
+      } else {
+        document.getElementById("Price2").innerText =
+          "2 times Multiplier: " + price2;
+      }
+      document.getElementById("click").innerText = "Clicks: " + click;
+      document.getElementById("value").innerText = "Currency: " + currency;
+    }
+    buy2();
+  </script>
+</html>

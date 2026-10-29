@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credits</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 14px;
+        border-radius: 30px;
+        transition: 0.3s;
+      }
+
+      .navbar a:hover {
+        background: #292929;
+        transform: translateY(-2px);
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: center;
+      }
+      h1 {
+        display: flex;
+        justify-content: center;
+      }
+      h2 {
+        display: flex;
+        justify-content: center;
+      }
+
+      /* Äußerer Container */
+      .contributors {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 22px 24px 18px;
+
+        background: #050505;
+        color: #f5f5f5;
+
+        border: 1px solid #252525;
+        border-radius: 16px;
+
+        font-family: Arial, sans-serif;
+      }
+
+      /* Überschrift */
+      .contributors-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        margin: 0 0 22px;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      .trophy {
+        font-size: 24px;
+      }
+
+      /* Tabelle */
+      .contributors-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        text-align: left;
+      }
+
+      /* Spaltenbreiten */
+      .contributors-table th:nth-child(1),
+      .contributors-table td:nth-child(1) {
+        width: 16%;
+      }
+
+      .contributors-table th:nth-child(2),
+      .contributors-table td:nth-child(2) {
+        width: 21%;
+      }
+
+      .contributors-table th:nth-child(3),
+      .contributors-table td:nth-child(3) {
+        width: 43%;
+      }
+
+      .contributors-table th:nth-child(4),
+      .contributors-table td:nth-child(4) {
+        width: 20%;
+      }
+
+      /* Tabellenkopf */
+      .contributors-table thead {
+        border-bottom: 1px solid #292929;
+      }
+
+      .contributors-table th {
+        padding: 14px 10px;
+        color: #a1a1aa;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      /* Tabellenzeilen */
+      .contributors-table td {
+        padding: 10px;
+        height: 38px;
+        font-size: 14px;
+        vertical-align: middle;
+      }
+
+      /* Runde Profilbilder */
+      .avatar {
+        display: block;
+        width: 38px;
+        height: 38px;
+
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid #333;
+      }
+
+      /* Namen */
+      .name {
+        color: #f5f5f5;
+        font-weight: 600;
+      }
+
+      /* Rollen */
+      .role {
+        color: #a1a1aa;
+      }
+
+      /* Link rechts ausrichten */
+      .link-column {
+        text-align: right;
+      }
+
+      .contributors-table a {
+        color: #a1a1aa;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+
+      .contributors-table a:hover {
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" style="font-family: sans-serif">Home</a>
+      <a href="about.html" style="font-family: sans-serif">About</a>
+      <a href="help.html" style="font-family: sans-serif">Help</a>
+      <a href="download.html" style="font-family: sans-serif">Download</a>
+      <a href="contact.html" style="font-family: sans-serif">Contact</a>
+      <a href="team.html" style="font-family: sans-serif">Credits</a>
+    </nav>
+
+    <h1 style="color: aliceblue; font-family: sans-serif">Credits</h1>
+    <h2 style="color: aliceblue; font-family: sans-serif">
+      Thank you to everyone who has contributed to making Xeno possible
+    </h2>
+
+    <div class="contributors">
+      <h2 class="contributors-title">
+        <span class="trophy">♙</span>
+        Contributors
+      </h2>
+
+      <table class="contributors-table">
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th class="link-column">Link</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              <img src="images/rizve.png" alt="Rizve" class="avatar" />
+            </td>
+            <td class="name">Free</td>
+            <td class="role">♕ Owner of Navi Systems</td>
+            <td class="link-column">
+              <a
+                href="https://silentnet.nt.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Visit ↗</a
+              >
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <img src="images/nano.png" alt="Nano" class="avatar" />
+            </td>
+            <td class="name">Free</td>
+            <td class="role">♧ Discord Server Manager</td>
+            <td class="link-column">
+              <a
+                href="https://example.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Visit ↗</a
+              >
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <img src="images/voxlis.png" alt="Voxlis" class="avatar" />
+            </td>
+            <td class="name">Free</td>
+            <td class="role">◎ Domain Contributor</td>
+            <td class="link-column">
+              <a
+                href="https://example.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Visit ↗</a
+              >
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <img src="images/mxx.png" alt="Mxx_xx3" class="avatar" />
+            </td>
+            <td class="name">Free</td>
+            <td class="role">▣ Website Designer</td>
+            <td class="link-column">
+              <a
+                href="https://example.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Visit ↗</a
+              >
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <img src="images/quimings.png" alt="Quimings" class="avatar" />
+            </td>
+            <td class="name">Free</td>
+            <td class="role">‹ › Navi Systems Contributor</td>
+            <td class="link-column">
+              <a
+                href="https://example.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Visit ↗</a
+              >
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <img src="images/raz.png" alt="Raz" class="avatar" />
+            </td>
+            <td class="name">Free</td>
+            <td class="role">‹ › Navi Systems Contributor</td>
+            <td class="link-column">
+              <a
+                href="https://expample.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Visit ↗</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

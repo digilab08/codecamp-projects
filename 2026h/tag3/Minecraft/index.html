@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <style>
+      body {
+        background-image: url(https://www.holy.gg/_next/image?url=%2Fassets%2Fimages%2Fgames%2Fminecraft-custom-cover.jpeg&w=3840&q=75);
+      }
+
+      h1,
+      h2,
+      p,
+      h3,
+      ol,
+      li {
+        background-color: rgba(56, 55, 55, 0.654);
+      }
+      p,
+      h2,
+      h1,
+      h3,
+      ol,
+      li {
+        color: rgb(82, 82, 230);
+      }
+
+      body {
+        cursor: none;
+      }
+
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 32px; /* Auf 32px erhöht, damit man das Pixel-Gesicht super erkennt */
+        height: 32px;
+        pointer-events: none; /* Klicks durchlassen */
+        transform: translate(-50%, -50%); /* Zentriert auf der Mausspitze */
+        z-index: 9999;
+        /* Sorgt dafür, dass die Kanten beim Vergrößern perfekt pixelig bleiben */
+        image-rendering: pixelated;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>minecraft</title>
+  </head>
+  <body>
+    <!-- HIER WAR DER FEHLER: Es muss ein canvas mit der richtigen ID sein -->
+    <canvas
+      class="custom-cursor"
+      id="creeperCanvas"
+      width="8"
+      height="8"
+    ></canvas>
+
+    <strong>
+      <h1><u>Minecraft</u></h1>
+      <h3>Was ist <i>Minecraft?</i></h3>
+      <ol>
+        <li>Minecraft wurde vom schwedischem entwickler Notch programmiert</li>
+        <li>
+          Die erste version von minecraft wurde in einer Woche mit java code
+          programmiert und war 292 kilobyte gross
+        </li>
+        <li>Mnecraft ist ein vielseitiges Sand-box spiel.</li>
+        <li>Minecraft gehört zu Mojang AB und hat mehrere neben spiele.</li>
+        <li>
+          Es wurde 2014 von Microsoft für 2,5 Milliarden US-Dollar aufgekauft.
+        </li>
+        <li>
+          Das spiel wurde 425 Millionen mal verkauft und ist damit das zweit
+          belibteste Spiel der ganzen <b>WELT</b>
+        </li>
+        <li>Es gab seit der ersten version 1.113 updates</li>
+        <li>
+          Minecraft hat mit 600 Millionen aktiven Spielern das spiel mit den
+          meisten spielern weltweit
+        </li>
+        <li>
+          Es bittet unendlich viele möglichkeit da man alles machen kann was man
+          sich vorstellen kann sofern es mit blöcken machbar ist.
+        </li>
+        <li>
+          Es gibt milonen von mods, die die möglihkeiten des spieles Erweitern
+        </li>
+      </ol>
+      <p>
+        Auf dieser Seite werdet ihr über folgende minecraft themen erfahren:
+      </p>
+      <ol>
+        <li><a href="mcknow.html">Allgemeines</a></li>
+        <li><a href="bauen.html">Bauen</a></li>
+        <li><a href="PvP.html">PvP</a></li>
+        <li><a href="Speedrun.html">Speedruns</a></li>
+        <li><a href="mods.html">Mods</a></li>
+        <li><a href="javaversion.html">Die Java edition</a></li>
+        <li><a href="bedrockedition.html">Die Bedrock edition</a></li>
+        <li><a href="servers.html">Server</a></li>
+        <li><a href="Plugins.html">Plugins</a></li>
+        <li><a href="Resourcepacks.html">Resourcepacks</a></li>
+        <li><a href="Youtube.html">Minecraft Youtuber</a></li>
+        <li><a href="vvandsnapshots.html">Versionen und snapshots</a></li>
+      </ol>
+      <div style="text-align: center">
+        <a href="quiz.html"
+          ><strong
+            ><h3 style="background-color: rgba(0, 0, 0, 0)">
+              <mark>QUIZ</mark>
+            </h3></strong
+          ></a
+        >
+      </div>
+    </strong>
+  </body>
+  <script>
+    // 1. CREEPER ZEICHNEN (Holt sich jetzt das Canvas-Element über die ID)
+    const canvas = document.getElementById("creeperCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Hintergrund komplett grün färben
+    ctx.fillStyle = "#55DD33";
+    ctx.fillRect(0, 0, 8, 8);
+
+    // Augen und Mund schwarz einzeichnen (Exaktes 8x8 Minecraft-Muster)
+    ctx.fillStyle = "#000000";
+
+    // Linkes Auge
+    ctx.fillRect(1, 2, 2, 2);
+    // Rechtes Auge
+    ctx.fillRect(5, 2, 2, 2);
+    // Nase / Mund Mitte
+    ctx.fillRect(3, 4, 2, 2);
+    // Mund links & rechts unten
+    ctx.fillRect(2, 5, 1, 2);
+    ctx.fillRect(5, 5, 1, 2);
+
+    // 2. CURSOR BEWEGUNG
+    document.addEventListener("mousemove", (e) => {
+      canvas.style.left = e.clientX + "px";
+      canvas.style.top = e.clientY + "px";
+    });
+  </script>
+</html>

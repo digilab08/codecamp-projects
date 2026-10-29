@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      h1 {
+        color: beige;
+      }
+      p {
+        color: azure;
+      }
+      a {
+        color: aqua;
+        background-color: cornflowerblue;
+      }
+    </style>
+
+    <script>
+      let Punkte = 0;
+    </script>
+
+    <a href="index.html">zurück <=</a>
+    <h1>Quiz</h1>
+    <p>1/10 : Enceladus ist ein Planet</p>
+
+    <button
+      id="Richtig"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: chartreuse;
+      "
+      onclick="
+        alert('FALSCH! (runter für nächste Frage)');
+        Punkte = Punkte + 0;
+        document.getElementById('Richtig').disabled = true;
+        document.getElementById('Falsch').disabled = true;
+      "
+    >
+      Richtig
+    </button>
+    <button
+      id="Falsch"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: rgb(255, 0, 0);
+      "
+      onclick="
+        alert('RICHTIG! (runter für nächste frage)');
+        Punkte = Punkte + 1;
+        document.getElementById('Richtig').disabled = true;
+        document.getElementById('Falsch').disabled = true;
+      "
+    >
+      Falsch
+    </button>
+    <button
+      id="Richtig"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: chartreuse;
+      "
+      onclick="
+        alert('FALSCH! (runter für nächste Frage)');
+        Punkte = Punkte + 0;
+        document.getElementById('Richtig').disabled = true;
+        document.getElementById('Falsch').disabled = true;
+      "
+    >
+      Richtig
+    </button>
+    <button
+      id="Falsch"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: rgb(255, 0, 0);
+      "
+      onclick="
+        alert('RICHTIG! (runter für nächste frage)');
+        Punkte = Punkte + 1;
+        document.getElementById('Richtig').disabled = true;
+        document.getElementById('Falsch').disabled = true;
+      "
+    Falsch
+button>
+    <body
+      style="
+        background-image: url(https://img.magnific.com/fotos-kostenlos/blauer-und-weisser-sternenhimmel_417767-124.jpg?semt=ais_hybrid&w=740&q=80);
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+    ></body>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+header {
+  margin-top: 0px;
+  margin-left: 0px;
+  background-color: rgb(34, 35, 64);
+  height: 140px;
+  border-radius: 10px;
+}
+.einleitung {
+  font-family: sans-serif;
+  margin-left: 10px;
+  color: white;
+}
+h1 {
+  margin-left: 10px;
+  color: white;
+}
+body {
+  background-color: rgb(21, 21, 76);
+}
+.start_button {
+  font-family: sans-serif;
+  background-color: lawngreen;
+  font-size: 50px;
+  border-radius: 10px;
+  margin-left: 220px;
+  margin-top: 200px;
+}
+.start_button:hover {
+  font-size: 49px;
+  background-color: #6fda04;
+}
+.Level_1 {
+  border-radius: 10px;
+  font-size: 30px;
+  margin-left: 300px;
+}
+.aufgabe_1 {
+  font-family: sans-serif;
+  color: white;
+  font-size: 20px;
+  margin-top: 400px;
+  margin-left: 300px;
+}
+.weiter_1 {
+  margin-top: 10px;
+  margin-left: 480px;
+  font-size: 30px;
+  border-radius: 10px;
+  background-color: #6fda04;
+  color: white;
+  font-family: sans-serif;
+}
+.button {
+  font-family: sans-serif;
+  color: white;
+  background-color: blue;
+  font-size: 30px;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+}
+.button_0 {
+  font-family: sans-serif;
+  color: white;
+  background-color: blue;
+  font-size: 30px;
+  padding-top: 5px;
+  padding-left: 70px;
+  padding-right: 70px;
+  border-radius: 10px;
+}
+.input_Taschenrechner {
+  margin-top: 200px;
+  border-radius: 10px;
+  font-size: 40px;
+  cursor: crosshair;
+}
+.Roter_Kreis_anfang {
+  width: 40px;
+  height: 40px;
+  background-color: #dfbd85;
+  border-radius: 50%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.door {
+  width: 10px;
+  height: 80px;
+  background-color: #241907;
+  margin-top: 500px;
+  margin-left: 1000px;
+}

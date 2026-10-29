@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eigener HTML/CSS/JS Cursor</title>
+    <style>
+      /* 1. STYLES FÜR DIE SEITE */
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-color: #121212;
+        color: white;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* WICHTIG: Standard-Cursor auf der gesamten Seite ausblenden */
+        cursor: none;
+      }
+
+      /* 2. STYLES FÜR DEN EIGENEN CURSOR */
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        background-color: #ff007f; /* Neon-Pink */
+        border-radius: 50%;
+        /* WICHTIG: Klicks durchlassen, damit Buttons klickbar bleiben */
+        pointer-events: none;
+        /* Zentriert den Kreis exakt auf der Mausspitze */
+        transform: translate(-50%, -50%);
+        /* Eine minimale Verzögerung sorgt für eine flüssige Bewegung */
+        transition: transform 0.05s ease-out;
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Das Cursor-Element -->
+    <div class="custom-cursor"></div>
+
+    <!-- Ein wenig Text auf der Seite -->
+    <h1>Bewege deine Maus!</h1>
+
+    <script>
+      // 3. JAVASCRIPT FÜR DIE BEWEGUNG
+      const cursor = document.querySelector(".custom-cursor");
+
+      document.addEventListener("mousemove", (e) => {
+        // Setzt die CSS-Position auf die aktuellen Maus-Koordinaten
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+      });
+    </script>
+  </body>
+</html>

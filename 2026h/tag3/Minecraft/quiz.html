@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li>
+        Frage1:Wer ist der beste Minecraft speedrunner laut mcsr?
+        <input type="text" id="ans1" />
+        <button onclick="antwortPrüfen('ans1', 'lowkey', 'lowk3y')">
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage2: Wie heisst der erstäler von Minecraft?
+        <input type="text" id="ans2" /><button
+          onclick="antwortPrüfen('ans2', 'Notch', 'notch')"
+        >
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage3: Welches Easter egg in Minecraft lässt einen Mob auf dem Kopf
+        stehen? (Es sind 2 Antworten möglich)
+        <input type="text" id="ans3" />
+        <button onclick="antwortPrüfen('ans3', 'Dinnerbone', 'Grumm')">
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage4: Wer ist der aktuell beste Vanilla (1.9 pvp) Spieler?(Nametag)
+        <input type="text" id="ans4" />
+        <button onclick="antwortPrüfen('ans4', 'K1rbe', 'Kirbe')">
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage5: Was sollte der Creeper eigentlich sein
+        <input type="text" id="ans5" />
+        <button onclick="antwortPrüfen('ans5', 'Schwein', 'schwein')">
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage6: In welcher programmiersprache, ist die Minecraft Java-Edition
+        Geschrieben?
+        <input type="text" id="ans6" />
+        <button onclick="antwortPrüfen('ans6', 'Java', 'java')">
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage7: Wann wurde Minecraft aufgekauft?
+        <input type="text" id="ans7" />
+        <button
+          onclick="
+            antwortPrüfen('ans7', 'Zweitausendvierzehn', 'zweitausendvierzehn')
+          "
+        >
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage8: Von welchem Unternehmen, wurde Minecraft aufgekauft
+        <input type="text" id="ans8" />
+        <button onclick="antwortPrüfen('ans8', 'Microsoft', 'microsoft')">
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage9: Um welche Person ging es im mctiers skandal?
+        <input type="text" id="ans9" />
+        <button onclick="antwortPrüfen('ans9', 'Marlowww', 'DangerMario')">
+          Überprüfen
+        </button>
+      </li>
+      <li>
+        Frage10: In welcher minecraft version (Bedrock oder Java) kann man die
+        wasser Fareb in kesseln ändern?
+        <input type="text" id="ans10" />
+        <button onclick="antwortPrüfen('ans10', 'Bedrock', 'Java')">
+          Überprüfen
+        </button>
+      </li>
+    </ul>
+  </body>
+  <script>
+    function antwortPrüfen(idEingabeFeld, richtigeAntwort1, richtigeAntwort2) {
+      let Eingabe = document.getElementById(idEingabeFeld);
+      if (
+        Eingabe.value == richtigeAntwort1 ||
+        Eingabe.value == richtigeAntwort2
+      ) {
+        alert("richtig");
+      } else {
+        alert("Falsch! Jetzt neu starten?");
+      }
+    }
+  </script>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+      :root {
+        --bg-color: #0b0f19;
+        --card-bg: #111827;
+        --accent-color: #10b981;
+        --accent-hover: #059669;
+        --text-main: #f3f4f6;
+        --text-muted: #9ca3af;
+        --border-color: #1f2937;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+
+      /* Header / Navigation */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 8%;
+        background-color: rgba(11, 15, 25, 0.9);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      nav ul li a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--accent-color);
+      }
+
+      .cta-btn {
+        background-color: var(--accent-color);
+        color: #000;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .cta-btn:hover {
+        background-color: var(--accent-hover);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 100px 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+      }
+
+      .hero h1 span {
+        color: var(--accent-color);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 40px;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .frmtx {
+  --font-size: 100%;
+  --font-family: inherit;
+  --font-color: inherit;
+  --background-color: #FFF;
+  --border-color: #AAA;
+  --border-width: 1px;
+  --border-radius: 5px;
+margin: 1rem;min-width: 240px}
+
+.frmtx * {color: var(--font-color);font-family: var(--font-family);font-size: var(--font-size);margin: 0;padding: 0;appearance: auto;outline: none;box-sizing: border-box}
+.frmtx label {padding: 0;margin: 1em 0 .3em;display: block;line-height: 1.3}
+.frmtx label:first-child {margin-top: 0}
+.frmtx input, .frmtx textarea, .frmtx button {border: var(--border-width) solid var(--border-color);border-radius: var(--border-radius);background-color: var(--background-color)}
+.frmtx input, .frmtx textarea {width: 100%;resize: none;padding: .5em;line-height: 1.3}
+.frmtx input[name="_gotcha"] {display:none}
+.frmtx input[type="checkbox"] {display: inline;width: 1.1em;height: 1.1em;appearance: auto;margin-right: .2em}
+.frmtx button {display: block;padding: .5em 1.5em;margin: 1.5em 0 0;line-height: 1.5;font-weight: bold;cursor: pointer}
+
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Hasox</a>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Startseite</a></li>
+          <li><a href="/Leistungen.html">Leistungen</a></li>
+          <li><a href="/ÜberUns.html">Über uns</a></li>
+          <li><a href="/Kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="/SicherheitCheck.html" class="cta-btn">Sicherheits-Check</a>
+    </header>
+    
+</head>
+<body>
+        <!-- Hero Bereich -->
+    <section class="hero">
+      <h1>Kontakieren Sie uns gerne unter dieses <span>Formular</span></h1>
+      <p>
+        Ihre Daten sind in Hashes verschlüsselt und werden
+        unter keinen Umständen weitergegeben.
+      </p>
+
+  <label for="name">Name</label>
+  <input style="color: #000; padding: 5px 145px;" type="text" name="Name" id="name" required>
+
+  <label for="mail">E-Mail-Adresse</label>
+  <input style="color: #000; padding: 5px 145px;" type="email" name="E-Mail" id="mail" required>
+
+  <label for="msg">Ihre Nachricht</label>
+  <textarea style="color: #000; padding: 55px 145px;" rows="5" name="Nachricht" id="msg" required></textarea>
+
+  <label><input type="checkbox" name="Datenverarbeitung bestätigt" value="Ja" required> Ich bin mit der Verarbeitung meiner Eingaben zum Zwecke der Anfragebearbeitung einverstanden.</label>
+  
+
+  <button style="background-color: #059669; padding: 5px 22px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+  Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
+  sans-serif; font-weight: 600; color: #FFF; " type="submit">Absenden</button>
+
+</body>
+</html>

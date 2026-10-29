@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Felix Schach</title>
+  </head>
+  <body>
+    <h1>Willkommen</h1>
+    <div style="display: flex">
+      <div
+        id="a8"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="turm schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="TurmS.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="b8"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="springer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="sspringer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="c8"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bishop schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="sbishop.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="d8"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="queen schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="squeen.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="e8"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="king schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="sking.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="f8"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bishop schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="sbishop.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="g8"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="springer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="sspringer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="h8"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="turm schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="TurmS.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+    </div>
+    <div style="display: flex">
+      <div
+        id="a7"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bauer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="SBauer.png"
+          alt="SBauer"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="b7"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bauer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="SBauer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="c7"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bauer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="SBauer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="d7"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bauer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="SBauer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="e7"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bauer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="SBauer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="f7"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bauer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="SBauer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="g7"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bauer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="SBauer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="h7"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bauer schwarz"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="SBauer.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+    </div>
+    <div style="display: flex">
+      <div
+        id="a6"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="b6"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="c6"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="d6"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="e6"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="f6"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="g6"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="h6"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+    </div>
+    <div style="display: flex">
+      <div
+        id="a5"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="b5"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="c5"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="d5"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="e5"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="f5"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="g5"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="h5"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+    </div>
+    <div style="display: flex">
+      <div
+        id="a4"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="b4"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="c4"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="d4"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="e4"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="f4"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="g4"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="h4"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+    </div>
+    <div style="display: flex">
+      <div
+        id="a3"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="b3"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="c3"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="d3"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="e3"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="f3"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+      <div
+        id="g3"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      ></div>
+      <div
+        id="h3"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      ></div>
+    </div>
+    <div style="display: flex">
+      <div
+        id="a2"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bauer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="Bauerw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="b2"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bauer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="Bauerw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="c2"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bauer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="Bauerw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="d2"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bauer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="Bauerw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="e2"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bauer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="Bauerw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="f2"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bauer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="Bauerw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="g2"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bauer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="Bauerw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        id="h2"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bauer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          loading="lazy"
+          src="Bauerw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+    </div>
+    <div style="display: flex">
+      <div
+        id="a1"
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="turm weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          id="turmw2"
+          loading="lazy"
+          src="WTurm.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        id="b1"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="springer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          id="springerw2"
+          loading="lazy"
+          src="springerW.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        id="c1"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="bishop weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          id="bishopw2"
+          loading="lazy"
+          src="Bishhofw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        id="d1"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="queen weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          id="queenw1"
+          loading="lazy"
+          src="qeenw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        id="E1"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="king weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          id="kingw1"
+          loading="lazy"
+          src="kingw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        id="F1"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="bishop weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          id="bishopw1"
+          loading="lazy"
+          src="Bishhofw.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        id="G1"
+        style="width: 50px; height: 50px; background: rgb(43, 28, 0)"
+      >
+        <img
+          class="springer weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          id="springerw1"
+          loading="lazy"
+          src="springerW.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+      <div
+        ondragover="event.preventDefault()"
+        ondrop="ablegen(this)"
+        id="H1"
+        style="width: 50px; height: 50px; background: wheat"
+      >
+        <img
+          class="turm weiß"
+          draggable="true"
+          ondragstart="figur = event.target"
+          id="wturm1"
+          loading="lazy"
+          src="WTurm.png"
+          alt="Bild hier beschreiben"
+          width="50"
+          height="50"
+        />
+      </div>
+    </div>
+    <p id="ausgabe"></p>
+    <script>
+      let ausgabe = document.getElementById("ausgabe");
+      let figur;
+      let aktuellefarbe = "weiß";
+
+      function ablegen(el) {
+        if (!figur) {
+          return;
+        }
+
+        if (!figur.classList.contains(aktuellefarbe)) {
+          return;
+        }
+
+        if (el === figur.parentElement) {
+          return;
+        }
+
+        let ziel = el.id;
+        let istBauer = figur.classList.contains("bauer");
+
+        if (el.children.length > 0) {
+          let geschlageneFigur = el.children[0];
+
+          if (geschlageneFigur.classList.contains(aktuellefarbe)) {
+            return;
+          }
+        }
+        el.textContent = "";
+        el.appendChild(figur);
+
+        if (istBauer) {
+          ausgabe.textContent += " " + ziel;
+        } else {
+          ausgabe.textContent += " " + figur.classList[0] + "-" + ziel;
+        }
+
+        if (aktuellefarbe === "weiß") {
+          aktuellefarbe = "schwarz";
+        } else {
+          aktuellefarbe = "weiß";
+        }
+      }
+    </script>
+  </body>
+</html>

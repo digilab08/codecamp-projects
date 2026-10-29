@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <style>
+      :root {
+        --bg-color: #0b0f19;
+        --card-bg: #111827;
+        --accent-color: #10b981;
+        --accent-hover: #059669;
+        --text-main: #f3f4f6;
+        --text-muted: #9ca3af;
+        --border-color: #1f2937;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+
+      /* Header / Navigation */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 8%;
+        background-color: rgba(11, 15, 25, 0.9);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      nav ul li a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--accent-color);
+      }
+
+      .cta-btn {
+        background-color: var(--accent-color);
+        color: #000;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .cta-btn:hover {
+        background-color: var(--accent-hover);
+      }
+
+      /* Hero Section */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 100px 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .SS {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 100px 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+      }
+
+      .hero h1 span {
+        color: var(--accent-color);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+      }
+
+      /* Features / Services */
+      .features {
+        padding: 80px 8%;
+        background-color: #0d1322;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 50px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        padding: 30px;
+        border-radius: 10px;
+        transition:
+          transform 0.3s,
+          border-color 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+      }
+
+      .feature-card h3 {
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+      }
+
+      .feature-card p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 40px;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+    </style>
+
+</head>
+<body>
+        <header>
+      <a href="#" class="logo">Hasox </a>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Startseite</a></li>
+          <li><a href="/Leistungen.html">Leistungen</a></li>
+          <li><a href="/ÜberUns.html">Über uns</a></li>
+          <li><a href="Kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="/SicherheitCheck.html" class="cta-btn">Sicherheits-Check</a>
+    </header>
+
+    <!-- Hero Bereich -->
+    <section class="hero">
+      <h1>Unser <span>Team</span></h1>
+      <p>Unser Team besteht aus fünf Hochqualifizierten Mitarbeiter mit
+        Langjähriger erfahrung
+      <p style="color:#10b981; font-weight: 800; 
+      font-size: 40px; text-align: left; margin-bottom: 1px; "></p>
+         <p style="color:#10b981; font-weight: 800; 
+      font-size: 40px; text-align: left; margin-bottom: 1px; "></p>
+         <p style="color:#10b981; font-weight: 800; 
+      font-size: 40px; text-align: left; margin-bottom: 1px; "></p>
+         <p style="color:#10b981; font-weight: 800; 
+      font-size: 40px; text-align: left; margin-bottom: 1px; "></p>
+         <p style="color:#10b981; font-weight: 800; 
+      font-size: 40px; text-align: left; ">Hasan</p>
+      
+
+</body>
+</html>

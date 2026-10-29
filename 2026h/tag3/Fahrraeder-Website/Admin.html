@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Fallst du das liest, habe ich eine aufgabe für dich.</h3>
+    <h2>Entschlüssele diesen Text</h2>
+    <h4>RmFocnLDpGRlci1zaW5kLWNvb2w=</h4>
+    <h4>Gebe den code hier ein:</h4>
+    <br />
+    <br />
+    <input id="eingabe" type="text" />
+    <button
+      onclick="
+        if (eingabe.value == 'Fahrräder-sind-cool') {
+          window.location.href = './2-Aufgabe.html';
+        }
+      "
+    >
+      Abgeben
+    </button>
+
+    <script>
+      let eingabe = document.getElementById("eingabe");
+    </script>
+  </body>
+</html>
