@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>build</title>
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        padding: 30px 20px;
+        line-height: 1.6;
+      }
+
+      .main-box {
+        max-width: 750px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: #55ffc9;
+        font-size: 2.2rem;
+        text-align: center;
+        margin-bottom: 5px;
+      }
+
+      .subtitle {
+        color: #ffff55;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        color: #55ffff;
+        font-size: 1.4rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin-bottom: 18px;
+        font-size: 1rem;
+      }
+
+      .builder-list {
+        background-color: #262626;
+        padding: 20px 20px 20px 40px;
+        border-radius: 8px;
+        margin: 20px 0;
+        list-style-type: decimal;
+      }
+
+      .builder-list li {
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+      }
+
+      .builder-name {
+        color: #ffaa00;
+        font-weight: bold;
+      }
+
+      .info-box {
+        background-color: #332211;
+        border: 2px dashed #ffaa00;
+        padding: 15px;
+        border-radius: 6px;
+        margin: 25px 0;
+      }
+
+      .info-box p {
+        margin: 0;
+        color: #ffcc66;
+      }
+
+      footer {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #777777;
+      }
+
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 32px;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        image-rendering: pixelated;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      class="custom-cursor"
+      id="creeperCanvas"
+      width="8"
+      height="8"
+    ></canvas>
+
+    <div class="main-box">
+      <h1>DIE MINECRAFT GESCHICHTE DER BAUWERKE</h1>
+      <div class="subtitle">
+        ~ Alles über das Bauen in Minecraft und die krassesten Builder der Welt
+        ~
+      </div>
+
+      <h2 onclick="event.target.style.color = 'red'">
+        Die epische Geschichte vom Bauen in Minecraft (Echt krass!)
+      </h2>
+      <p>
+        Leute, habt ihr euch mal überlegt, wie heftig sich das Bauen in
+        Minecraft eigentlich verändert hat?! Wenn man ganz zurück zum Anfang
+        guckt, im Jahr 2009 in der Classic-Version, gab es gefühlt nur eine
+        Handvoll Blöcke. Die Leute hatten Erde, Pflasterstein (Cobblestone),
+        Gras und ein paar farbige Wollblöcke. Es gab keine Treppen, keine Stufen
+        und keine Zäune. Ein "krasses Haus" war damals einfach ein riesiger
+        grauer Würfel mit ein paar Löchern drin, damit man rauskucken konnte.
+        Die Spieler waren einfach nur froh, wenn sie eine Hütte hatten, um
+        nachts vor den Zombies sicher zu sein. Das war die absolute Steinzeit
+        des Spiels!
+      </p>
+
+      <p>
+        Aber dann kamen die Updates und alles explodierte komplett. Als Mojang
+        endlich Treppen und halbe Stufen eingebaut hat, ging der Hype erst
+        richtig los! Auf einmal konnten Dächer schräg gebaut werden und Wände
+        hatten plötzlich Tiefe. Man hat nicht mehr nur flache Wände hochgezogen,
+        sondern echtes Design ausprobiert. Und dann kam der größte Gamechanger
+        überhaupt: Redstone! Plötzlich haben die Geeks angefangen, nicht nur
+        schöne Häuser zu bauen, sondern funktionierende Geheimgänge,
+        vollautomatische Farmen und am Ende sogar ganze Taschenrechner und
+        Minispiele IM SPIEL. Die Community hat gemerkt, dass Minecraft kein
+        einfaches Spiel mehr ist, sondern ein unendlicher Baukasten.
+      </p>
+
+      <p>
+        Mit der Zeit entstanden die ersten großen Bauteams. Leute haben sich auf
+        Servern zusammengeschlossen und wochenlang an riesigen Fantasy-Städten
+        gearbeitet. Es wurden eigene Texturen-Packs entworfen, damit das Holz
+        noch echter aussieht und der Stein perfekt altert. Die Builder wurden
+        immer kreativer und haben Techniken erfunden, die heute Standard sind.
+        Zum Beispiel "Gradienten", wo man eine Wand von unten nach oben von
+        dunklen zu hellen Blöcken färbt, damit es aussieht, als würde Schatten
+        darauf fallen. Oder "Greebling", wo man Knöpfe, Zäune und Mauern
+        benutzt, um der Fassade extra Struktur zu geben, damit sie nicht
+        langweilig wirkt.
+      </p>
+
+      <p>
+        Besonders die Multiplayer-Server haben alles verändert. Früher hat jeder
+        für sich allein in seiner Singleplayer-Welt rumgebastelt. Aber auf
+        Servern wie *Hermitcraft* oder den alten Reichen von *Wynncraft* sahen
+        die Spieler plötzlich, was die anderen machten. Es gab einen richtigen
+        Wettkampf: Wer baut das größte Tor? Wer zieht die fetteste Stadtmauer
+        hoch? Ganze Wirtschaftssysteme mit Diamanten als Währung wurden
+        gegründet, nur um seltene Blöcke wie Quarz oder Korallen zu kaufen. Es
+        entstanden riesige Marktplätze, auf denen Spieler Baustoffe gegen
+        wertvolles Equipment tauschten. Man baute nicht mehr nur für sich,
+        sondern um den Rest des Servers komplett zu beeindrucken.
+      </p>
+
+      <p>
+        Ein gigantischer Meilenstein war der Moment, als Tools wie *WorldEdit*
+        und *VoxelSniper* herauskamen. Vorher mussten die Builder jeden
+        einzelnen Block mühsam per Hand platzieren, was bei Bergen Wochen
+        gedauert hat. Mit den neuen Werkzeugen konnten sie plötzlich riesige
+        Pinsel nutzen, um ganze Gebirge in Sekundenschnelle in die Landschaft zu
+        zaubern oder riesige Meere auszuheben. Das hat die Kunstform des
+        "Terraformings" komplett neu definiert. Plötzlich war der Himmel nicht
+        mehr das Limit. Die Leute fingen an, gigantische Drachen, schwebende
+        Fantasy-Inseln und Welten zu bauen, die so komplex waren, dass man sie
+        kaum noch als Minecraft-Blöcke erkannt hat.
+      </p>
+
+      <p>
+        Und heute? Heute sind wir an einem Punkt, der absolut geisteskrank ist!
+        Es gibt Megaprojekte wie *Build the Earth*, wo über zehntausend Spieler
+        die KOMPLETTE ERDE im Maßstab 1:1 nachbauen! Das bedeutet: Ein Block im
+        Spiel ist exakt ein Meter in der echten Welt. Die Teams benutzen echte
+        Satellitendaten, LiDAR-Scans und Google Earth Pro, um ganze Städte wie
+        New York, Frankfurt oder Tokio perfekt ins Spiel zu kopieren. Jedes
+        Fenster, jede Ampel und jede Kurve auf der Straße muss genau stimmen! Es
+        ist das größte Gemeinschaftsprojekt der Gaming-Geschichte und zeigt
+        einfach, dass aus einem kleinen Indie-Spiel mit Pixel-Grafik ein
+        weltweites Werkzeug für echte Architekten und Künstler geworden ist!
+      </p>
+
+      <h2>Die 10 besten Builder aller Zeiten (Meine absolute Top-Liste)</h2>
+      <p>
+        Hier sind die absolut besten Builder und Bauteams, die man auf YouTube
+        und Servern finden kann. Die Jungs und Mädels haben Skills, von denen
+        ich nur träumen kann!
+      </p>
+
+      <ol class="builder-list">
+        <li>
+          <span class="builder-name">Grian</span> - Der absolute König der
+          YouTube-Tutorials. Seine Megabasen auf dem Hermitcraft-Server sind
+          legendär und er zeigt jedem Anfänger in seinen Videos, wie man Tiefe
+          und Details in Wände bringt.
+        </li>
+        <li>
+          <span class="builder-name">GoodTimesWithScar</span> - Macht die
+          schönsten Landschaften und riesige Bäume (Terraforming). Seine Welten
+          haben immer eine krasse Geschichte und sehen aus wie aus einem
+          magischen Disney-Film entsprungen.
+        </li>
+        <li>
+          <span class="builder-name">Jeracraft</span> - Baut gigantische
+          Fantasy-Königreiche und epische Drachen ganz allein in seinen
+          Zeitraffer-Videos. Die Dimensionen seiner Welten sind absolut
+          geisteskrank.
+        </li>
+        <li>
+          <span class="builder-name">BlockWorks</span> - Ein professionelles
+          Bauteam aus echten Architekten und Designern, das sogar von großen
+          Firmen und Museen bezahlt wird, um digitale Welten in Minecraft zu
+          erschaffen.
+        </li>
+        <li>
+          <span class="builder-name">Varuna Builds</span> - Noch so ein heftiges
+          Studio. Die haben mal eine komplette Steampunk-Stadt mit tausenden von
+          Häusern, Zahnrädern und Schiffen gebaut, die absolut fehlerfrei
+          aussieht.
+        </li>
+        <li>
+          <span class="builder-name">BdoubleO100</span> - Der absolute Meister
+          der Mikromaterialien. Niemand sonst kann aus den komischsten Blöcken
+          (wie Diorit oder Granit) so gemütliche, extrem realistische und
+          detailreiche Häuser zaubern.
+        </li>
+        <li>
+          <span class="builder-name">PearlescentMoon</span> - Kommt aus
+          Australien und baut epische, riesige Organics. Das bedeutet, sie baut
+          gigantische Statuen, Menschengesichter und Fabelwesen komplett frei
+          aus Blöcken nach.
+        </li>
+        <li>
+          <span class="builder-name">Keralis</span> - Der ungeschlagene Boss,
+          wenn es um ultra moderne Villen, riesige Flughäfen, Yachten und
+          Großstädte mit perfekten, modernen Inneneinrichtungen geht.
+        </li>
+        <li>
+          <span class="builder-name">MythicalSausage</span> - Der absolute Pro,
+          wenn es um mittelalterliche Dörfer, gigantische Burgen und magische
+          Basen geht. Perfekt für jeden, der Tipps für Survival-Welten sucht.
+        </li>
+        <li>
+          <span class="builder-name">TrixyBlox</span> - Verwandelt normale
+          Minecraft-Welten in gigantische Kunstwerke. Er hat zum Beispiel die
+          komplette Minecraft-Welt umgebaut und riesige Custom-Dimensionen im
+          Mega-Format erschaffen.
+        </li>
+      </ol>
+
+      <p>
+        Was meint ihr zu der Liste? Hab ich jemanden vergessen? Schreibt es mir
+        beim nächsten Mal in die Kommentare!
+      </p>
+
+      <footer>
+        <p>Minecraft gehört Mojang.</p>
+      </footer>
+    </div>
+    <a href="index.html">GO BACK</a>
+  </body>
+  <script>
+    const canvas = document.getElementById("creeperCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "#55DD33";
+    ctx.fillRect(0, 0, 8, 8);
+
+    ctx.fillStyle = "#000000";
+
+    ctx.fillRect(1, 2, 2, 2);
+
+    ctx.fillRect(5, 2, 2, 2);
+
+    ctx.fillRect(3, 4, 2, 2);
+
+    ctx.fillRect(2, 5, 1, 2);
+    ctx.fillRect(5, 5, 1, 2);
+
+    document.addEventListener("mousemove", (e) => {
+      canvas.style.left = e.clientX + "px";
+      canvas.style.top = e.clientY + "px";
+    });
+  </script>
+</html>

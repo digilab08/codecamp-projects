@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Anmelden</h3>
+    <br />
+    <br />
+    user <input id="eingabe" type="text" />
+    <br />
+    <br />
+    pass <input id="passwort" type="password" />
+    <br />
+    <br />
+    <button onclick="anmelden()">anmelden</button>
+  </body>
+  <script>
+    let eingabe = document.getElementById("eingabe");
+    let passwort = document.getElementById("passwort");
+    function anmelden() {
+      if (eingabe.value == "Gast" && passwort.value == "Leoistcool") {
+        window.location.href = "./.html";
+      } else {
+        alert("falsches passwort");
+      }
+    }
+  </script>
+</html>

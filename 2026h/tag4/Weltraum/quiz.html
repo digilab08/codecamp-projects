@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      h1 {
+        color: beige;
+      }
+      p {
+        color: azure;
+      }
+      a {
+        color: aqua;
+        background-color: cornflowerblue;
+      }
+      body {
+        background-image: url(https://img.magnific.com/fotos-kostenlos/blauer-und-weisser-sternenhimmel_417767-124.jpg?semt=ais_hybrid&w=740&q=80);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+
+    <script>
+      let Punkte = 0;
+    </script>
+
+    <a href="index.html">zurück <=</a>
+    <h1>Quiz</h1>
+    <p>1/5 : Enceladus ist ein Planet</p>
+
+    <button
+      id="Richtig"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: chartreuse;
+      "
+      onclick="
+        alert('FALSCH! (runter für nächste Frage)');
+        Punkte = Punkte + 0;
+        document.getElementById('Richtig').disabled = true;
+        document.getElementById('Falsch').disabled = true;
+        document.getElementById('punkte').innerText = Punkte;
+      "
+    >
+      Richtig
+    </button>
+    <button
+      id="Falsch"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: rgb(255, 0, 0);
+      "
+      onclick="
+        alert('RICHTIG! (runter für nächste frage)');
+        Punkte = Punkte + 1;
+        document.getElementById('Richtig').disabled = true;
+        document.getElementById('Falsch').disabled = true;
+      "
+    >
+      Falsch
+    </button>
+    <p>.</p>
+    .
+    <p>.</p>
+    .
+    <p>.</p>
+    .
+    <p>.</p>
+    <p>2/5 : Schwarze Löcher sind durchsichtig</p>
+    <button
+      id="Richtig1"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: chartreuse;
+      "
+      onclick="
+        alert('RICHTIG! (runter für nächste Frage)');
+        Punkte = Punkte + 1;
+        document.getElementById('Richtig1').disabled = true;
+        document.getElementById('Falsch1').disabled = true;
+      "
+    >
+      Richtig
+    </button>
+    <button
+      id="Falsch1"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: rgb(255, 0, 0);
+      "
+      onclick="
+        alert('FALSCH! (runter für nächste frage)');
+        Punkte = Punkte + 0;
+        document.getElementById('Richtig1').disabled = true;
+        document.getElementById('Falsch1').disabled = true;
+      "
+    >
+      Falsch
+    </button>
+    <p>.</p>
+    p
+    <p>.</p>
+    .
+    <p>.</p>
+    .
+    <p>.</p>
+    <p>3/5 : Venus ist ein Gasplanet</p>
+
+    <button
+      id="Richtig2"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: chartreuse;
+      "
+      onclick="
+        alert('FALSCH! (runter für nächste Frage)');
+        Punkte = Punkte + 0;
+        document.getElementById('Richtig2').disabled = true;
+        document.getElementById('Falsch2').disabled = true;
+      "
+    >
+      Richtig
+    </button>
+    <button
+      id="Falsch2"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: rgb(255, 0, 0);
+      "
+      onclick="
+        alert('RICHTIG! (runter für nächste frage)');
+        Punkte = Punkte + 1;
+        document.getElementById('Richtig2').disabled = true;
+        document.getElementById('Falsch2').disabled = true;
+      "
+    >
+      Falsch
+    </button>
+
+    <p>.</p>
+    p
+    <p>.</p>
+    .
+    <p>.</p>
+    .
+    <p>.</p>
+    <p>4/5 : Menschen waren schon auf dem Mars</p>
+    <button
+      id="Richtig3"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: chartreuse;
+      "
+      onclick="
+        alert('FALSCH! (runter für nächste Frage)');
+        Punkte = Punkte + 0;
+        document.getElementById('Richtig3').disabled = true;
+        document.getElementById('Falsch3').disabled = true;
+      "
+    >
+      Richtig
+    </button>
+    <button
+      id="Falsch3"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: rgb(255, 0, 0);
+      "
+      onclick="
+        alert('RICHTIG! (runter für nächste frage)');
+        Punkte = Punkte + 1;
+        document.getElementById('Richtig3').disabled = true;
+        document.getElementById('Falsch3').disabled = true;
+      "
+    >
+      Falsch
+    </button>
+    <p>.</p>
+    p
+    <p>.</p>
+    .
+    <p>.</p>
+    .
+    <p>.</p>
+    <p>5/5 : Ein Komet besteht aus Eis, Staub und Gasen</p>
+
+    <button
+      id="Richtig4"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: chartreuse;
+      "
+      onclick="
+        alert('RICHTIG! (runter für nächste Frage)');
+        Punkte = Punkte + 1;
+        document.getElementById('Richtig4').disabled = true;
+        document.getElementById('Falsch4').disabled = true;
+      "
+    >
+      Richtig
+    </button>
+    <button
+      id="Falsch4"
+      style="
+        padding: 30px 182px;
+        border-radius: 12px;
+        background-color: rgb(255, 0, 0);
+      "
+      onclick="
+        alert('FALSCH! (runter für nächste frage)');
+        Punkte = Punkte + 0;
+        document.getElementById('Richtig4').disabled = true;
+        document.getElementById('Falsch4').disabled = true;
+      "
+    >
+      Falsch
+    </button>
+
+    <h1 id="punkte"></h1>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      if (sessionStorage.getItem("naviLoggedIn") !== "true") {
+        window.location.replace("login.html");
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Downloads</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        padding: 15px 0;
+      }
+
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        font-family: sans-serif;
+        padding: 5px 0;
+        border-radius: 30px;
+        transition: 0.3s;
+        display: inline-block;
+        width: auto;
+      }
+
+      .navbar a:hover {
+        background: #292929;
+        transform: translateY(-2px);
+      }
+      h1 {
+        color: aliceblue;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+      }
+      h2 {
+        color: aliceblue;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+      }
+      .download_border {
+        border: 1px solid #292929;
+        width: 100%;
+        min-height: 600px;
+        box-sizing: border-box;
+        border-radius: 16px;
+      }
+      .buttons_download a {
+        color: white;
+        text-decoration: none;
+        font-family: sans-serif;
+        padding: 5px 0;
+        border-radius: 30px;
+        transition: 0.3s;
+        display: inline-block;
+        width: auto;
+      }
+      .buttons_download a:hover {
+        background: #292929;
+        transform: translateY(-2px);
+      }
+      .buttons_download {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        padding: 15px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img src="navi_pic-removebg-preview.png" width="5%" />
+      <a href="index.html" style="font-family: sans-serif">Home</a>
+      <a href="about.html" style="font-family: sans-serif">About</a>
+
+      <a href="download.html" style="font-family: sans-serif">Download</a>
+      <a href="contact.html" style="font-family: sans-serif">Contact</a>
+      <a href="credits.html" style="font-family: sans-serif">Credits</a>
+      <a href="discord.gg/xenoexecutors">
+        <img src="image-removebg-preview.png" width="50" />
+      </a>
+      <a href="login.html" style="font-family: sans-serif">Log In</a>
+    </nav>
+    <h1>Download Navi</h1>
+    <h2>Experience the next generation of Cheating</h2>
+    <div class="download_border">
+      <h1>Navi Systems has multiple Options for Cheaters</h1>
+      <a class="buttons_download" href="test.py" download="test.py">Executor</a>
+    </div>
+  </body>
+</html>

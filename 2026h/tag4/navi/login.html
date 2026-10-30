@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navi Systems | Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        .login-box {
+            width: 360px;
+            max-width: calc(100% - 40px);
+            padding: 35px;
+            background: #080808;
+            border: 1px solid #292929;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 14px;
+            background: #111;
+            color: white;
+            border: 1px solid #292929;
+            border-radius: 9px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .login-form input:focus {
+            border-color: #777;
+        }
+
+        .login-form input::placeholder {
+            color: #777;
+        }
+
+        .login-form button {
+            padding: 13px;
+            border: 1px solid white;
+            border-radius: 9px;
+            background: white;
+            color: black;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .login-form button:disabled {
+            background: #222;
+            border-color: #292929;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        #error {
+            color: #ff5555;
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    
+
+    <div class="login-box">
+        <h1>Login</h1>
+
+        <form class="login-form" id="loginForm">
+            <input
+                type="text"
+                id="username"
+                placeholder="Email address or username"
+                autocomplete="username"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit" id="loginButton" disabled>
+                Login
+            </button>
+
+            <p id="error" role="alert"></p>
+        </form>
+    </div>
+
+    <script>
+        if (sessionStorage.getItem("naviLoggedIn") === "true") {
+    window.location.replace("download.html");
+}
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const loginButton = document.getElementById("loginButton");
+        const loginForm = document.getElementById("loginForm");
+        const errorMessage = document.getElementById("error");
+
+        function checkInputs() {
+            loginButton.disabled =
+                usernameInput.value.trim() === "" ||
+                passwordInput.value === "";
+
+            errorMessage.textContent = "";
+        }
+
+        usernameInput.addEventListener("input", checkInputs);
+        passwordInput.addEventListener("input", checkInputs);
+
+        loginForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+
+            if (
+                username === "Admin-Navi" &&
+                password === "Codecamp2026"
+            ) {
+                sessionStorage.setItem("naviLoggedIn", "true");
+                window.location.href = "download.html";
+            } else {
+                errorMessage.textContent =
+                    "Invalid username or password.";
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <style>
+      h1 {
+        text-align: center;
+        color: brown;
+      }
+    </style>
+  </head>
+  <body style="background-color: beige">
+    <h1>Test</h1>
+    <hr />
+
+    <h3>Welche Mobs muss man nicht töten um den Enderdrachen zu besiegen?</h3>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Enderdrache
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'green';
+        color = 'green';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Enderman
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Lohe
+    </button>
+    <hr />
+
+    <h3>Was dropen Ertrunkene?</h3>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'green';
+        color = 'green';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Kupferbarren
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Eisenbarren
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Goldbarren
+    </button>
+    <hr />
+
+    <h3>Wovor haben Hoglins Angst?</h3>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'green';
+        color = 'green';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Wirrpilz
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Karmesinpilze
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      roter Pilz
+    </button>
+    <hr />
+
+    <h3>Wo findet man den Warden?</h3>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Endcity
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Waldanwesen
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'green';
+        color = 'green';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Tiefes Dunkel
+    </button>
+    <hr />
+    <h3>Wer ist NICHT bei einem Überfall dabei?</h3>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'green';
+        color = 'green';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Hilfsgeister
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Hexe
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Plagegeist
+    </button>
+    <hr />
+    <h3>Was dropt ein Phantom?</h3>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'green';
+        color = 'green';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Phantomhaut
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Elytren
+    </button>
+    <button
+      style="font-weight: bold"
+      onclick="
+        event.target.style.backgroundColor = 'red';
+        color = 'red';
+        thema(color);
+        event.target.disabled = true;
+      "
+    >
+      Phantomessens
+    </button>
+    <hr />
+    <button onclick="fertig()" style="font-weight: bold">Fertig</button>
+    <span id="ergebnis">Punkte:</span>
+    <br />
+    <a href="index.html">Home</a>
+    <script>
+      let Punkte = 0;
+      let color;
+      function thema(color) {
+        if (color == "green") {
+          Punkte += 1;
+          if (Punkte > 6) {
+            Punkte = 6;
+          }
+        } else {
+          Punkte -= 1;
+          if (Punkte < 0) {
+            Punkte = 0;
+          }
+        }
+      }
+      function fertig() {
+        document.getElementById("ergebnis").innerText = Punkte;
+      }
+    </script>
+  </body>
+</html>

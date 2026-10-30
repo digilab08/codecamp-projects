@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Java Edition</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #222;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        background-color: #ffffff;
+      }
+      h1 {
+        font-size: 2.2rem;
+        color: #111;
+        margin-bottom: 5px;
+      }
+      h2 {
+        font-size: 1.5rem;
+        color: #2e6930;
+        margin-top: 40px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 8px;
+      }
+      h3 {
+        font-size: 1.1rem;
+        color: #444;
+        margin-top: 20px;
+      }
+      p,
+      li {
+        font-size: 1rem;
+        color: #333;
+      }
+      ul {
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: monospace;
+        font-size: 0.95rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #eee;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f9f9f9;
+        font-weight: bold;
+      }
+      .subtitle {
+        color: #666;
+        font-style: italic;
+        margin-bottom: 30px;
+      }
+    </style>
+    <style>
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 32px;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        image-rendering: pixelated;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      class="custom-cursor"
+      id="creeperCanvas"
+      width="8"
+      height="8"
+    ></canvas>
+
+    <header>
+      <h1>Die Minecraft Java Edition</h1>
+      <div class="subtitle">
+        Wichtige Mechaniken, Commands, Easter Eggs, Modding, Launcher und Server
+      </div>
+    </header>
+
+    <main>
+      <!-- Kategorie 1: Waffencooldown -->
+      <h2>1. Das Kampfsystem und der Waffencooldown</h2>
+      <p>
+        Seit der Version 1.9 besitzt die Java Edition ein strategisches
+        Kampfsystem mit einem <strong>Angriffscooldown</strong>. Wer zu schnell
+        hintereinander klickt, macht kaum Schaden. Man muss warten, bis das
+        Fadenkreuz-Symbol voll aufgeladen ist.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Waffe</th>
+            <th>Schaden (voll geladen)</th>
+            <th>Geschwindigkeit</th>
+            <th>Besonderer Effekt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Schwert</strong></td>
+            <td>7 (Diamant)</td>
+            <td>Schnell (1.6)</td>
+            <td>Trifft mehrere Gegner gleichzeitig (Rundumschlag).</td>
+          </tr>
+          <tr>
+            <td><strong>Axt</strong></td>
+            <td>9 (Diamant)</td>
+            <td>Langsam (1.0)</td>
+            <td>Kann gegnerische Schilde für 5 Sekunden deaktivieren.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Kategorie 2: Commands -->
+      <h2>2. Wichtige Commands (Befehle)</h2>
+      <p>
+        Über die Chat-Taste (<code>T</code> oder <code>/</code>) lassen sich
+        mächtige Befehle in die Konsole eingeben, um das Spiel zu steuern:
+      </p>
+      <ul>
+        <li>
+          <code>/gamemode creative</code> – Wechselt in den Kreativmodus
+          (Fliegen und unendlich Blöcke).
+        </li>
+        <li>
+          <code>/gamerule keepInventory true</code> – Man behält seine Items,
+          wenn man stirbt.
+        </li>
+        <li>
+          <code>/locate structure monument</code> – Zeigt die Koordinaten des
+          nächsten Ozeanmonuments.
+        </li>
+        <li>
+          <code
+            >/give @p diamond_sword{Enchantments:[{id:"sharpness",lvl:5}]}</code
+          >
+          – Gibt dir ein Schwert mit Schärfe 5.
+        </li>
+      </ul>
+
+      <!-- Kategorie 3: Easter Eggs -->
+      <h2>3. Easter Eggs und Geheimnisse</h2>
+      <p>
+        Mojang hat viele versteckte Details eingebaut, die man meistens durch
+        das Benennen von Tieren mit einem Namensschild freischaltet:
+      </p>
+      <ul>
+        <li>
+          <strong>Dinnerbone</strong> oder <strong>Grumm</strong> – Das Tier
+          stellt sich dauerhaft auf den Kopf.
+        </li>
+        <li>
+          <strong>jeb_</strong> – Ein Schaf wechselt kontinuierlich in allen
+          Regenbogenfarben die Farbe.
+        </li>
+        <li>
+          <strong>Toast</strong> – Ein Kaninchen bekommt ein einzigartiges
+          schwarz-weißes Fellmuster.
+        </li>
+        <li>
+          <strong>Johnny</strong> – Ein Diener (Vindicator) greift ausnahmslos
+          jede Kreatur in seiner Nähe an.
+        </li>
+        <li>
+          <strong>Minceraft</strong> – Mit einer Chance von 1 zu 10.000
+          vertauscht das Hauptmenü zwei Buchstaben im Logo.
+        </li>
+      </ul>
+
+      <!-- Kategorie 4: Mods & Shader -->
+      <h2>4. Modding, Shader und Performance</h2>
+      <p>
+        Der größte Vorteil der Java Edition ist die offene Struktur. Sie erlaubt
+        es der Community, das Spiel komplett kostenlos zu verändern:
+      </p>
+      <ul>
+        <li>
+          <strong>Mod-Loader:</strong> Systeme wie <em>Forge</em> oder
+          <em>Fabric</em> verwalten und laden Modifikationen im Hintergrund.
+        </li>
+        <li>
+          <strong>Performance-Mods:</strong> Tools wie <em>Sodium</em> oder
+          <em>OptiFine</em> verbessern den Programmcode für deutlich mehr FPS
+          auf älteren PCs.
+        </li>
+        <li>
+          <strong>Shader-Packs:</strong> Fügen realistisches Licht, wackelndes
+          Laub und dynamisches Wasser hinzu (z. B. <em>BSL</em> oder
+          <em>Complimentary</em>).
+        </li>
+      </ul>
+
+      <!-- Kategorie 5: Launcher & Versionen -->
+      <h2>5. Launcher und Versionen</h2>
+      <p>
+        Um die Java Edition zu starten, wird ein sogenannter Launcher benötigt.
+        Dieser dient nicht nur als Startknopf, sondern verwaltet auch
+        verschiedene Spielversionen.
+      </p>
+      <ul>
+        <li>
+          <strong>Offizieller Minecraft Launcher:</strong> Erlaubt es,
+          unkompliziert zwischen fast jeder jemals veröffentlichten Version zu
+          wechseln – von den ersten Alpha-Phasen aus 2009 über wöchentliche
+          Entwickler-Updates (Snapshots) bis zur neuesten Version.
+        </li>
+        <li>
+          <strong>Drittanbieter-Launcher (Mod-Manager):</strong> Tools wie
+          <em>Prism Launcher</em>, <em>Modrinth App</em> oder
+          <em>CurseForge</em> machen das Installieren von Mods kinderleicht. Man
+          kann dort fertige Modpacks mit nur einem Klick herunterladen und
+          separate Profile erstellen.
+        </li>
+        <li>
+          <strong>PvP-Clients:</strong> Spezielle Custom-Launcher wie der
+          <em>Badlion Client</em> oder <em>Lunar Client</em> sind vollgepackt
+          mit vorinstallierten Minigame-Mods, FPS-Boostern und kosmetischen
+          Extras für den Mehrspielermodus.
+        </li>
+      </ul>
+
+      <!-- Kategorie 6: Die Server-Landschaft -->
+      <h2>6. Die Mehrspieler- und Server-Kultur</h2>
+      <p>
+        Die Java Edition besitzt eine historisch gewachsene, gigantische
+        Server-Struktur. Anders als bei Konsolen-Versionen kann hier jeder
+        kostenlos eigene Server erstellen und modifizieren.
+      </p>
+      <ul>
+        <li>
+          <strong>Minigame-Netzwerke:</strong> Riesige öffentliche Server (wie
+          z. B. <em>Hypixel</em> oder im deutschsprachigen Raum
+          <em>GrieferGames</em> und <em>GommeHD.net</em>), auf denen tausende
+          Spieler in eigens kreierten Spielmodi wie BedWars, SkyBlock oder
+          CityBuild gegeneinander antreten.
+        </li>
+        <li>
+          <strong>Server-Software (Plugins):</strong> Damit Server stabil
+          laufen, nutzen sie optimierte Software wie <em>Paper</em> oder
+          <em>Purpur</em>. Mithilfe von Plugins (z. B. <em>WorldEdit</em> zum
+          schnellen Bauen) wird das Spiel serverseitig verändert, ohne dass
+          Spieler selbst Mods installieren müssen.
+        </li>
+        <li>
+          <strong>Community-Projekte:</strong> Reine Vanilla-Survival-Server
+          (oft über <em>Minecraft Realms</em> oder private Hoster), auf denen
+          Freundesgruppen gemeinsam wie im Einzelspieler bauen, jedoch in einer
+          geteilten, dauerhaft online geschalteten Welt.
+        </li>
+      </ul>
+    </main>
+  </body>
+  <script>
+    const canvas = document.getElementById("creeperCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "#55DD33";
+    ctx.fillRect(0, 0, 8, 8);
+
+    ctx.fillStyle = "#000000";
+
+    ctx.fillRect(1, 2, 2, 2);
+
+    ctx.fillRect(5, 2, 2, 2);
+
+    ctx.fillRect(3, 4, 2, 2);
+
+    ctx.fillRect(2, 5, 1, 2);
+    ctx.fillRect(5, 5, 1, 2);
+
+    document.addEventListener("mousemove", (e) => {
+      canvas.style.left = e.clientX + "px";
+      canvas.style.top = e.clientY + "px";
+    });
+  </script>
+</html>

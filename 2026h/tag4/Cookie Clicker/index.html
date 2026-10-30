@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Clicker</title>
+    <style>
+      .h {
+        color: red;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 40px;
+      }
+      #anzahlCursor {
+        position: relative;
+        top: -165px;
+        font-size: x-large;
+      }
+      #anzahlGrandma {
+        position: relative;
+        top: -185px;
+        font-size: x-large;
+      }
+      #anzahlFarm {
+        position: relative;
+        top: -245px;
+        font-size: x-large;
+      }
+      #anzahlMine {
+        position: relative;
+        top: -305px;
+        font-size: x-large;
+      }
+      #anzahlClick {
+        position: relative;
+        top: -35px;
+        font-size: x-large;
+      }
+      .CPS {
+        color: #30a60a;
+        font-family: Georgia;
+      }
+      .cookies {
+        font-size: xx-large;
+      }
+      #anzahlCookies {
+        position: relative;
+        top: -30px;
+      }
+      #cookieButton {
+        position: relative;
+        top: -50px;
+        font-size: 30px;
+      }
+      #cursorButton {
+        position: relative;
+        top: -140px;
+      }
+      #grandmaButton {
+        position: relative;
+        top: -160px;
+      }
+      #farmButton {
+        position: relative;
+        top: -220px;
+      }
+      #mineButton {
+        position: relative;
+        top: -280px;
+      }
+
+      #clickUpgrade {
+        position: relative;
+        top: -10px;
+      }
+      #cursorPrice {
+        position: relative;
+        top: 70px;
+        left: -192px;
+      }
+      #grandmaPrice {
+        position: relative;
+        top: -252px;
+        left: 75px;
+      }
+      #farmPrice {
+        position: relative;
+        top: -312px;
+        left: 50px;
+      }
+      #minePrice {
+        position: relative;
+        top: -373px;
+        left: 47px;
+      }
+      #clickPrice {
+        position: relative;
+        top: -102px;
+        left: -105px;
+      }
+      body {
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsXtj-KOnlt_8s0JgAKPqX9XnKkEPuZmuPF4kIq-RMhQ&s=10");
+      }
+    </style>
+  </head>
+  <body>
+    <div style="text-align: center">
+      <h1 class="h">Cookie Clicker</h1>
+      <p class="CPS" id="CPS">CPS = 0</p>
+      <img
+        loading="lazy"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIblAUaDj4sUcNkMH8NG1DYfq2xluZIrfjx1E1BO8Wiw&s=10"
+        width="250"
+        heigth="250"
+      />
+      <p></p>
+      <p class="cookies" id="anzahlCookies">0</p>
+      <p class="cursorPrice" id="cursorPrice">15</p>
+      <button id="cookieButton" onclick="cookiesErhoehen()">Cookie</button>
+    </div>
+
+    <div style="text-align: right">
+      <button id="clickUpgrade" onclick="clickErhoehen()">Click Upgrade</button>
+      <p id="anzahlClick">0</p>
+      <p id="clickPrice">250</p>
+    </div>
+
+    <button id="cursorButton" onclick="cursorErhoehen()">Cursor</button>
+    <p id="anzahlCursor">0</p>
+
+    <button id="grandmaButton" onclick="grandmaErhoehen()">Grandma</button>
+    <p id="anzahlGrandma">0</p>
+    <p id="grandmaPrice">100</p>
+
+    <button id="farmButton" onclick="farmErhoehen()">Farm</button>
+    <p id="anzahlFarm">0</p>
+    <p id="farmPrice">1000</p>
+
+    <button id="mineButton" onclick="mineErhoehen()">Mine</button>
+    <p id="anzahlMine">0</p>
+    <p id="minePrice">10000</p>
+
+    <script>
+      let anzahlCookies = 0;
+      let anzahlCursor = 0;
+      let cursorPrice = 15;
+      let anzahlGrandma = 0;
+      let grandmaPrice = 100;
+      let anzahlFarm = 0;
+      let farmPrice = 1000;
+      let anzahlMine = 0;
+      let minePrice = 10000;
+      let anzahlBank = 0;
+      let bankPrice = 100000;
+      let CPS = 0;
+      let clickUpgrades = 1;
+      let anzahlClick = 0;
+      let clickPrice = 250;
+
+      function cookiesErhoehen() {
+        anzahlCookies += clickUpgrades;
+        document.getElementById("anzahlCookies").textContent = anzahlCookies;
+        console.log(anzahlCookies);
+      }
+
+      function cursorErhoehen() {
+        if (anzahlCookies >= cursorPrice) {
+          anzahlCookies -= cursorPrice;
+          anzahlCursor++;
+          CPS += 0.5;
+          cursorPrice += 2;
+
+          document.getElementById("anzahlCookies").textContent = anzahlCookies;
+          document.getElementById("anzahlCursor").textContent = anzahlCursor;
+          document.getElementById("CPS").textContent = "CPS = " + CPS;
+          document.getElementById("cursorPrice").textContent = +cursorPrice;
+        }
+      }
+
+      function grandmaErhoehen() {
+        if (anzahlCookies >= grandmaPrice) {
+          anzahlCookies -= grandmaPrice;
+          anzahlGrandma++;
+          CPS += 3;
+          grandmaPrice += 10;
+
+          document.getElementById("anzahlCookies").textContent = anzahlCookies;
+          document.getElementById("anzahlGrandma").textContent = anzahlGrandma;
+          document.getElementById("CPS").textContent = "CPS = " + CPS;
+          document.getElementById("grandmaPrice").textContent = grandmaPrice;
+        }
+      }
+
+      function farmErhoehen() {
+        if (anzahlCookies >= farmPrice) {
+          anzahlCookies -= farmPrice;
+          anzahlFarm++;
+          CPS += 30;
+          farmPrice += 100;
+
+          document.getElementById("anzahlCookies").textContent = anzahlCookies;
+          document.getElementById("anzahlFarm").textContent = anzahlFarm;
+          document.getElementById("CPS").textContent = "CPS = " + CPS;
+          document.getElementById("farmPrice").textContent = farmPrice;
+        }
+      }
+
+      function mineErhoehen() {
+        if (anzahlCookies >= minePrice) {
+          anzahlCookies -= minePrice;
+          anzahlMine++;
+          CPS += 100;
+          minePrice += 1000;
+
+          document.getElementById("anzahlCookies").textContent = anzahlCookies;
+          document.getElementById("anzahlMine").textContent = anzahlMine;
+          document.getElementById("CPS").textContent = "CPS = " + CPS;
+          document.getElementById("minePrice").textContent = minePrice;
+        }
+      }
+
+      function bankErhoehen() {
+        if (anzahlCookies >= bankPrice) {
+          anzahlCookies -= bankPrice;
+          anzahlMine++;
+          CPS += 500;
+          bankPrice += 12000;
+
+          document.getElementById("anzahlCookies").textContent = anzahlCookies;
+          document.getElementById("anzahlBank").textContent = anzahlBank;
+          document.getElementById("CPS").textContent = "CPS = " + CPS;
+          document.getElementById("bankPrice").textContent = bankPrice;
+        }
+      }
+
+      function clickErhoehen() {
+        if (anzahlCookies >= clickPrice) {
+          anzahlCookies -= clickPrice;
+          anzahlClick++;
+          clickUpgrades *= 2;
+
+          clickPrice *= 2;
+
+          document.getElementById("anzahlCookies").textContent = anzahlCookies;
+          document.getElementById("anzahlClick").textContent = anzahlClick;
+          document.getElementById("clickPrice").textContent = clickPrice;
+        }
+      }
+
+      setInterval(function () {
+        anzahlCookies += CPS;
+        document.getElementById("anzahlCookies").textContent =
+          Math.floor(anzahlCookies);
+      }, 1000);
+    </script>
+  </body>
+</html>

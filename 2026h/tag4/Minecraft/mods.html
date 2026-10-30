@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Minecraft Mods und Download-Quellen</title>
+    <style>
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 32px;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        image-rendering: pixelated;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      class="custom-cursor"
+      id="creeperCanvas"
+      width="8"
+      height="8"
+    ></canvas>
+    <h1>Die besten Minecraft Mods und wo man sie kriegt</h1>
+    <p>
+      Eine einfache Übersicht der besten Mods inklusive der offiziellen
+      Download-Plattformen.
+    </p>
+
+    <h2>1. Performance Mods (FPS-Boost & Lag-Fixes)</h2>
+    <ul>
+      <li>
+        <b>Sodium:</b> Download über <b>Modrinth</b> (oder CurseForge). Der
+        wichtigste Grafik-Optimierer für Fabric.
+      </li>
+      <li>
+        <b>Lithium:</b> Download über <b>Modrinth</b> und <b>CurseForge</b>.
+        Optimiert die Server- und Welt-Logik im Hintergrund.
+      </li>
+      <li>
+        <b>Iris Shaders:</b> Download über <b>Modrinth</b> (oder direkt über die
+        Iris-Webseite). Bringt Shader-Support für Sodium.
+      </li>
+      <li>
+        <b>FerriteCore:</b> Download über <b>Modrinth</b> und <b>CurseForge</b>.
+        Reduziert den RAM-Verbrauch extrem.
+      </li>
+      <li>
+        <b>Entity Culling:</b> Download über <b>Modrinth</b> und
+        <b>CurseForge</b>. Blendet unsichtbare Monster aus, um FPS zu sparen.
+      </li>
+    </ul>
+
+    <h2>2. Creativity Mods (Neue Blöcke & Items)</h2>
+    <ul>
+      <li>
+        <b>Create:</b> Download über <b>CurseForge</b> und <b>Modrinth</b>. Der
+        König der Zahnrad-Technik und beweglichen Fabriken.
+      </li>
+      <li>
+        <b>Chisels & Bits:</b> Download über <b>CurseForge</b>. Erlaubt das
+        pixelgenaue Zerschneiden und Bauen von Blöcken.
+      </li>
+      <li>
+        <b>Quark:</b> Download über <b>CurseForge</b>. Bringt Hunderte kleine,
+        perfekt ins Spiel passende Vanilla-Blöcke.
+      </li>
+      <li>
+        <b>Macaw's Mods (Bridges/Roofs):</b> Download über <b>CurseForge</b> und
+        <b>Modrinth</b>. Tonnenweise fertige Dächer, Brücken und Fenster.
+      </li>
+    </ul>
+
+    <h2>3. Combat & PvP Mods (Kampf-Systeme)</h2>
+    <ul>
+      <li>
+        <b>Better Combat:</b> Download über <b>CurseForge</b> und
+        <b>Modrinth</b>. Bringt flüssige RPG-Kampfanimationen und Kombos.
+      </li>
+      <li>
+        <b>Simply Swords:</b> Download über <b>CurseForge</b> und
+        <b>Modrinth</b>. Fügt neue Waffentypen wie Sensen, Rapiere und
+        Breitschwerter hinzu.
+      </li>
+      <li>
+        <b>Brutal Bosses:</b> Download über <b>CurseForge</b>. Spawnt
+        gefährliche Mini-Bosse mit Spezialeffekten in Dungeons.
+      </li>
+      <li>
+        <b>Dungeons Arise:</b> Download über <b>CurseForge</b> und
+        <b>Modrinth</b>. Generiert riesige Festungen und Luftschiffe zum
+        Erobern.
+      </li>
+    </ul>
+
+    <h2>4. Fantasy & RPG Mods (Inklusive Cobblemon)</h2>
+    <ul>
+      <li>
+        <b>Cobblemon:</b> Download über <b>Modrinth</b> und
+        <b>CurseForge</b> (Empfehlung: Modrinth für die neuesten Updates). Die
+        Open-World Pokémon-Mod.
+      </li>
+      <li>
+        <b>Alex's Mobs:</b> Download über <b>CurseForge</b>. Bringt fast 90
+        extrem detaillierte Tiere und Monster ins Spiel.
+      </li>
+      <li>
+        <b>Twilight Forest:</b> Download über <b>CurseForge</b> und
+        <b>Modrinth</b>. Das legendäre Zauberwald-Reich mit riesigen Bossen.
+      </li>
+      <li>
+        <b>Ice and Fire (Dragons):</b> Download über <b>CurseForge</b>. Fügt
+        riesige, zähmbare Feuer- und Eisdrachen hinzu.
+      </li>
+    </ul>
+
+    <h2>Wichtiger Tipp zum Herunterladen:</h2>
+    <p>
+      Lade Mods <b>niemals</b> auf fremden Drittanbieter-Seiten wie "9minecraft"
+      oder "minecraft-inside" herunter, da dort oft Viren versteckt sind. Nutze
+      immer nur die offiziellen Seiten <b>CurseForge.com</b> und
+      <b>Modrinth.com</b> oder verwende direkt einen Mod-Launcher wie den
+      Modrinth Launcher, CurseForge Launcher oder Prism Launcher, der die Mods
+      automatisch für dich sucht und installiert.
+    </p>
+    <a href="index.html">GO back</a>
+  </body>
+  <script>
+    const canvas = document.getElementById("creeperCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "#55DD33";
+    ctx.fillRect(0, 0, 8, 8);
+
+    ctx.fillStyle = "#000000";
+
+    ctx.fillRect(1, 2, 2, 2);
+
+    ctx.fillRect(5, 2, 2, 2);
+
+    ctx.fillRect(3, 4, 2, 2);
+
+    ctx.fillRect(2, 5, 1, 2);
+    ctx.fillRect(5, 5, 1, 2);
+
+    document.addEventListener("mousemove", (e) => {
+      canvas.style.left = e.clientX + "px";
+      canvas.style.top = e.clientY + "px";
+    });
+  </script>
+</html>

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft Bedrock Edition</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #222;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+        background-color: #ffffff;
+      }
+      h1 {
+        font-size: 2.2rem;
+        color: #111;
+        margin-bottom: 5px;
+      }
+      h2 {
+        font-size: 1.5rem;
+        color: #1c5270; /* Blau-Ton passend zum Bedrock-Design */
+        margin-top: 40px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 8px;
+      }
+      h3 {
+        font-size: 1.1rem;
+        color: #444;
+        margin-top: 20px;
+      }
+      p,
+      li {
+        font-size: 1rem;
+        color: #333;
+      }
+      ul {
+        padding-left: 20px;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      code {
+        background-color: #f4f4f4;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: monospace;
+        font-size: 0.95rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      th,
+      td {
+        border: 1px solid #eee;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f9f9f9;
+        font-weight: bold;
+      }
+      .subtitle {
+        color: #666;
+        font-style: italic;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Die Minecraft Bedrock Edition</h1>
+      <div class="subtitle">
+        Das plattformübergreifende Kampfsystem, Commands, Geheimnisse, Add-ons
+        und Marktplatz-Server
+      </div>
+    </header>
+
+    <main>
+      <!-- Kategorie 1: Kampfsystem ohne Cooldown -->
+      <h2>1. Das Kampfsystem und Crossplay-PvP</h2>
+      <p>
+        Im Gegensatz zur Java Edition hat die Bedrock Edition (geschrieben in
+        C++) das alte Kampfsystem beibehalten. Es gibt **keinen
+        Angriffscooldown**. Spieler können so schnell klicken wie möglich
+        ("Spam-Klicken"), um maximalen Schaden zu verursachen.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Waffe</th>
+            <th>Schaden (Standard)</th>
+            <th>Angriffs-Typ</th>
+            <th>Besonderheit in Bedrock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Schwert</strong></td>
+            <td>8 (Diamant)</td>
+            <td>Dauerfeuer / Klick-Spam</td>
+            <td>
+              Kein Rundumschlag (Trifft immer nur ein Ziel). Höherer
+              Grundschaden als in Java.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Axt</strong></td>
+            <td>6 (Diamant)</td>
+            <td>Dauerfeuer / Klick-Spam</td>
+            <td>
+              Gilt primär als Werkzeug, macht weniger Schaden als das Schwert
+              und bricht keine Schilde.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Kategorie 2: Commands -->
+      <h2>2. Wichtige Commands (Befehle)</h2>
+      <p>
+        Das Eingeben von Befehlen funktioniert ähnlich wie in Java,
+        unterscheidet sich aber in einigen technischen Details und
+        Zielauswahlen:
+      </p>
+      <ul>
+        <li>
+          <code>/gamemode c</code> – Schneller Wechsel in den Kreativmodus
+          (Bedrock erlaubt oft die Nutzung von Abkürzungen wie 'c' statt
+          'creative').
+        </li>
+        <li>
+          <code>/alwaysday</code> – Schaltet den Tag-Nacht-Rhythmus komplett
+          aus, sodass es immer hell bleibt.
+        </li>
+        <li>
+          <code>/tickingarea add circle ~ ~ ~ 4 meinbereich</code> – Lädt einen
+          Bereich um den Spieler dauerhaft, damit Maschinen auch in weiter
+          Entfernung weiterlaufen.
+        </li>
+        <li>
+          <code
+            >/give @p diamond_sword 1 0
+            {"minecraft:can_destroy":{"blocks":["minecraft:stone"]}}</code
+          >
+          – Gibt ein Schwert, das im Abenteuer-Modus gezielt nur Stein abbauen
+          darf.
+        </li>
+      </ul>
+
+      <!-- Kategorie 3: Easter Eggs und Unterschiede -->
+      <h2>3. Easter Eggs und Bedrock-Geheimnisse</h2>
+      <p>
+        Die meisten Namensschild-Easter-Eggs (wie <code>Dinnerbone</code> oder
+        <code>jeb_</code>) funktionieren genau wie in Java. Dennoch gibt es
+        exklusive Besonderheiten in der Bedrock-Welt:
+      </p>
+      <ul>
+        <li>
+          <strong>Färbbare Kessel:</strong> In Bedrock kann man Wasser in
+          Kesseln mit Farbstoffen beliebig einfärben und dort Lederrüstung bunt
+          waschen oder sogar Zaubertränke hineinfüllen.
+        </li>
+        <li>
+          <strong>Bewegliche Kisten & Öfen:</strong> Kolben (Pistons) können in
+          dieser Edition Truhen, Öfen und Spender verschieben, was völlig neue
+          Redstone-Maschinen ermöglicht.
+        </li>
+        <li>
+          <strong>Große Lachse:</strong> Fische haben unterschiedliche Größen.
+          Man kann in Flüssen auf gigantische Lachse treffen, die deutlich
+          größer sind als normale Fische.
+        </li>
+        <li>
+          <strong>Blattwerk im Schnee:</strong> Wenn es schneit, färbt sich die
+          Oberseite von Laubblöcken weiß, was in der Java Edition ohne Mods
+          nicht passiert.
+        </li>
+      </ul>
+
+      <!-- Kategorie 4: Add-ons & Marktplatz -->
+      <h2>4. Der Minecraft Marktplatz und Add-ons</h2>
+      <p>
+        Da die Bedrock Edition auf Konsolen und Smartphones läuft, ist sie stark
+        gesichert. Klassische Java-Mods funktionieren nicht. Stattdessen gibt es
+        ein offizielles System:
+      </p>
+      <ul>
+        <li>
+          <strong>Der Marktplatz:</strong> Ein In-Game-Shop, auf dem Spieler mit
+          "Minecoins" (Echtgeld-Währung) Welten, Texturenpakete, Skins und
+          Mash-up-Pakete von offiziellen Partnern und YouTubern kaufen können.
+        </li>
+        <li>
+          <strong>Add-ons:</strong> Das offizielle Modding-System der Bedrock
+          Edition. Über Ressourcen- und Verhaltenspakete (Behavior Packs) können
+          neue Funktionen, Fahrzeuge oder Tiere direkt in bestehende Welten
+          geladen werden – mittlerweile auch plattformübergreifend.
+        </li>
+        <li>
+          <strong>Kostenlose Welten:</strong> Über PCs und Android-Handys lassen
+          sich auch extern heruntergeladene <code>.mcworld</code> oder
+          <code>.mcaddon</code> Dateien völlig gratis installieren.
+        </li>
+      </ul>
+
+      <!-- Kategorie 5: Plattformen & Welten -->
+      <h2>5. Plattformübergreifendes Spielen (Crossplay)</h2>
+      <p>
+        Der größte Vorteil der Bedrock Edition ist die universelle
+        Erreichbarkeit über fast jedes moderne Gaming-Gerät.
+      </p>
+      <ul>
+        <li>
+          <strong>Die Geräte-Vielfalt:</strong> Verfügbar auf Windows PC, Xbox,
+          PlayStation, Nintendo Switch, iOS, Android und verschiedenen
+          VR-Brillen. Alle spielen exakt dieselbe Version.
+        </li>
+        <li>
+          <strong>Einfaches Beitreten:</strong> Über das Xbox-Live-Netzwerk
+          können Freunde sich plattformübergreifend in Welten einladen, ohne
+          dass dafür ein eigener Server gemietet werden muss, solange der Host
+          online ist.
+        </li>
+        <li>
+          <strong>Minecraft Realms:</strong> Ein kostenpflichtiger Abo-Dienst
+          von Mojang, der eine permanente Cloud-Welt für bis zu 10 Freunde
+          bereitstellt, auf die jeder rund um die Uhr zugreifen kann.
+        </li>
+      </ul>
+
+      <!-- Kategorie 6: Die Server-Landschaft -->
+      <h2>6. Offizielle Partnerserver</h2>
+      <p>
+        Während Java-Spieler jede beliebige Serveradresse eintippen, nutzt die
+        Bedrock Edition vor allem ein geschlossenes System aus vorinstallierten
+        Servern.
+      </p>
+      <ul>
+        <li>
+          <strong>Featured Server:</strong> Im Hauptmenü sind dauerhaft feste
+          Partnerserver (wie <em>The Hive</em>, <em>Cubecraft</em> oder
+          <em>Lifeboat</em>) integriert. Diese sind speziell auf die Touch- und
+          Controller-Steuerung optimiert.
+        </li>
+        <li>
+          <strong>Eingeschränktes Konsolen-Multiplayer:</strong> Während PC- und
+          Smartphone-Spieler über den Reiter "Server hinzufügen" auch freie,
+          private Serveradressen eingeben können, ist diese Funktion auf
+          PlayStation, Xbox und Nintendo Switch aus Sicherheitsgründen der
+          Konsolen-Hersteller standardmäßig gesperrt.
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

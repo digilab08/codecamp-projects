@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Minecraft Java Edition - Versionshistorie & Snapshots</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        margin: 20px;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+      h1 {
+        color: #2e6b3b;
+      }
+      h2 {
+        color: #4a752c;
+        border-bottom: 2px solid #4a752c;
+        padding-bottom: 5px;
+        margin-top: 30px;
+      }
+
+      .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 32px; /* Auf 32px erhöht, damit man das Pixel-Gesicht super erkennt */
+        height: 32px;
+        pointer-events: none; /* Klicks durchlassen */
+        transform: translate(-50%, -50%); /* Zentriert auf der Mausspitze */
+        z-index: 9999;
+        /* Sorgt dafür, dass die Kanten beim Vergrößern perfekt pixelig bleiben */
+        image-rendering: pixelated;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      class="custom-cursor"
+      id="creeperCanvas"
+      width="8"
+      height="8"
+    ></canvas>
+
+    <h1>Minecraft: Java Edition – Vollversionen und Entwicklungsphasen</h1>
+    <p>
+      Eine Übersicht der wichtigsten Entwicklungsstufen, Releases und
+      wöchentlichen Snapshots.
+    </p>
+
+    <!-- 1. Moderne Ära (Neuere Releases & Spiel-Drops) -->
+    <h2>Moderne Ära & Game Drops (2025 - 2026)</h2>
+    <ul class="version-list">
+      <li>
+        <span class="release">Version 26.4 (Fourth Drop 2026)</span>
+        <span class="snapshot">[Snapshots: 26.4 Snapshot 1, etc.]</span>
+      </li>
+      <li>
+        <span class="release">Version 26.3 (Wilderness Bound)</span>
+        <span class="snapshot"
+          >[Snapshots: 26.3 Snapshot 1 bis Snapshot 6]</span
+        >
+      </li>
+      <li>
+        <span class="release">Version 26.2 (Chaos Cubed)</span>
+        <span class="snapshot"
+          >[Snapshots: 26.2 Snapshot 1 bis Snapshot 8, Pre-Releases, RCs]</span
+        >
+      </li>
+      <li>
+        <span class="release">Version 26.1 (Tiny Takeover)</span>
+        <span class="snapshot">[Inklusive Updates 26.1.1, 26.1.2]</span>
+      </li>
+      <li><span class="release">Version 1.21.11 (Mounts of Mayhem)</span></li>
+      <li><span class="release">Version 1.21.9 (The Copper Age)</span></li>
+      <li>
+        <span class="release"
+          >Version 1.21.4 / 1.21.5 / 1.21.6 (The Garden Awakens / Spring to
+          Life)</span
+        >
+        <span class="snapshot">[Snapshots: Reihe 25w02a bis 25w46a]</span>
+      </li>
+    </ul>
+
+    <!-- 2. Die klassische Nummerierungs-Ära -->
+    <h2>Klassische Updates (1.16 bis 1.21)</h2>
+    <ul class="version-list">
+      <li>
+        <span class="release">Version 1.21 (Tricky Trials - 2024)</span>
+        <span class="snapshot"
+          >[Snapshots: 24w09a bis 24w21b, Pre1-4, RC1]</span
+        >
+      </li>
+      <li>
+        <span class="release">Version 1.20 (Trails & Tales - 2023)</span>
+        <span class="snapshot"
+          >[Snapshots: 23w12a bis 23w18a, Minor-Updates 1.20.1 bis 1.20.6 mit
+          Snapshots wie 23w31a]</span
+        >
+      </li>
+      <li>
+        <span class="release">Version 1.19 (The Wild Update - 2022)</span>
+        <span class="snapshot"
+          >[Snapshots: 22w11a bis 22w19a, Deep Dark Exp. Snapshots,
+          Minor-Updates 1.19.1 bis 1.19.4]</span
+        >
+      </li>
+      <li>
+        <span class="release"
+          >Version 1.18 (Caves & Cliffs: Part II - 2021)</span
+        >
+        <span class="snapshot"
+          >[Snapshots: 21w37a bis 21w44a, Experimental Snapshots 1-7]</span
+        >
+      </li>
+      <li>
+        <span class="release"
+          >Version 1.17 (Caves & Cliffs: Part I - 2021)</span
+        >
+        <span class="snapshot">[Snapshots: 20w45a bis 21w20a]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.16 (Nether Update - 2020)</span>
+        <span class="snapshot"
+          >[Snapshots: 20w06a bis 20w22a, Minor-Updates 1.16.1 bis 1.16.5]</span
+        >
+      </li>
+    </ul>
+
+    <h2>Ältere Vollversionen (1.0 bis 1.15)</h2>
+    <ul class="version-list">
+      <li>
+        <span class="release">Version 1.15 (Buzzy Bees - 2019)</span>
+        <span class="snapshot">[Snapshots: 19w34a bis 19w46b]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.14 (Village & Pillage - 2019)</span>
+        <span class="snapshot">[Snapshots: 18w43a bis 19w14b]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.13 (Update Aquatic - 2018)</span>
+        <span class="snapshot">[Snapshots: 17w43a bis 18w22c]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.12 (World of Color Update - 2017)</span>
+        <span class="snapshot">[Snapshots: 17w06a bis 17w18b]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.11 (Exploration Update - 2016)</span>
+        <span class="snapshot">[Snapshots: 16w32a bis 16w44a]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.10 (Frostburn Update - 2016)</span>
+        <span class="snapshot">[Snapshots: 16w20a bis 16w21a]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.9 (Combat Update - 2016)</span>
+        <span class="snapshot"
+          >[Älteste/längste Snapshot-Reihe: 15w31a bis 16w07b]</span
+        >
+      </li>
+      <li>
+        <span class="release">Version 1.8 (Bountiful Update - 2014)</span>
+        <span class="snapshot">[Snapshots: 14w02a bis 14w34d]</span>
+      </li>
+      <li>
+        <span class="release"
+          >Version 1.7 (The Update That Changed The World - 2013)</span
+        >
+        <span class="snapshot">[Snapshots: 13w36a bis 13w43a]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.6 (Horse Update - 2013)</span>
+        <span class="snapshot">[Snapshots: 13w16a bis 13w26a]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.5 (Redstone Update - 2013)</span>
+        <span class="snapshot">[Snapshots: 13w01a bis 13w09c]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.4 (Pretty Scary Update - 2012)</span>
+        <span class="snapshot">[Snapshots: 12w32a bis 12w42a]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.3 (2012)</span>
+        <span class="snapshot">[Snapshots: 12w01a bis 12w30e]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.2 (2012)</span>
+        <span class="snapshot">[Snapshots: 12w01a bis 12w08a]</span>
+      </li>
+      <li>
+        <span class="release">Version 1.1 (2012)</span>
+        <span class="snapshot"
+          >[Allererste wöchentliche Snapshots: 11w47a bis 11w50a]</span
+        >
+      </li>
+      <li>
+        <span class="release"
+          >Version 1.0.0 (Vollversion-Release - Nov 2011)</span
+        >
+        <span class="snapshot">[Beta 1.8-Prereleases & RC-Phasen]</span>
+      </li>
+    </ul>
+
+    <!-- 3. Die Alpha & Beta Entwicklungsphasen -->
+    <h2>Frühe Entwicklungsphasen (Vor dem offiziellen Release)</h2>
+    <ul class="version-list">
+      <li>
+        <span class="release">Minecraft Beta (2010 - 2011)</span>
+        <span class="snapshot">[Versionen Beta 1.0 bis Beta 1.8.1]</span>
+      </li>
+      <li>
+        <span class="release">Minecraft Alpha (2010)</span>
+        <span class="snapshot"
+          >[Inklusive der legendären "Seecret Updates"]</span
+        >
+      </li>
+      <li><span class="release">Infdev (Infinite Development - 2010)</span></li>
+      <li><span class="release">Indev (In Development - 2009-2010)</span></li>
+      <li>
+        <span class="release">Classic (2009)</span>
+        <span class="snapshot">[Erste Multiplayer-Tests]</span>
+      </li>
+      <li>
+        <span class="release">Pre-Classic (2009)</span>
+        <span class="snapshot">[Die Geburtsstunde als "Cave Game"]</span>
+      </li>
+    </ul>
+
+    <!-- 4. Legendäre Aprilscherz-Versionen -->
+    <h2>Offizielle Aprilscherz-Snapshots (Wichtige Updates)</h2>
+    <ul class="version-list">
+      <li><span class="snapshot">26w14a (2026)</span></li>
+      <li><span class="snapshot">25w14craftmine (2025)</span></li>
+      <li>
+        <span class="snapshot">24w14potato (Das Kartoffel-Update - 2024)</span>
+      </li>
+      <li>
+        <span class="snapshot">23w13a_or_b (Das Vote-Update - 2023)</span>
+      </li>
+      <li><span class="snapshot">22w13oneBlockAtATime (2022)</span></li>
+      <li>
+        <span class="snapshot"
+          >20w14∞ (Das Infinite-Dimensions-Update - 2020)</span
+        >
+      </li>
+      <li><span class="snapshot">3D Shareware v1.34 (2019)</span></li>
+      <li><span class="snapshot">1.RV-Pre1 (Das Tech-Update - 2016)</span></li>
+      <li><span class="snapshot">15w14a (Das Love-Update - 2015)</span></li>
+      <li>
+        <span class="snapshot"
+          >Minecraft 2.0 (Das rote/blaue Update - 2013)</span
+        >
+      </li>
+    </ul>
+    <a href="index.html">GO BACK </a>
+  </body>
+  <script>
+    const canvas = document.getElementById("creeperCanvas");
+    const ctx = canvas.getContext("2d");
+
+    ctx.fillStyle = "#55DD33";
+    ctx.fillRect(0, 0, 8, 8);
+
+    ctx.fillStyle = "#000000";
+
+    ctx.fillRect(1, 2, 2, 2);
+
+    ctx.fillRect(5, 2, 2, 2);
+
+    ctx.fillRect(3, 4, 2, 2);
+
+    ctx.fillRect(2, 5, 1, 2);
+    ctx.fillRect(5, 5, 1, 2);
+
+    document.addEventListener("mousemove", (e) => {
+      canvas.style.left = e.clientX + "px";
+      canvas.style.top = e.clientY + "px";
+    });
+  </script>
+</html>

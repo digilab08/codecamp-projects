@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spiel</title>
+    <style>
+      .box {
+        position: relative;
+        top: 200px;
+        left: 40vw;
+        height: 20vh;
+      }
+    </style>
+  </head>
+  <body style="background-color: darkorange">
+    <h1>Spiel</h1>
+    <h3><a href="index.html">Zurück zur Homepage</a></h3>
+    <h1></h1>
+
+    <img
+      onclick="
+        Benchys += 1 * Druckplatten;
+        scoreelement.textContent = Benchys + ' Benchys';
+      "
+      class="box"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKdcEhbLAYTDFRChdKYPDf6o21aIu-BYnWmLbHcI-gOw&s=10"
+    />
+    <h1 id="Score" style="position: absolute; top: 5px; right: 5px">Benchys</h1>
+    <div style="position: absolute; bottom: 5px">
+      <table>
+        <thead>
+          <tr>
+            <td>Drucker</td>
+            <td>Anzahl</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <button
+                onclick="
+                  if (Benchys >= 300) {
+                    Benchys = Benchys - 300;
+
+                    let anzahldp = document.getElementById('Anzahldp');
+                    Druckplatten += 1;
+                    Anzahldp.textContent = Druckplatten;
+
+                    let preisdp = document.getElementById('preisdp');
+                    preisDP += 50;
+                    preisdp.textContent = preisDP;
+                  } else {
+                    alert('Du hast nich genug Benchys');
+                  }
+                "
+              >
+                Druckplatten(<span id="preisdp">100</span>)
+              </button>
+            </td>
+            <td id="Anzahldp">0</td>
+          </tr>
+          <tr>
+            <td>
+              <button
+                onclick="
+                  if (Benchys >= 800) {
+                    Benchys = Benchys - 800;
+
+                    let anzahla1 = document.getElementById('Anzahla1');
+                    DruckerA1Mini += 1;
+                    Anzahla1.textContent = DruckerA1Mini;
+                    let preisa1id = document.getElementById('preisA1');
+                    PreisA1Mini += 100;
+                    preisa1id.textContent = PreisA1Mini;
+
+                    setInterval(function () {
+                      Benchys += 10;
+                    }, 1000);
+                  } else {
+                    alert('Du hast nich genug Benchys');
+                  }
+                "
+              >
+                DruckerA1Mini(<span id="preisA1">800</span>)
+              </button>
+            </td>
+            <td id="Anzahla1">0</td>
+          </tr>
+          <tr>
+            <td>
+              <button
+                onclick="
+                  if (Benchys >= 1600) {
+                    Benchys = Benchys - 1600;
+                    let Anzahlp1s = document.getElementById('Anzahlp1s');
+                    DruckerP1S += 1;
+                    Anzahlp1s.textContent = DruckerP1S;
+                    let preisp1s = document.getElementById('preisP1S');
+                    preisP1S += 250;
+                    preisp1s.textContent = preisP1S;
+
+                    setInterval(function () {
+                      Benchys += 50;
+                    }, 1000);
+                  } else {
+                    alert('Du hast nich genug Benchys');
+                  }
+                "
+              >
+                DruckerP1S(<span id="preisP1S">1600</span>)
+              </button>
+            </td>
+            <td id="Anzahlp1s">0</td>
+          </tr>
+          <tr>
+            <td>
+              <button
+                onclick="
+                  if (Benchys >= 6000) {
+                    Benchys = Benchys - 6000;
+                    let anzahlh2d = document.getElementById('Anzahlh2d');
+                    DruckerH2D += 1;
+                    anzahlh2d.textContent = DruckerH2D;
+
+                    setInterval(function () {
+                      Benchys += 100;
+                    }, 1000);
+                    let preish2d = document.getElementById('preish2d');
+                    preisH2D += 500;
+                    preish2d.textContent = preisH2D;
+                  } else {
+                    alert('Du hast nicht genug Benchys');
+                  }
+                "
+              >
+                DruckerH2D(<span id="preish2d">6000</span>)
+              </button>
+            </td>
+            <td id="Anzahlh2d">0</td>
+          </tr>
+          <tr>
+            <td>
+              <button
+                onclick="
+                  if (Benchys >= 1000000000) {
+                    alert('Gewonnen du bist reich');
+                    Benchys = Benchys - 1000000000;
+                    let element = document.getElementById('1');
+                    Gewinne += 1;
+                    element.textContent = Gewinne;
+                    let preismy = document.getElementById('preishmy');
+                    preisMY += 1000000;
+                    preismy.textContent = preisMY;
+                  } else {
+                    alert('Du hast nicht genug Benchys');
+                  }
+                "
+              >
+                MYSTERY(<span id="preishmy">1000000000</span>)
+              </button>
+            </td>
+            <td id="1">0</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br />
+      <br />
+    </div>
+  </body>
+
+  <script>
+    let DruckerA1Mini = 0;
+    let DruckerP1S = 0;
+    let DruckerH2D = 0;
+    let Druckplatten = 1;
+    let Benchys = 10000;
+    let Gewinne = 0;
+    let PreisA1Mini = 800;
+    let preisP1S = 1600;
+    let preisDP = 100;
+    let preisH2D = 6000;
+
+    let scoreelement = document.getElementById("Score");
+    setInterval(function () {
+      scoreelement.textContent = Benchys + " Benchys";
+    }, 1000);
+  </script>
+</html>
